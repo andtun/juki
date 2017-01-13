@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 import os
 from bottle import run, request, get, post, route, static_file, template
 import requests
@@ -22,18 +24,18 @@ def do_form():
       calendar_str = calendar_str[(indx+1):]
       date = calendar_str
       d={}
-      d['01'] = "январь".decode('utf-8')
-      d['02'] = "февраль".decode('utf-8')
-      d['03'] = "март".decode('utf-8')
-      d['04'] = "апрель".decode('utf-8')
-      d['05'] = "май".decode('utf-8')
-      d['06'] = "июнь".decode('utf-8')
-      d['07'] = "июль".decode('utf-8')
-      d['08'] = "август".decode('utf-8')
-      d['09'] = "сентябрь".decode('utf-8')
-      d['10'] = "октябрь".decode('utf-8')
-      d['11'] = "ноябрь".decode('utf-8')
-      d['12'] = "декабрь".decode('utf-8')
+      d['01'] = "январь"
+      d['02'] = "февраль"
+      d['03'] = "март"
+      d['04'] = "апрель"
+      d['05'] = "май"
+      d['06'] = "июнь"
+      d['07'] = "июль"
+      d['08'] = "август"
+      d['09'] = "сентябрь"
+      d['10'] = "октябрь"
+      d['11'] = "ноябрь"
+      d['12'] = "декабрь"
       ans={}
       ans['data'] = date
       ans['month'] = month
