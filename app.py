@@ -6,11 +6,11 @@ from openpyxl import load_workbook
 
 @route("/")
 def index():
-  return static_file("login.html", root='static/alco/')
+  return static_file("login.html", root='static/static/alco/')
 
 @route("/alco")
 def get_stat():
-  return static_file("path.html", root='static/alco/')
+  return static_file("path.html", root='static/static/alco/')
 
 @route("/submit", method="POST")
 def do_form():
