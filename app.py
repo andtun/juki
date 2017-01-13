@@ -53,7 +53,8 @@ def do_form():
     
     workbook = xlrd.open_workbook('export.xlsx')
     sheet = workbook.sheet_by_index(0)
-    curcol = 1    
+    curcol = 1
+    currow = 1
     for i in range(sheet.nrows):
         data = sheet.cell_value(i, 0)
         if data == fio:
