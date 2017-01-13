@@ -78,7 +78,7 @@ def do_form():
     curcol += 1
     sheet.cell(row=currow, column=curcol).value = "X"
     book.save('export.xlsx')
-    return static_file("back.html", root='static/alco/')
+    return static_file("back.html", root='static/static/alco/')
 
 @route("/fileDownload")
 def download():
