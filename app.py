@@ -76,6 +76,7 @@ def do_form():
     sheet = book.active
     currow += 1
     curcol += 1
+    print(currow,curcol)
     sheet.cell(row=currow, column=curcol).value = "X"
     book.save('export.xlsx')
     return static_file("back.html", root='static/static/alco/')
