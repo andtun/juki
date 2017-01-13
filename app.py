@@ -42,7 +42,7 @@ def do_form():
       return ans
 
     
-    fio=request.forms.get('fio')
+    fio=request.forms.get('FIO')
     print(fio)
     cal_str=request.forms.get('calendar')
     YesNo=request.forms.get('YesNo')
