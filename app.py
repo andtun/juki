@@ -22,10 +22,12 @@ def index():
   return static_file("login.html", root='static/static/alco/')'''
 
 @route("/")
+@auth_basic(check_pass)
 def get_stat():
   return static_file("path.html", root='static/static/alco/')
 
 @route("/submit", method="POST")
+@auth_basic(check_pass)
 def do_form():
     def cal(calendar_str):
       indx = calendar_str.find('-')
