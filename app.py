@@ -1,16 +1,27 @@
 # This Python file uses the following encoding: utf-8
 
 import os
-from bottle import run, request, get, post, route, static_file, template
+from bottle import run, request, get, post, route, static_file, template, auth_basic
 import requests
 import xlrd
 from openpyxl import load_workbook
 
-@route("/")
-def index():
-  return static_file("login.html", root='static/static/alco/')
+d = {}
+d['user1'] = "qwerty"
+d['user100500'] = "aswq"
+d['admin'] = "adminpsw228"
 
-@route("/alco")
+def check_pass(username, password):
+    if username in d:
+        if d[username] == password:
+            return True
+    return False
+
+'''@route("/")
+def index():
+  return static_file("login.html", root='static/static/alco/')'''
+
+@route("/")
 def get_stat():
   return static_file("path.html", root='static/static/alco/')
 
