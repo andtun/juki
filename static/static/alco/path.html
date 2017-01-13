@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html class="pointerfocus">
+ <head>
+  <meta charset="utf-8">
+  <title>XL</title>
+ </head>
+ 
+ <body>
+ 
+ <table cellpadding=0 rules="none" >
+ 
+  
+  <tr>
+   <td width=340 valign="top">
+<form name="XL" method="post" action="submit" accept-charset="utf-8" target="_blank">
+<label><p><b>Фамилия Имя Отчество учащегося:</b><br>
+<input list="FIOs" name="fio">
+</label>
+<datalist id="FIOs" data="studlist.xml">
+<label>Или выберите из списка:
+<select name="FIO">
+<option value="">(none)</option>
+<option>Алеев Мурат Дмитриевич</option>
+<option>Алексеев Илья Сергеевич</option>
+<option>Архипова Анастасия Станиславовна</option>
+<option>Балакшина Мария Евгеньевна</option>
+<option>Барциц Никита Теймуразович</option>
+<option>Бешкуров Михаил Борисович</option>
+<option>Бешкуров Тимофей Борисович</option>
+<option>Блынская София Владимировна</option>
+<option>Богдан Дарья Александровна</option>
+<option>Браздникова Ульяна Викторовна</option>
+<option>Букин Андрей Владимирович</option>
+<option>Волков Георгий Васильевич</option>
+<option>Григорян Виктория Рубеновна</option>
+<option>Губанова Полина Сергеевна</option>
+<option>Данилов Руслан Игоревич</option>
+<option>Деева Александра Андреевна</option>
+<option>Евдокимова Наталья Николаевна</option>
+<option>Жуковская Кира Леонидовна</option>
+<option>Иевлева Валерия Андреевна</option>
+<option>Капкова Мария Александровна</option>
+<option>Каргинова Анна Евгеньевна</option>
+<option>Кин Александр Алексеевич</option>
+<option>Козлова Мария Сергеевна</option>
+<option>Косарева Олеся Алексеевна</option>
+<option>Кубрак Катерина Вадимовна</option>
+<option>Левин Ефим Михайлович</option>
+<option>Ли Тимофей Александрович</option>
+<option>Мазурова Варвара Владимировна</option>
+<option>Печникова Галина Сергеевна</option>
+<option>Пужаев Илия Юрьевич</option>
+<option>Разин Денис Валерьевич</option>
+<option>Ракитина Наталия Андреевна</option>
+<option>Рудый Всеволод Вадимович</option>
+<option>Святловская София Владимировна</option>
+<option>Смолярова Юлия Дмитриевна</option>
+<option>Сокова Анастасия Алексеевна</option>
+<option>Солопова Елена Валерьевна</option>
+<option>Сонькин Михаил Викторович</option>
+<option>Спасенкова Арина Владимировна</option>
+<option>Стрелкова Марья Михайловна</option>
+<option>Титкова Александра Сергеевна</option>
+<option>Тиунова Ольга Никитична</option>
+<option>Тюняткин Андрей Александрович</option>
+<option>Уманский Вениамин Алексеевич</option>
+<option>Халитова Эльмира Тимуровна</option>
+<option>Хаханова Маргарита Сергеевна</option>
+<option>Чернышев Артём Кириллович</option>
+<option>Шашкин Иван Александрович</option>
+<option>Шерстнева Мария Ивановна</option>
+<option>Элиович Алиса Александровна</option>
+
+</select>
+</label>
+</datalist>
+    <p><b>Месяц:</b><Br>
+    <select name="month">
+    <option value="cентябрь">cентябрь</option>
+    <option value="oктябрь">oктябрь</option>
+    <option value="ноябрь">ноябрь</option>
+    <option value="декабрь">декабрь</option>
+    <option value="январь">январь</option>
+    <option value="февраль">февраль</option>
+    <option value="март">март</option>
+    <option value="апрель">апрель</option>
+    <option value="май">май</option>
+    <option value="июнь">июнь</option>
+    <option value="июль">июль</option>
+    <option value="август">август</option>
+   </select></p>
+  <p><b>Число:</b><Br>
+   <input name="day" type="number" size="40" autocomplete="off" max=31 min=1>
+  </p>
+     <p><b>В школе:</b><Br>
+    <select name="YesNo">
+    <option value="Yes"> Yes</option>
+    <option value="No"> No</option>
+   </select></p>
+  <p><input type="submit" value="Отправить">
+   <input type="reset" value="Очистить"></p>
+ </form>
+   </td>
+  </tr>
+ </table>
+
+<hr>
+
+<form action="/fileDownload">
+    <input type="submit" value="Скачать файл" />
+</form>
+
+ </body>
+</html>
