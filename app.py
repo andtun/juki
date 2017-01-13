@@ -14,10 +14,40 @@ def get_stat():
 
 @route("/submit", method="POST")
 def do_form():
+    def cal(calendar_str):
+      indx = calendar_str.find('-')
+      calendar_str = calendar_str[(indx+1):]
+      indx = calendar_str.find('-')
+      month = calendar_str[:indx]
+      calendar_str = calendar_str[(indx+1):]
+      date = calendar_str
+      d={}
+      d['01'] = "январь"
+      d['02'] = "февраль"
+      d['03'] = "март"
+      d['04'] = "апрель"
+      d['05'] = "май"
+      d['06'] = "июнь"
+      d['07'] = "июль"
+      d['08'] = "август"
+      d['09'] = "сентябрь"
+      d['10'] = "октябрь"
+      d['11'] = "ноябрь"
+      d['12'] = "декабрь"
+      ans={}
+      ans['data'] = date
+      ans['month'] = month
+      return ans
+
+    
     fio=request.forms.get('fio')
-    month=request.forms.get('month')
-    date=request.forms.get('day')
+    cal_str=request.forms.get('calendar')
     YesNo=request.forms.get('YesNo')
+
+
+    date = cal(cal_str)['data']
+    month = cal(cal_str)['month']
+
     
     workbook = xlrd.open_workbook('export.xlsx')
     sheet = workbook.sheet_by_index(0)
