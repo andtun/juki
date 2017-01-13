@@ -43,7 +43,6 @@ def do_form():
 
     
     fio=request.forms.get('FIO')
-    print(fio)
     cal_str=request.forms.get('calendar')
     YesNo=request.forms.get('YesNo')
 
@@ -77,8 +76,11 @@ def do_form():
     sheet = book.active
     currow += 1
     curcol += 1
-    print(currow,curcol)
-    sheet.cell(row=currow, column=curcol).value = "X"
+    if YesNo == "Yes":
+        sheet.cell(row=currow, column=curcol).value = ""
+    else:
+        if YesNo == "No":
+            sheet.cell(row=currow, column=curcol).value = "Н"
     book.save('export.xlsx')
     return static_file("back.html", root='static/static/alco/')
 
