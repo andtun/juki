@@ -53,7 +53,6 @@ def logerror():
 @route("/main")
 def main():
     global logged_in
-    print(logged_in)
     if logged_in:
         return static_file("path.html", root='static/static/alco/')
     redirect("/")
@@ -130,7 +129,8 @@ def do_form():
             if YesNo == "No":
                 sheet.cell(row=currow, column=curcol).value = "Н"
         book.save('export.xlsx')
-        return static_file("back.html", root='static/static/alco/')
+        if logged_in:
+            return static_file("back.html", root='static/static/alco/')
     return HTTPError(401)
     redirect("/")
 
@@ -150,7 +150,7 @@ def forgot():
 
 @error(401)
 def notlogged(error):
-    redirect("/")
+    return static_file("notloggederror.html",root='static/static/alco/') 
     
     
 run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
