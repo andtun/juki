@@ -30,6 +30,11 @@ def logout():
     
 @get("/")
 def login():
+    if logged_in:
+        redirect("/main")
+    reason = request.query.reason
+    if reason == "notlogged":
+        return static_file("login-notlogged.html", root='static/static/alco/')
     return static_file("login.html", root='static/static/alco/')
 
 @post("/")
@@ -127,5 +132,16 @@ def do_form():
 @route("/fileDownload")
 def download():
     return static_file("export.xlsx", root='.', download=True)
+
+@get("/logout")
+def lout():
+    logout()
+    redirect("/")
+
+
+@error(401)
+def notlogged(error):
+    redirect("/?reason=notlogged")
+    
     
 run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
