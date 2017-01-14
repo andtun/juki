@@ -35,6 +35,7 @@ def login():
     reason = request.query.reason
     print(reason)
     a = (reason == "notlogged")
+    print(a)
     if reason == "notlogged":
         return static_file("login-notlogged.html", root='static/static/alco/')
     return static_file("login.html", root='static/static/alco/')
