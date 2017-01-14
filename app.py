@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 import os
-from bottle import run, request, get, post, route, static_file, template, auth_basic
+from bottle import *
 import requests
 import xlrd
 from openpyxl import load_workbook
@@ -11,23 +11,46 @@ d['user1'] = "qwerty"
 d['user100500'] = "aswq"
 d['admin'] = "adminpsw228"
 
-def check_pass(username, password):
+global logged_in
+logged_in = False
+
+def check_pass():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    '''print(username)
+    print(password)'''
     if username in d:
         if d[username] == password:
             return True
     return False
+        
+def logout():
+    global logged_in
+    logged_in = False
+    
+@get("/")
+def login():
+    return static_file("login.html", root='static/static/alco/')
 
-'''@route("/")
-def index():
-  return static_file("login.html", root='static/static/alco/')'''
+@post("/")
+def chklgn():
+    if check_pass():
+        global logged_in
+        logged_in = True
+        redirect("/main")
+    else:
+        redirect("/")
 
-@route("/")
-@auth_basic(check_pass)
-def get_stat():
-  return static_file("path.html", root='static/static/alco/')
+
+@route("/main")
+def main():
+    global logged_in
+    if logged_in:
+        return static_file("path.html", root='static/static/alco/')
+    return HTTPError(401)
+
 
 @route("/submit", method="POST")
-@auth_basic(check_pass)
 def do_form():
     def cal(calendar_str):
       indx = calendar_str.find('-')
@@ -54,48 +77,52 @@ def do_form():
       ans['month'] = month
       return ans
 
-    
-    fio=request.forms.get('FIO')
-    cal_str=request.forms.get('calendar')
-    YesNo=request.forms.get('YesNo')
-
-
-    date = cal(cal_str)['data']
-    month = cal(cal_str)['month']
+    global logged_in
+    if logged_in:
 
     
-    workbook = xlrd.open_workbook('export.xlsx')
-    sheet = workbook.sheet_by_index(0)
-    curcol = 1
-    currow = 1
-    for i in range(sheet.nrows):
-        data = sheet.cell_value(i, 0)
-        if data == fio.decode("utf-8"):
-            currow = i
-            break
-    for i in range(sheet.ncols):
-        data = sheet.cell_value(0, i)
-        if data == month.decode("utf-8"):
-            curcol = i
-            break
-    for i in range(curcol, sheet.ncols - curcol):
-        data = sheet.cell_value(1, i)
-        if data == int(date):
-            curcol = i
-            break
+        fio=request.forms.get('FIO')
+        cal_str=request.forms.get('calendar')
+        YesNo=request.forms.get('YesNo')
 
 
-    book=load_workbook('export.xlsx')
-    sheet = book.active
-    currow += 1
-    curcol += 1
-    if YesNo == "Yes":
-        sheet.cell(row=currow, column=curcol).value = ""
-    else:
-        if YesNo == "No":
-            sheet.cell(row=currow, column=curcol).value = "Н"
-    book.save('export.xlsx')
-    return static_file("back.html", root='static/static/alco/')
+        date = cal(cal_str)['data']
+        month = cal(cal_str)['month']
+
+        
+        workbook = xlrd.open_workbook('export.xlsx')
+        sheet = workbook.sheet_by_index(0)
+        curcol = 1
+        currow = 1
+        for i in range(sheet.nrows):
+            data = sheet.cell_value(i, 0)
+            if data == fio.decode("utf-8"):
+                currow = i
+                break
+        for i in range(sheet.ncols):
+            data = sheet.cell_value(0, i)
+            if data == month.decode("utf-8"):
+                curcol = i
+                break
+        for i in range(curcol, sheet.ncols - curcol):
+            data = sheet.cell_value(1, i)
+            if data == int(date):
+                curcol = i
+                break
+
+
+        book=load_workbook('export.xlsx')
+        sheet = book.active
+        currow += 1
+        curcol += 1
+        if YesNo == "Yes":
+            sheet.cell(row=currow, column=curcol).value = ""
+        else:
+            if YesNo == "No":
+                sheet.cell(row=currow, column=curcol).value = "Н"
+        book.save('export.xlsx')
+        return static_file("back.html", root='static/static/alco/')
+    return HTTPError(401)
 
 @route("/fileDownload")
 def download():
