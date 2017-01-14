@@ -54,7 +54,7 @@ def main():
     global logged_in
     if logged_in:
         return static_file("path.html", root='static/static/alco/')
-    return HTTPError(401)
+    redirect("/")
 
 
 @route("/submit", method="POST")
@@ -130,6 +130,7 @@ def do_form():
         book.save('export.xlsx')
         return static_file("back.html", root='static/static/alco/')
     return HTTPError(401)
+    redirect("/")
 
 @route("/fileDownload")
 def download():
