@@ -146,7 +146,8 @@ def forgot():
 
 @error(401)
 def notlogged(error):
-    redirect("/")
+    #redirect("/")
+    return "You are not logged in"
     
     
 run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
