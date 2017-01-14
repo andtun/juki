@@ -27,6 +27,7 @@ def check_pass():
 def logout():
     global logged_in
     logged_in = False
+    print(logged_in)
     
 @get("/")
 def login():
