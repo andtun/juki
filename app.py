@@ -34,7 +34,7 @@ def login():
         redirect("/main")
     reason = request.query.reason
     print(reason)
-    a = (reason == "notlogged")
+    a = (reason.decode("utf-8") == "notlogged".decode("utf-8"))
     print(a)
     if reason == "notlogged":
         return static_file("login-notlogged.html", root='static/static/alco/')
