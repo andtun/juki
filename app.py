@@ -44,7 +44,7 @@ def chklgn():
         redirect("/logerror")
 
 @get("/logerror")
-def logerror:
+def logerror():
     return static_file("login-notlogged.html", root='static/static/alco/')
 
 
@@ -138,6 +138,10 @@ def download():
 def lout():
     logout()
     redirect("/")
+
+@route("/forgot_password")
+def forgot():
+    return "Если забыли пароль, напишите администратору: ..."
 
 
 @error(401)
