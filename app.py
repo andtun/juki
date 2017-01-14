@@ -32,7 +32,7 @@ def logout():
 def login():
     if logged_in:
         redirect("/main")
-    reason = request.query.reason
+    reason = str(request.query.reason)
     print(reason)
     a = (reason.decode("utf-8") == "notlogged".decode("utf-8"))
     print(a)
