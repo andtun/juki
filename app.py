@@ -146,7 +146,7 @@ def forgot():
 
 @error(401)
 def notlogged(error):
-    return static_file("login.html", root='static/static/alco/')
+    return static_file("notloggederror.html", root='static/static/alco/')
     
     
 run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
