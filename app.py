@@ -31,6 +31,7 @@ def logout():
     
 @get("/")
 def login():
+    global logged_in
     if logged_in:
         redirect("/main")
     return static_file("login.html", root='static/static/alco/')
@@ -52,6 +53,7 @@ def logerror():
 @route("/main")
 def main():
     global logged_in
+    print(logged_in)
     if logged_in:
         return static_file("path.html", root='static/static/alco/')
     redirect("/")
