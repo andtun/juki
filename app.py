@@ -44,7 +44,7 @@ def chklgn():
         logged_in = True
         redirect("/main")
     else:
-        redirect("/")
+        redirect('''/?reason="notlogged"''')
 
 
 @route("/main")
@@ -141,7 +141,7 @@ def lout():
 
 @error(401)
 def notlogged(error):
-    return "ethet"
+    redirect("/")
     
     
 run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
