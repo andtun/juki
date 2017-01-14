@@ -32,12 +32,6 @@ def logout():
 def login():
     if logged_in:
         redirect("/main")
-    reason = str(request.query.reason)
-    print(reason)
-    a = (reason.decode("utf-8") == "notlogged".decode("utf-8"))
-    print(a)
-    if reason == "notlogged":
-        return static_file("login-notlogged.html", root='static/static/alco/')
     return static_file("login.html", root='static/static/alco/')
 
 @post("/")
@@ -47,7 +41,11 @@ def chklgn():
         logged_in = True
         redirect("/main")
     else:
-        redirect('''/?reason="notlogged"''')
+        redirect("/logerror")
+
+@get("/logerror")
+def logerror:
+    return static_file("login-notlogged.html", root='static/static/alco/')
 
 
 @route("/main")
