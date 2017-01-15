@@ -6,7 +6,7 @@ import requests
 import xlrd
 from openpyxl import load_workbook
 
-bottle.debug = True
+debug = True
 
 d = {}
 access = {}
