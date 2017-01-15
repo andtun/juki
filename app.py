@@ -20,11 +20,11 @@ logged_in = False
 def check_pass():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    global access_level
     '''print(username)
     print(password)'''
     if username in d:
         if d[username] == password:
+            global access_level
             access_level = access[username]
             return True
     return False
@@ -35,6 +35,7 @@ def logout():
     access_level = ""
     logged_in = False
     print(logged_in)
+    print (access_level)
     
 @get("/")
 def login():
