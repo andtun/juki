@@ -169,14 +169,14 @@ def chngpswhtml():
 def chngpswprocess():
     global logged_in
     if logged_in:
-        username = request.forms.get('username')
+        its_username = request.forms.get('username')
         old_password = request.forms.get('old_password')
         new_password = request.forms.get('new_password')
         global d
-        if ((username in d) and (d[username] == old_password)):
-            d[username] = new_password
+        if ((its_username in d) and (d[its_username] == old_password)):
+            d[its_username] = new_password
             logged_in = False
-            return '''Пароль изменён. Нажмите <a href="http://jukiproject.herokuapp.com/logout">Скачать список пользователей</a>, чтобы войти заново'''
+            return '''Пароль изменён. Нажмите <a href="http://jukiproject.herokuapp.com/logout">здесь</a>, чтобы войти заново'''
         return '''Вы что-то ввели не так:(<a href="http://jukiproject.herokuapp.com/change_password">Попробуйте снова</a> '''
     return HTTPError(401)
 
@@ -228,14 +228,14 @@ def addusr():
     global d
     global access
     if (logged_in and (access_level=="admin")):
-        username = request.forms.get('username')
-        password = request.forms.get('password')
-        access_level = request.forms.get('access_level')
-        if username in d:
+        his_username = request.forms.get('username')
+        his_password = request.forms.get('password')
+        his_access_level = request.forms.get('access_level')
+        if his_username in d:
             return "User already exists"
-        d[username] = password
-        access[username] = access_level
-        return ("created user: username="+username+", password="+password+", access_level="+access_level)
+        d[his_username] = his_password
+        access[his_username] = his_access_level
+        return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level)
     return HTTPError(401)
 
 @post("/change_access")
@@ -245,11 +245,11 @@ def chngaccs():
     global d
     global access
     if (logged_in and (access_level=="admin")):
-        username = request.forms.get('username')
+        his_username = request.forms.get('username')
         new_access_level = request.forms.get('access_level')
-        if username in d:
-            access[username] = new_access_level
-            return ("Access level for "+username+" changed to "+ new_access_level)
+        if his_username in d:
+            access[his_username] = new_access_level
+            return ("Access level for "+his_username+" changed to "+ new_access_level)
         return "No such user"
         
     return HTTPError(401)
