@@ -178,19 +178,16 @@ def chngpswhtml():
     return HTTPError(401)
 
 @post("/change_password")
-def chngpswprocess():
-    global logged_in
-    if logged_in:
-        its_username = request.forms.get('username')
-        old_password = request.forms.get('old_password')
-        new_password = request.forms.get('new_password')
-        global d
-        if ((its_username in d) and (d[its_username] == old_password)):
-            d[its_username] = new_password
-            logged_in = False
-            return '''Пароль изменён. Нажмите <a href="http://jukiproject.herokuapp.com/logout">здесь</a>, чтобы войти заново'''
-        return '''Вы что-то ввели не так:(<a href="http://jukiproject.herokuapp.com/change_password">Попробуйте снова</a> '''
-    return HTTPError(401)
+def chngpswprocess()::
+    its_username = request.forms.get('username')
+    old_password = request.forms.get('old_password')
+    new_password = request.forms.get('new_password')
+    global d
+    if ((its_username in d) and (d[its_username] == old_password)):
+        d[its_username] = new_password
+        logged_in = False
+        return '''Пароль изменён. Нажмите <a href="http://jukiproject.herokuapp.com/logout">здесь</a>, чтобы войти заново'''
+    return '''Вы что-то ввели не так:(<a href="http://jukiproject.herokuapp.com/change_password">Попробуйте снова</a> '''
 
 #======================================================================
 #                     ADMIN STUFF
