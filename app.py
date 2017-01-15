@@ -31,6 +31,8 @@ def check_pass():
         
 def logout():
     global logged_in
+    global access_level
+    access_level = ""
     logged_in = False
     print(logged_in)
     
@@ -151,7 +153,8 @@ def download():
 
 @get("/logout")
 def lout():
-    logout()
+    for i in range(20):
+        logout()
     redirect("/")
 
 @route("/forgot_password")
