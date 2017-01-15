@@ -178,7 +178,7 @@ def chngpswhtml():
     return HTTPError(401)
 
 @post("/change_password")
-def chngpswprocess()::
+def chngpswprocess():
     its_username = request.forms.get('username')
     old_password = request.forms.get('old_password')
     new_password = request.forms.get('new_password')
