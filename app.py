@@ -5,8 +5,8 @@ from bottle import *
 import requests
 import xlrd
 from openpyxl import load_workbook
+from beaker.middleware import SessionMiddleware
 
-debug = True
 
 d = {}
 access = {}
@@ -18,6 +18,21 @@ access['admin'] = "admin"
 global access_level
 global logged_in
 logged_in = False
+
+
+
+app = bottle.app()
+session_opts = {
+    'session.cookie_expires': True,
+    'session.encrypt_key': 'please use a random key and keep it secret!',
+    'session.httponly': True,
+    'session.timeout': 3600 * 24,  # 1 day
+    'session.type': 'cookie',
+    'session.validate_key': True,
+}
+app = SessionMiddleware(app, session_opts)
+
+
 
 def check_pass():
     username = request.forms.get('username')
@@ -271,4 +286,11 @@ def notlogged(error):
     return static_file("notloggederror.html",root='static/static/alco/') 
     
     
-run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+def main():
+
+    # Start the Bottle webapp
+    debug(True)
+    run(app=app, quiet=False, reloader=True)
+
+if __name__ == "__main__":
+    main()
