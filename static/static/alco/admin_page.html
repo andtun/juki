@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html class="pointerfocus">
+ <head>
+  <meta charset="utf-8">
+  <title>XL</title>
+ </head>
+ 
+ <body>
+ 
+ <table cellpadding=1 rules="none" >
+
+<tr>
+	
+		<a href="http://jukiproject.herokuapp.com/userlistdownload">Скачать список пользователей</a>
+		<form action="/showuserlist">
+    	<input type="submit" value="Показать список пользователей" />
+		</form>
+	
+</tr>
+
+<tr>
+	<td>
+		<form action="/delete_user">
+   	 	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required/>
+    	<input type="submit" value="Удалить пользователя">
+		</form>
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<form method="POST" action="/add_user">
+    	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
+    	<input type="text" name="password" value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required />
+    	<input type="text" name="acess_level" value="acess_level" onBlur="if(this.value == '') this.value = 'acess_level'" onFocus="if(this.value == 'acess_level') this.value = ''" required />
+    	<input type="submit" value="Добавить пользователя">
+		</form>
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<form method="POST" action="/change_access">
+			<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
+			<input type="text" name="acess_level" value="acess_level" onBlur="if(this.value == '') this.value = 'acess_level'" onFocus="if(this.value == 'acess_level') this.value = ''" required />
+			<input type="submit" value="Изменить доступ">
+		</form>
+	</td>
+</tr>
+
+<tr>
+ 	<td>
+		<form action="/logout">
+    	<input type="submit" value="Выйти" />
+		</form>
+	</td>
+</tr>
+
+</table>
+
+<a href="http://jukiproject.herokuapp.com/change_password">Изменить пароль</a>
+
+ </body>
+</html>

@@ -7,20 +7,25 @@ import xlrd
 from openpyxl import load_workbook
 
 d = {}
+access = {}
 d['user1'] = "qwerty"
-d['user100500'] = "aswq"
+access['user1'] = "10kl"
 d['admin'] = "adminpsw228"
+access['admin'] = "admin"
 
+global access_level
 global logged_in
 logged_in = False
 
 def check_pass():
     username = request.forms.get('username')
     password = request.forms.get('password')
+    global access_level
     '''print(username)
     print(password)'''
     if username in d:
         if d[username] == password:
+            access_level = access[username]
             return True
     return False
         
@@ -53,8 +58,14 @@ def logerror():
 @route("/main")
 def main():
     global logged_in
+    global access_level
     if logged_in:
-        return static_file("path.html", root='static/static/alco/')
+        if access_level == "10kl":
+            return static_file("path.html", root='static/static/alco/')
+        elif access_level == "admin":
+            return static_file("admin_page.html", root='static/static/alco/')
+        else:
+            return "nolevel"
     redirect("/")
 
 
@@ -146,6 +157,107 @@ def lout():
 @route("/forgot_password")
 def forgot():
     return "Если забыли пароль, напишите администратору: ..."
+
+@get("/change_password")
+def chngpswhtml():
+    global logged_in
+    if logged_in:
+        return static_file("change_pswd.html", root='static/static/alco/')
+    return HTTPError(401)
+
+@post("/change_password")
+def chngpswprocess():
+    global logged_in
+    if logged_in:
+        username = request.forms.get('username')
+        old_password = request.forms.get('old_password')
+        new_password = request.forms.get('new_password')
+        global d
+        if ((username in d) and (d[username] == old_password)):
+            d[username] = new_password
+            logged_in = False
+            return '''Пароль изменён. Нажмите <a href="http://jukiproject.herokuapp.com/logout">Скачать список пользователей</a>, чтобы войти заново'''
+        return '''Вы что-то ввели не так:(<a href="http://jukiproject.herokuapp.com/change_password">Попробуйте снова</a> '''
+    return HTTPError(401)
+
+#======================================================================
+#                     ADMIN STUFF
+
+@route("/showuserlist")
+def showusr():
+    global logged_in
+    global access_level
+    if (logged_in and (access_level=="admin")):
+        return(str(d), str(access))
+    return HTTPError(401)
+
+@route("/userlistdownload")
+def downloadusr():
+    global logged_in
+    global access_level
+    if (logged_in and (access_level=="admin")):
+        print("started")
+        ulist = open('usrlist.txt', 'w')
+        print(str(d), file=ulist)
+        ulist = open('usrlist.txt', 'a')
+        print(str(access), file=ulist)
+        ulist.close()
+        return static_file("usrlist.txt", root='.', download=True)
+    return HTTPError(401)
+
+@route("/delete_user")
+def delusr():
+    global logged_in
+    global access_level
+    if (logged_in and (access_level=="admin")):
+        global d
+        global access
+        username = str(request.query.username)
+        if username in d:
+            del d[username]
+            del access[username]
+            return ("User "+username+" deleted!")
+        else:
+            return "No such user"
+    return HTTPError(401)
+
+@post("/add_user")
+def addusr():
+    global logged_in
+    global access_level
+    global d
+    global access
+    if (logged_in and (access_level=="admin")):
+        username = request.forms.get('username')
+        password = request.forms.get('password')
+        access_level = request.forms.get('acess_level')
+        if username in d:
+            return "User already exists"
+        d[username] = password
+        access[username] = access_level
+        return ("created user: username="+username+", password="+password+", access_level="+access_level)
+    return HTTPError(401)
+
+@post("/change_access")
+def chngaccs():
+    global logged_in
+    global access_level
+    global d
+    global access
+    if (logged_in and (access_level=="admin")):
+        username = request.forms.get('username')
+        new_access_level = request.forms.get('acess_level')
+        if username in d:
+            access[username] = new_access_level
+            return ("Access level for "+username+" changed to "+ new_access_level)
+        return "No such user"
+        
+    return HTTPError(401)
+
+
+
+
+#======================================================================
 
 
 @error(401)
