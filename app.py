@@ -34,12 +34,11 @@ def logout():
     global access_level
     access_level = ""
     logged_in = False
-    print(logged_in)
-    print (access_level)
     
 @get("/")
 def login():
     global logged_in
+    print(logged_in)
     if logged_in:
         redirect("/main")
     return static_file("login.html", root='static/static/alco/')
@@ -47,9 +46,14 @@ def login():
 @post("/")
 def chklgn():
     if check_pass():
-        check_pass()
         global logged_in
+        global access_level
         logged_in = True
+        username = request.forms.get('username')
+        print(username)
+        access_level = access[username]
+        print(logged_in)
+        print(access_level)
         redirect("/main")
     else:
         redirect("/logerror")
@@ -64,6 +68,8 @@ def main():
     global logged_in
     global access_level
     if logged_in:
+        print(logged_in)
+        print (access_level)
         if access_level == "10kl":
             return static_file("path.html", root='static/static/alco/')
         elif access_level == "admin":
@@ -155,8 +161,7 @@ def download():
 
 @get("/logout")
 def lout():
-    for i in range(20):
-        logout()
+    logout()
     redirect("/")
 
 @route("/forgot_password")
