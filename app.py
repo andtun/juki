@@ -198,9 +198,9 @@ def downloadusr():
     if (logged_in and (access_level=="admin")):
         print("started")
         ulist = open('usrlist.txt', 'w')
-        print(str(d), file=ulist)
+        ulist.writelines(str(d))
         ulist = open('usrlist.txt', 'a')
-        print(str(access), file=ulist)
+        ulist.write(str(access))
         ulist.close()
         return static_file("usrlist.txt", root='.', download=True)
     return HTTPError(401)
