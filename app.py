@@ -6,7 +6,10 @@ import requests
 import xlrd
 from openpyxl import load_workbook
 from beaker.middleware import SessionMiddleware
+import logging
 
+logging.basicConfig(format='localhost - - [%(asctime)s] %(message)s', level=logging.DEBUG)
+log = logging.getLogger(__name__)
 
 d = {}
 access = {}
