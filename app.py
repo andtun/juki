@@ -290,7 +290,7 @@ def main():
 
     # Start the Bottle webapp
     debug(True)
-    run(app=app, quiet=False, reloader=True)
+    run(app=app, host="0.0.0.0", port=os.environ.get('PORT', 5000), quiet=False, reloader=True)
 
 if __name__ == "__main__":
     main()
