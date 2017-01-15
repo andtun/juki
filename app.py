@@ -162,7 +162,7 @@ def download():
 @get("/logout")
 def lout():
     logout()
-    redirect("/")
+    redirect("/main")
 
 @route("/forgot_password")
 def forgot():
