@@ -21,7 +21,7 @@ logged_in = False
 
 
 
-app = bottle.app()
+app = app()
 session_opts = {
     'session.cookie_expires': True,
     'session.encrypt_key': 'please use a random key and keep it secret!',
