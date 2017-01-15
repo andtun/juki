@@ -230,7 +230,7 @@ def addusr():
     if (logged_in and (access_level=="admin")):
         username = request.forms.get('username')
         password = request.forms.get('password')
-        access_level = request.forms.get('acess_level')
+        access_level = request.forms.get('access_level')
         if username in d:
             return "User already exists"
         d[username] = password
@@ -246,7 +246,7 @@ def chngaccs():
     global access
     if (logged_in and (access_level=="admin")):
         username = request.forms.get('username')
-        new_access_level = request.forms.get('acess_level')
+        new_access_level = request.forms.get('access_level')
         if username in d:
             access[username] = new_access_level
             return ("Access level for "+username+" changed to "+ new_access_level)
