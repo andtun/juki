@@ -47,9 +47,7 @@ def login():
 @post("/")
 def chklgn():
     if check_pass():
-        username = request.forms.get('username')
-        global access_level
-        access_level = access[username]
+        check_pass()
         global logged_in
         logged_in = True
         redirect("/main")
