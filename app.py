@@ -172,10 +172,7 @@ def forgot():
 
 @get("/change_password")
 def chngpswhtml():
-    global logged_in
-    if logged_in:
-        return static_file("change_pswd.html", root='static/static/alco/')
-    return HTTPError(401)
+    return static_file("change_pswd.html", root='static/static/alco/')
 
 @post("/change_password")
 def chngpswprocess():
