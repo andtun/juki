@@ -6,6 +6,8 @@ import requests
 import xlrd
 from openpyxl import load_workbook
 
+bottle.debug = True
+
 d = {}
 access = {}
 d['user1'] = "qwerty"
