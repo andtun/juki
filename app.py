@@ -8,6 +8,9 @@ import xlrd
 from openpyxl import load_workbook
 import beaker.middleware
 
+
+bottle.debug(True)
+
 session_opts = {
     'session.type': 'file',
     'session.data_dir': './session/',
@@ -21,6 +24,7 @@ session_opts = {
 }
 
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
+
 
 d = {}
 access = {}
@@ -167,8 +171,7 @@ def lout():
 
 @route("/forgot_password")
 def forgot():
-    return '''Если забыли пароль, напишите <a href="mailto:andtun@yandex.ru?subject=Forgot password
-&body=Аккаунт: ____. Необходимо восстановить пароль.">администратору.</a>'''
+    return '''Если забыли пароль, напишите <a href="vk.com/easytofindme">администратору сайта.</a>'''
 
 @get("/change_password")
 def chngpswhtml():
