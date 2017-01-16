@@ -161,12 +161,12 @@ def download():
 def lout():
     request.session['access'] = ""
     request.session['logged_in'] = False
-    #redirect ("/")
-    redirect("/main")
+    redirect ("/")
+    #redirect("/main")
 
 @route("/forgot_password")
 def forgot():
-    return "Если забыли пароль, напишите администратору: ..."
+    return '''Если забыли пароль, напишите <a href="mailto:antun@yandex.ru">администратору.</a>'''
 
 @get("/change_password")
 def chngpswhtml():
@@ -182,8 +182,8 @@ def chngpswprocess():
     if ((its_username in d) and (d[its_username] == old_password)):
         d[its_username] = new_password
         request.session['logged_in'] = False
-        return '''Пароль изменён. Нажмите <a href="http://jukiproject.herokuapp.com/logout">здесь</a>, чтобы войти заново'''
-    return '''Вы что-то ввели не так:(<a href="http://jukiproject.herokuapp.com/change_password">Попробуйте снова</a> '''
+        return '''Пароль изменён. Нажмите <a href="/logout">здесь</a>, чтобы войти заново'''
+    return '''Вы что-то ввели не так:(<a href="/change_password">Попробуйте снова</a> '''
 
 #======================================================================
 #                     ADMIN STUFF
@@ -219,6 +219,7 @@ def delusr():
         else:
             return "No such user"
     return HTTPError(401)
+
 
 @post("/add_user")
 def addusr():
