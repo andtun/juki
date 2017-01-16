@@ -40,13 +40,13 @@ def check_login(username, password):
 def setup_request():
     request.session = request.environ['beaker.session']
 
-request.session['logged_in'] = False
+#request.session['logged_in'] = False
 
     
 @get("/")
 def login():
-    if request.session['logged_in']:
-        redirect("/main")
+    #if request.session['logged_in']:
+        #redirect("/main")
     return static_file("login.html", root='static/static/alco/')
 
 @post("/")
