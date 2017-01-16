@@ -68,13 +68,14 @@ def logerror():
 
 @route("/main")
 def main():
-    if request.session['logged_in']:
-        if request.session['access'] == "10kl":
-            return static_file("path.html", root='static/static/alco/')
-        elif request.session['access'] == "admin":
-            return static_file("admin_page.html", root='static/static/alco/')
-        else:
-            return "nolevel"
+    if 'logged_in' in request.session:
+        if request.session['logged_in']:
+            if request.session['access'] == "10kl":
+                return static_file("path.html", root='static/static/alco/')
+            elif request.session['access'] == "admin":
+                return static_file("admin_page.html", root='static/static/alco/')
+            else:
+                return "nolevel"
     redirect("/")
 
 
