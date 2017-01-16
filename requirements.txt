@@ -3,4 +3,3 @@ requests
 xlrd
 openpyxl
 beaker
-logging
