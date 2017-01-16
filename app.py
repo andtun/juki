@@ -166,7 +166,8 @@ def lout():
 
 @route("/forgot_password")
 def forgot():
-    return '''Если забыли пароль, напишите <a href="mailto:antun@yandex.ru">администратору.</a>'''
+    return '''Если забыли пароль, напишите <a href="mailto:andtun@yandex.ru?subject=Forgot password
+&body=Аккаунт: ____. Необходимо восстановить пароль.">администратору.</a>'''
 
 @get("/change_password")
 def chngpswhtml():
@@ -258,11 +259,11 @@ def chngaccs():
 
 @bottle.error(500)
 def ff(error):
-    return "Something went wrong"
+    return static_file("err500page.html", root='static/static/alco/')
 
 @bottle.error(401)
 def fff(error):
-    return "not authorized"
+    return static_file("notloggederror.html", root='static/static/alco/')
 
 bottle.run(app=app, host="0.0.0.0", port=os.environ.get('PORT', 5000), quiet=False, reloader=True)
 
