@@ -147,7 +147,7 @@ def do_form():
             if YesNo == "No":
                 sheet.cell(row=currow, column=curcol).value = "Н"
         book.save('export.xlsx')
-        if logged_in:
+        if request.session['logged_in']:
             return static_file("back.html", root='static/static/alco/')
     return HTTPError(401)
 
