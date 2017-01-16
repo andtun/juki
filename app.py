@@ -14,7 +14,7 @@ session_opts = {
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': 'please use a random key and keep it secret!',
-    'session.timeout': 3600 * 24,  # 1 day
+    'session.timeout': 1800,  # 1/2 hour
     'session.type': 'cookie',
     'session.validate_key': True,
 
@@ -45,8 +45,9 @@ def setup_request():
     
 @get("/")
 def login():
-    #if request.session['logged_in']:
-        #redirect("/main")
+    if 'logged_in' in request.session:
+        if request.session['logged_in']:
+            redirect("/main")
     return static_file("login.html", root='static/static/alco/')
 
 @post("/")
