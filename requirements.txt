@@ -4,3 +4,4 @@ requests
 xlrd
 openpyxl
 basic_crypto
+Crypto
