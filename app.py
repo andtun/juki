@@ -158,7 +158,9 @@ def download():
 
 @get("/logout")
 def lout():
-    logout()
+    request.session['access'] = ""
+    request.session['logged_in'] = False
+    #redirect ("/")
     redirect("/main")
 
 @route("/forgot_password")
