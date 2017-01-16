@@ -7,7 +7,7 @@ import requests
 import xlrd
 from openpyxl import load_workbook
 import beaker.middleware
-from cryptography import pycrypto
+import cryptography
 
 session_opts = {
     'session.type': 'file',
