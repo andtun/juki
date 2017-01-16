@@ -6,7 +6,7 @@ from bottle import *
 import requests
 import xlrd
 from openpyxl import load_workbook
-from beaker.middleware import SessionMiddleware
+import beaker.middleware
 
 session_opts = {
     'session.type': 'file',
