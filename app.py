@@ -171,7 +171,7 @@ def lout():
 
 @route("/forgot_password")
 def forgot():
-    return '''Если забыли пароль, напишите <a href="vk.com/easytofindme">администратору сайта.</a>'''
+    return '''Если забыли пароль, напишите <a href="http://vk.com/easytofindme">администратору сайта.</a>'''
 
 @get("/change_password")
 def chngpswhtml():
