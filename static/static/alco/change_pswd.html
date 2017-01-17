@@ -11,10 +11,15 @@
 
 
 <form method="POST" action="/change_password">
-			<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
 			<input type="text" name="old_password" value="Старый пароль" onBlur="if(this.value == '') this.value = 'Старый пароль'" onFocus="if(this.value == 'Старый пароль') this.value = ''" required />
 			<input type="text" name="new_password" value="Новый пароль" onBlur="if(this.value == '') this.value = 'Новый пароль'" onFocus="if(this.value == 'Новый пароль') this.value = ''" required />
+			<input type="text" name="new_password_repeated" value="Повторите новый пароль" onBlur="if(this.value == '') this.value = 'Повторите новый пароль'" onFocus="if(this.value == 'Повторите новый пароль') this.value = ''" required />
 			<input type="submit" value="Изменить пароль">
+
+	<form action="/main">
+			<input type="submit" value="Отмена">
+	</form>
+
 </form>
 
 

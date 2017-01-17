@@ -16,7 +16,7 @@ session_opts = {
     'session.data_dir': './session/',
     'session.auto': True,
     'session.cookie_expires': True,
-    'session.encrypt_key': 'please use a random key and keep it secret!',
+    'session.encrypt_key': 'the key is truly rando,m Ju KI KIJu JUKI JUKIranDomCode',
     'session.timeout': 1800,  # 1/2 hour
     'session.type': 'cookie',
     'session.validate_key': True,
@@ -61,6 +61,7 @@ def chklgn():
     request.session['logged_in'] = check_login(username, password)
     if request.session['logged_in']:
         request.session['access'] = access[username]
+        request.session['username'] = username
         redirect("/main")
     else:
         redirect("/logerror")
@@ -157,6 +158,7 @@ def do_form():
             return static_file("back.html", root='static/static/alco/')
     return HTTPError(401)
 
+
 @route("/fileDownload")
 def download():
     if request.session['logged_in']:
@@ -166,8 +168,8 @@ def download():
 def lout():
     request.session['access'] = ""
     request.session['logged_in'] = False
-    redirect ("/")
-    #redirect("/main")
+    #redirect ("/")
+    redirect("/main")
 
 @route("/forgot_password")
 def forgot():
@@ -175,20 +177,30 @@ def forgot():
 
 @get("/change_password")
 def chngpswhtml():
-    return static_file("change_pswd.html", root='static/static/alco/')
+    if 'logged_in' in request.session:
+        if request.session['logged_in']:
+            return static_file("change_pswd.html", root='static/static/alco/')
+    return HTTPError(401)
 
 @post("/change_password")
 def chngpswprocess():
     if request.session['logged_in']:
-        its_username = request.forms.get('username')
+        its_username = request.session['username']
         old_password = request.forms.get('old_password')
         new_password = request.forms.get('new_password')
+        new_password_conf = request.forms.get('new_password_repeated')
+        if new_password != new_password_conf:
+            return '''Пароли не совпадают. <a href="/change_password">Повторить.</a>'''
         global d
     if ((its_username in d) and (d[its_username] == old_password)):
         d[its_username] = new_password
         request.session['logged_in'] = False
         return '''Пароль изменён. Нажмите <a href="/logout">здесь</a>, чтобы войти заново'''
     return '''Вы что-то ввели не так:(<a href="/change_password">Попробуйте снова</a> '''
+
+@get("/check_user")
+def chk_usr():
+    return request.session['username']
 
 #======================================================================
 #                     ADMIN STUFF
@@ -269,5 +281,5 @@ def ff(error):
 def fff(error):
     return static_file("notloggederror.html", root='static/static/alco/')
 
-bottle.run(app=app, host="0.0.0.0", port=os.environ.get('PORT', 5000), quiet=False, reloader=True)
+bottle.run(app=app, host="0.0.0.0", port=os.environ.get('PORT', 5000), quiet=False)
 
