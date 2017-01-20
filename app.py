@@ -11,15 +11,24 @@ import beaker.middleware
 
 bottle.debug(True)
 
+randomkey = '''8RCURFLxYpQvehdTSe2I
+K76Kl6d5V1A9MGaGggni
+cfEjHrIG9tHHvkEeddkM
+zvXYeN1tmK9PKRvwb8V5
+cquNfumzsM5qEhkNEXsM'''
+
 session_opts = {
     'session.type': 'file',
     'session.data_dir': './session/',
     'session.auto': True,
     'session.cookie_expires': True,
-    'session.encrypt_key': 'the key is truly rando,m Ju KI KIJu JUKI JUKIranDomCode',
+    'session.encrypt_key': randomkey,
+    'session.valiate_key': 'JUKI',
     'session.timeout': 1800,  # 1/2 hour
     'session.type': 'cookie',
     'session.validate_key': True,
+    'session.secure': True,
+    
 
 }
 
@@ -196,7 +205,7 @@ def chngpswprocess():
         d[its_username] = new_password
         request.session['logged_in'] = False
         return '''Пароль изменён. Нажмите <a href="/logout">здесь</a>, чтобы войти заново'''
-    return '''Вы что-то ввели не так:(<a href="/change_password">Попробуйте снова</a> '''
+    return '''Вы что-то ввели не так:( <a href="/change_password">Попробуйте снова</a> '''
 
 @get("/check_user")
 def chk_usr():
@@ -276,6 +285,10 @@ def chngaccs():
 @bottle.error(500)
 def ff(error):
     return static_file("err500page.html", root='static/static/alco/')
+
+@bottle.error(404)
+def notfound(error):
+    return('''Страница не найдена. <a href="/main">Выйти на главную.</a> ''')
 
 @bottle.error(401)
 def fff(error):
