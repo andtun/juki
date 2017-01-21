@@ -1,56 +1,39 @@
-
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
- <head>
-  <meta charset="utf-8">
-  <title>XL</title>
+<head>
+<link rel="shortcut icon" href="test1.png" type="image/x-icon">
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>     
+ <div>
      
-     <style>
-         container{
-             align-content: center;
-             text-align: center;
-             
-         }
-         
-         clearfix{
-             align-items: center;
-             text-align: center;
+     
+     <div id='login-form'>
+      <div>
+
         
-         }
-         
-         body{
-             align-content: center;
-             align-items: center;
-             align-self: center;
-             text-align: center;
-         }
-     </style>
- </head>
- 
- <body>
-     
-     
-     <div class="container">
-      <div id="login">
+          <h1>Войти в систему</h1>
+          <div class="chert"></div>
+          <fieldset>
 
-        <form action="/" method="POST">
-
-          <fieldset class="clearfix">
-
-            <p><span class="fontawesome-user"></span>
-            <input name="username" type="text" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required></p>
-            <p><span class="fontawesome-lock"></span>
-            <input name="password" type="password"  value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required></p> 
+            <form action="http:///" method="POST" target="_blank" onsubmit="try {return window.confirm(&quot;Вы передаете информацию на внешнюю страницу.\nВы уверены?&quot;);} catch (e) {return false;}">
+            <input name="login" type="text" placeholder="Логин">
+            
+            <input name="password" type="password" placeholder="Пароль">
               
-            <p><input type="submit" value="Sign In"></p>
+            <input type="submit" value="Войти">
+            </form>
 
           </fieldset>
 
-        </form>
-      </div> <!-- end login -->
+        
+      </div> 
 
     </div>
    
-  <a href="/forgot_password">Забыли пароль?</a>  
- </body>
+    
+ </div>
+</body>
 </html>

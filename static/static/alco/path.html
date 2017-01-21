@@ -1,20 +1,29 @@
-﻿<!DOCTYPE HTML>
-<html class="pointerfocus">
- <head>
-  <meta charset="utf-8">
-  <title>XL</title>
- </head>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="shortcut icon" href="test1.png" type="image/x-icon">
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style2.css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>﻿
  
- <body>
- 
- <table cellpadding=0 rules="none" >
- 
+ <div id='main-form'>
+ <form id='sub-form' action="http:///logout" target="_blank" onsubmit="try {return window.confirm(&quot;Вы передаете информацию на внешнюю страницу.\nВы уверены?&quot;);} catch (e) {return false;}">
+    User
+    <input type="submit" value="Выйти">
+</form>
+<div class='chert'></div>
+ <fieldset>
+ <table class='table' cellpadding="0" rules="none">
   
   <tr>
-   <td width=340 valign="top">
-<form name="XL" method="post" action="submit" accept-charset="utf-8" target="_blank">
-<label><p><b>Фамилия Имя Отчество учащегося:</b><br>
-<input list="FIOs" name="FIO">
+  <div>
+   <td width="340" valign="top">
+<form name="0.1_XL" method="post" action="http://submit" accept-charset="utf-8" target="_blank" onsubmit="try {return window.confirm(&quot;Вы передаете информацию на внешнюю страницу.\nВы уверены?&quot;);} catch (e) {return false;}">
+<label><p style='margin-bottom: 20px'>
+Введите имя ученика:
+<br><input list="FIOs" name="FIO" type='text'>
 </label>
 <datalist id="FIOs" data="studlist.xml">
 <label>Или выберите из списка:
@@ -74,30 +83,39 @@
 </select>
 </label>
 </datalist>
-<p>Выберите дату: <input type="date" name="calendar">
-     <p><b>В школе:</b><Br>
-      <input type="radio" name="YesNo" value="Yes">Присутствует<br>
-      <input type="radio" name="YesNo" value="No" checked>Отсутствует<br>
-    </p>
-  <p><input type="submit" value="Отправить">
-   <input type="reset" value="Очистить"></p>
- </form>
+
+<p style='margin-bottom: 20px'>Выберите дату: <br><input type="date" name="calendar">
+<p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
+     <div class="container">
+  <ul>
+  <li>
+    <input type="radio" id="f-option" name="YesNo" value='Yes'>
+    <label for="f-option" class='label1'>Да</label>
+    
+    <div class="check"></div>
+  </li>
+  
+  <li>
+    <input type="radio" id="s-option" name="YesNo" value='No'>
+    <label for="s-option" class='label2'>Нет</label>
+    
+    <div class="check2"><div class="inside"></div></div>
+  </li>
+  </ul>
+  </div>
+  <p id='lowh'><input type="submit" value="Отправить"></p>
+ </p></form>
    </td>
+   </div>
   </tr>
  </table>
 
-<hr>
 
-<form action="/fileDownload">
-    <input type="submit" value="Скачать файл" />
-</form>
+<br>
+</fieldset>
 
-<a href="/change_password">Изменить пароль</a>
 
-<form action="/logout">
-    <input type="submit" value="Выйти" />
-    Для подтверждения выхода нажмите "выйти", а затем клавишу F5
-</form>
 
- </body>
+ </div>
+</body>
 </html>
