@@ -7,7 +7,7 @@ import requests
 import xlrd
 from openpyxl import load_workbook
 import beaker.middleware
-#from passlib.hash import pbkdf2_sha256
+from passlib.hash import pbkdf2_sha256
 
 
 bottle.debug(True)
@@ -38,16 +38,15 @@ app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 
 d = {}
 access = {}
-d['user1'] = "qwerty"
+d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=200000, salt_size=16)
 access['user1'] = "10kl"
-d['admin'] = "adminpsw"
+d['admin'] = pbkdf2_sha256.hash("adminpsw", rounds=200000, salt_size=16)
 access['admin'] = "admin"
 
 
 def check_login(username, password):
     if username in d:
-        if d[username] == password:
-            return True
+        return pbkdf2_sha256.verify(password, d[username])
     return False
 
 @hook('before_request')
@@ -202,8 +201,8 @@ def chngpswprocess():
         if new_password != new_password_conf:
             return '''Пароли не совпадают. <a href="/change_password">Повторить.</a>'''
         global d
-    if ((its_username in d) and (d[its_username] == old_password)):
-        d[its_username] = new_password
+    if ((its_username in d) and (pbkdf2_sha256.verify(old_password, d[its_username]))):
+        d[its_username] = pbkdf2_sha256.hash(new_password, rounds=200000, salt_size=16)
         request.session['logged_in'] = False
         return '''Пароль изменён. Нажмите <a href="/logout">здесь</a>, чтобы войти заново'''
     return '''Вы что-то ввели не так:( <a href="/change_password">Попробуйте снова</a> '''
@@ -258,7 +257,7 @@ def addusr():
         his_access_level = request.forms.get('access_level')
         if his_username in d:
             return "User already exists"
-        d[his_username] = his_password
+        d[his_username] = pbkdf2_sha256.hash(his_password, rounds=200000, salt_size=16)
         access[his_username] = his_access_level
         return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level)
     return HTTPError(401)
