@@ -38,9 +38,9 @@ app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 
 d = {}
 access = {}
-d['user1'] = pbkdf2_sha256.encrypt("qwerty", rounds=5000)
+d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=5000)
 access['user1'] = "10kl"
-d['admin'] = pbkdf2_sha256.encrypt("adminpsw", rounds=5000)
+d['admin'] = pbkdf2_sha256.hash("adminpsw", rounds=5000)
 access['admin'] = "admin"
 
 
@@ -67,7 +67,9 @@ def login():
 def chklgn():
     username = request.forms.get('username')
     password = request.forms.get('password')
+    print(login, password)
     request.session['logged_in'] = check_login(username, password)
+    print (request.session['logged_in'])
     if request.session['logged_in']:
         request.session['access'] = access[username]
         request.session['username'] = username
@@ -202,7 +204,7 @@ def chngpswprocess():
             return '''Пароли не совпадают. <a href="/change_password">Повторить.</a>'''
         global d
     if ((its_username in d) and (pbkdf2_sha256.verify(old_password, d[its_username]))):
-        d[its_username] = pbkdf2_sha256.encrypt(new_password, rounds=5000)
+        d[its_username] = pbkdf2_sha256.hash(new_password, rounds=5000)
         request.session['logged_in'] = False
         return '''Пароль изменён. Нажмите <a href="/logout">здесь</a>, чтобы войти заново'''
     return '''Вы что-то ввели не так:( <a href="/change_password">Попробуйте снова</a> '''
