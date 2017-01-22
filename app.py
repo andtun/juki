@@ -69,6 +69,7 @@ def chklgn():
     username = request.forms.get('username')
     password = request.forms.get('password')
     request.session['logged_in'] = check_login(username, password)
+    print(request.session['logged_in'])
     if request.session['logged_in']:
         request.session['access'] = access[username]
         request.session['username'] = username
