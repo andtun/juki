@@ -293,7 +293,13 @@ def style3():
 def style3():
     return static_file("style4.css", root='static/static/alco/')
 
+@route("/Pencil.png")
+def pencil():
+    return static_file("Pencil.png", root='static/static/alco/')
 
+@route("/download.png")
+def dencil():
+    return static_file("download.png", root='static/static/alco/')
 
 
 
