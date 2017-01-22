@@ -100,26 +100,15 @@ def do_form():
       indx = calendar_str.find('-')
       calendar_str = calendar_str[(indx+1):]
       indx = calendar_str.find('-')
-      month = calendar_str[:indx]
+      monthnum = calendar_str[:indx]
       calendar_str = calendar_str[(indx+1):]
-      date = calendar_str
-      d={}
-      d['01'] = "январь"
-      d['02'] = "февраль"
-      d['03'] = "март"
-      d['04'] = "апрель"
-      d['05'] = "май"
-      d['06'] = "июнь"
-      d['07'] = "июль"
-      d['08'] = "август"
-      d['09'] = "сентябрь"
-      d['10'] = "октябрь"
-      d['11'] = "ноябрь"
-      d['12'] = "декабрь"
-      ans={}
-      ans['data'] = date
-      ans['month'] = month
-      return ans
+      month = {'01': "январь", '02': "февраль", '03': "март", '04': "апрель", '05': "май", '06': "июнь", '07': "июль",
+             '08': "август", '09': "сентябрь", '10': "октябрь", '11': "ноябрь", '12': "декабрь"}
+      #ans = {}
+      #ans['date'] = calendar_str
+      #ans['month'] = month[monthnum]
+      return calendar_str, month[monthnum]
+
 
     if request.session['logged_in']:
 
@@ -128,9 +117,10 @@ def do_form():
         cal_str=request.forms.get('calendar')
         YesNo=request.forms.get('YesNo')
 
-
-        date = cal(cal_str)['data']
-        month = cal(cal_str)['month']
+        date, month = cal(cal_str)
+        
+        #date = cal(cal_str)['data']
+        #month = cal(cal_str)['month']
 
         print(fio, date, month)
         
