@@ -43,6 +43,8 @@ d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=200000, salt_size=16)
 access['user1'] = "10kl"
 d['admin'] = pbkdf2_sha256.hash("adminpsw", rounds=200000, salt_size=16)
 access['admin'] = "admin"
+d['user_test'] = pbkdf2_sha256.hash("qwerty", rounds=200000, salt_size=16)
+access['user_test'] = "10kl"
 
 
 def check_login(username, password):
@@ -63,6 +65,10 @@ def login():
         if request.session['logged_in']:
             redirect("/main")
     return static_file("login.html", root='static/static/alco/')
+
+@get("/menu")
+def menu():
+    return static_file("menu.html", root='static/static/alco/')
 
 @post("/")
 def chklgn():
@@ -279,6 +285,12 @@ def style2():
 @route("/style3.css")
 def style3():
     return static_file("style3.css", root='static/static/alco/')
+
+@route("/style4.css")
+def style3():
+    return static_file("style4.css", root='static/static/alco/')
+
+
 
 
 
