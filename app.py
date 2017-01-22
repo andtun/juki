@@ -143,7 +143,10 @@ def do_form():
         sheet = book.active
         currow += 1
         curcol += 1
-        sheet.cell(row=currow, column=curcol).value = "H"
+        if YesNo == 'Yes':
+            sheet.cell(row=currow, column=curcol).value = ""
+        else:
+            sheet.cell(row=currow, column=curcol).value = "H"
         book.save('export.xlsx')
         if request.session['logged_in']:
             return static_file("back.html", root='static/static/alco/')
