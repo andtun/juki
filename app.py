@@ -24,11 +24,11 @@ session_opts = {
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': randomkey,
-    'session.valiate_key': 'JUKI',
+    'session.validate_key': 'JUKI',
     'session.timeout': 1800,  # 1/2 hour
     'session.type': 'file',
-    'session.type': 'cookie'
-    'session.validate_key': True,
+    'session.type': 'cookie',
+    #'session.validate_key': True,
     'session.secure': True,
     
 
