@@ -135,8 +135,7 @@ def do_form():
         
         workbook = xlrd.open_workbook('export.xlsx')
         sheet = workbook.sheet_by_index(0)
-        curcol = 1
-        currow = 1
+        curcol = 1   
         for i in range(sheet.nrows):
             data = sheet.cell_value(i, 0)
             if data == fio.decode('utf-8'):
@@ -152,17 +151,13 @@ def do_form():
             if data == int(date):
                 curcol = i
                 break
-
-
+     
+     
         book=load_workbook('export.xlsx')
         sheet = book.active
         currow += 1
         curcol += 1
-        if YesNo == "Yes":
-            sheet.cell(row=currow, column=curcol).value = ""
-        else:
-            if YesNo == "No":
-                sheet.cell(row=currow, column=curcol).value = "Н"
+        sheet.cell(row=currow, column=curcol).value = "H"
         book.save('export.xlsx')
         if request.session['logged_in']:
             return static_file("back.html", root='static/static/alco/')
