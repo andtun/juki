@@ -104,9 +104,6 @@ def do_form():
       calendar_str = calendar_str[(indx+1):]
       month = {'01': "январь", '02': "февраль", '03': "март", '04': "апрель", '05': "май", '06': "июнь", '07': "июль",
              '08': "август", '09': "сентябрь", '10': "октябрь", '11': "ноябрь", '12': "декабрь"}
-      #ans = {}
-      #ans['date'] = calendar_str
-      #ans['month'] = month[monthnum]
       return calendar_str, month[monthnum]
 
 
@@ -118,9 +115,8 @@ def do_form():
         YesNo=request.forms.get('YesNo')
 
         date, month = cal(cal_str)
-        
-        #date = cal(cal_str)['data']
-        #month = cal(cal_str)['month']
+
+        date = int(date)
 
         print(fio, date, month)
         
