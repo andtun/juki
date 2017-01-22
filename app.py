@@ -139,12 +139,12 @@ def do_form():
         currow = 1
         for i in range(sheet.nrows):
             data = sheet.cell_value(i, 0)
-            if data == fio:
+            if data == fio.decode('utf-8'):
                 currow = i
                 break
         for i in range(sheet.ncols):
             data = sheet.cell_value(0, i)
-            if data == month:
+            if data == month.decode('utf-8'):
                 curcol = i
                 break
         for i in range(curcol, sheet.ncols - curcol):
