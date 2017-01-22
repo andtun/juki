@@ -22,13 +22,14 @@ session_opts = {
     'session.type': 'file',
     'session.data_dir': './session/',
     'session.auto': True,
-    'session.cookie_expires': True,
-    'session.encrypt_key': randomkey,
-    'session.valiate_key': 'JUKI',
+    #'session.cookie_expires': True,
+    #'session.encrypt_key': randomkey,
+    #'session.valiate_key': 'JUKI',
     'session.timeout': 1800,  # 1/2 hour
-    'session.type': 'cookie',
-    'session.validate_key': True,
-    'session.secure': True,
+    'session.type': 'file',
+    #'session.type': 'cookie'
+    #'session.validate_key': True,
+    #'session.secure': True,
     
 
 }
@@ -138,12 +139,12 @@ def do_form():
         currow = 1
         for i in range(sheet.nrows):
             data = sheet.cell_value(i, 0)
-            if data == fio.decode("utf-8"):
+            if data == fio:
                 currow = i
                 break
         for i in range(sheet.ncols):
             data = sheet.cell_value(0, i)
-            if data == month.decode("utf-8"):
+            if data == month:
                 curcol = i
                 break
         for i in range(curcol, sheet.ncols - curcol):
@@ -178,7 +179,7 @@ def lout():
     request.session['access'] = ""
     request.session['logged_in'] = False
     #redirect ("/")
-    redirect("/main")
+    redirect("/main?1")
 
 @route("/forgot_password")
 def forgot():
@@ -280,7 +281,23 @@ def chngaccs():
 
 
 #======================================================================
+#                       STYLES
 
+@route("/style.css")
+def style():
+    return static_file("style.css", root='static/static/alco/')
+
+@route("/style2.css")
+def style2():
+    return static_file("style2.css", root='static/static/alco/')
+
+@route("/style3.css")
+def style3():
+    return static_file("style3.css", root='static/static/alco/')
+
+
+
+#======================================================================
 
 @bottle.error(500)
 def ff(error):
