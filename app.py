@@ -26,7 +26,7 @@ session_opts = {
     'session.encrypt_key': randomkey,
     'session.validate_key': 'JUKI',
     'session.timeout': 1800,  # 1/2 hour
-    'session.type': 'file',
+    #'session.type': 'cookie',
     'session.type': 'cookie',
     #'session.validate_key': True,
     'session.secure': True,
@@ -68,7 +68,10 @@ def login():
 
 @get("/menu")
 def menu():
-    return static_file("menu.html", root='static/static/alco/')
+    if 'logged_in' in request.session:
+        if request.session['logged_in']:
+            if request.session['access'] == "10kl":
+                return static_file("menu.html", root='static/static/alco/')
 
 @post("/")
 def chklgn():
@@ -79,7 +82,7 @@ def chklgn():
     if request.session['logged_in']:
         request.session['access'] = access[username]
         request.session['username'] = username
-        redirect("/main")
+        redirect("/menu")
     else:
         redirect("/logerror")
 
