@@ -1,4 +1,4 @@
-
+# This Python file uses the following encoding: utf-8
 
 import os
 import bottle
@@ -22,14 +22,14 @@ session_opts = {
     'session.type': 'file',
     'session.data_dir': './session/',
     'session.auto': True,
-    #'session.cookie_expires': True,
-    #'session.encrypt_key': randomkey,
-    #'session.valiate_key': 'JUKI',
+    'session.cookie_expires': True,
+    'session.encrypt_key': randomkey,
+    'session.valiate_key': 'JUKI',
     'session.timeout': 1800,  # 1/2 hour
     'session.type': 'file',
-    #'session.type': 'cookie'
-    #'session.validate_key': True,
-    #'session.secure': True,
+    'session.type': 'cookie'
+    'session.validate_key': True,
+    'session.secure': True,
     
 
 }
