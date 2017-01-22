@@ -141,14 +141,18 @@ def main():
     
     @for_10kl
     def main10kl():
+        print('10kl main st')
         return static_file("path.html", root='static/static/alco/')
 
     @for_admin
     def mainadmin():
         return static_file("admin_page.html", root='static/static/alco/')
 
+    return 'not passed'
+
 
 @route("/submit", method="POST")
+@for_10kl
 def do_form():
     def cal(calendar_str):
       indx = calendar_str.find('-')
@@ -208,9 +212,9 @@ def do_form():
 
 
 @route("/fileDownload")
+@for_10kl
 def download():
-    if request.session['logged_in']:
-        return static_file("export.xlsx", root='.', download=True)
+    return static_file("export.xlsx", root='.', download=True)
 
 @get("/logout")
 def lout():
@@ -254,36 +258,33 @@ def chk_usr():
 #                     ADMIN STUFF
 
 @route("/showuserlist")
+@for_admin
 def showusr():
-    if (request.session['logged_in'] and (request.session['access'] == "admin")):
-        return(str(d), str(access))
-    return HTTPError(401)
+    return(str(d), str(access))
 
 @route("/userlistdownload")
+@for_admin
 def downloadusr():
-    if (request.session['logged_in'] and (request.session['access'] == "admin")):
-        print("started")
-        ulist = open('usrlist.txt', 'w')
-        ulist.writelines(str(d))
-        ulist = open('usrlist.txt', 'a')
-        ulist.write(str(access))
-        ulist.close()
-        return static_file("usrlist.txt", root='.', download=True)
-    return HTTPError(401)
+    print("started")
+    ulist = open('usrlist.txt', 'w')
+    ulist.writelines(str(d))
+    ulist = open('usrlist.txt', 'a')
+    ulist.write(str(access))
+    ulist.close()
+    return static_file("usrlist.txt", root='.', download=True)
 
 @route("/delete_user")
+@for_admin
 def delusr():
-    if (request.session['logged_in'] and (request.session['access'] == "admin")):
-        global d
-        global access
-        username = str(request.query.username)
-        if username in d:
-            del d[username]
-            del access[username]
-            return ("User "+username+" deleted!")
-        else:
-            return "No such user"
-    return HTTPError(401)
+    global d
+    global access
+    username = str(request.query.username)
+    if username in d:
+        del d[username]
+        del access[username]
+        return ("User "+username+" deleted!")
+    else:
+        return "No such user"
 
 
 @post("/add_user")
