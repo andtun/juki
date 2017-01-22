@@ -9,55 +9,102 @@ from openpyxl import load_workbook
 import beaker.middleware
 from passlib.hash import pbkdf2_sha256
 
+#================DECLARING CONSTANTS (ONLY CAPS)=================#
 
-bottle.debug(True)
-
-randomkey = '''8RCURFLxYpQvehdTSe2I
+#session encryption key
+RANDOMKEY = '''8RCURFLxYpQvehdTSe2I
 K76Kl6d5V1A9MGaGggni
 cfEjHrIG9tHHvkEeddkM
 zvXYeN1tmK9PKRvwb8V5
 cquNfumzsM5qEhkNEXsM'''
+
+#encryption validate key
+VALIDATEKEY = 'JUKI'
+
+#cookie lifetime, seconds
+CTIME = 1800
+
+#hashing round number (how many times we apply hash algorythm)
+HRN = 20000
+
+#=======================DESCRIBING STUFF=========================#
+
+#bottle.debug(True)
 
 session_opts = {
     'session.type': 'cookie',
     'session.data_dir': './session/',
     'session.auto': True,
     'session.cookie_expires': True,
-    'session.encrypt_key': randomkey,
-    #'session.validate_key': 'JUKI',
-    'session.timeout': 1800,  # 1/2 hour
+    'session.encrypt_key': RANDOMKEY,
+    'session.validate_key': VALIDATEKEY,
+    'session.timeout': CTIME,  # 1/2 hour
     #'session.type': 'cookie',
-    #'session.type': 'cookie',
+    #'session.type': 'file',
     'session.validate_key': True,
-    #'session.secure': True,
-    
-
+    'session.secure': True,
 }
 
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 
 
-d = {}
-access = {}
-d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=200000, salt_size=16)
+#dics, where user info is stored
+d = {}       #dic for username and password hashes: d[username] returns hash
+access = {}  #dic for access levels
+
+d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=HRN)
+d['admin'] = pbkdf2_sha256.hash("adminpsw", rounds=HRN)
+d['user_test'] = pbkdf2_sha256.hash("qwerty", rounds=HRN)
+
 access['user1'] = "10kl"
-d['admin'] = pbkdf2_sha256.hash("adminpsw", rounds=200000, salt_size=16)
 access['admin'] = "admin"
-d['user_test'] = pbkdf2_sha256.hash("qwerty", rounds=200000, salt_size=16)
 access['user_test'] = "10kl"
 
 
+#True if login and pwd match
 def check_login(username, password):
     if username in d:
         return pbkdf2_sha256.verify(password, d[username])
     return False
 
+#maintaining session
 @hook('before_request')
 def setup_request():
     request.session = request.environ['beaker.session']
 
 #request.session['logged_in'] = False
 
+
+#=====================DECORATORS=========================#
+
+def for_10kl(webpage):
+    def wrapper():
+        if 'logged_in' in request.session:
+            if request.session['logged_in']:
+                if request.session['access'] == "10kl":
+                    webpage()
+            else:
+                return HTTPError(401)
+        else:
+            return HTTPError(401)
+    return wrapper
+
+
+def for_admin(webpage):
+    def wrapper():
+        if 'logged_in' in request.session:
+            if request.session['logged_in']:
+                if request.session['access'] == "admin":
+                    webpage()
+            else:
+                return HTTPError(401)
+        else:
+            return HTTPError(401)
+    return wrapper
+    
+
+
+#=====================USER PAGES========================#
     
 @get("/")
 def login():
@@ -67,24 +114,24 @@ def login():
     return static_file("login.html", root='static/static/alco/')
 
 @get("/menu")
+@for_10kl
 def menu():
-    if 'logged_in' in request.session:
-        if request.session['logged_in']:
-            if request.session['access'] == "10kl":
-                return static_file("menu.html", root='static/static/alco/')
+    return static_file("menu.html", root='static/static/alco/')
 
 @post("/")
 def chklgn():
     username = request.forms.get('username')
     password = request.forms.get('password')
     request.session['logged_in'] = check_login(username, password)
-    print(request.session['logged_in'])
     if request.session['logged_in']:
         request.session['access'] = access[username]
         request.session['username'] = username
         redirect("/menu")
     else:
         redirect("/logerror")
+
+#REQUEST.SESSION['USERNAME'] WILL RETURN THE USRNAME OF THE LOGGED IN USER
+        
 
 @get("/logerror")
 def logerror():
@@ -93,14 +140,15 @@ def logerror():
 
 @route("/main")
 def main():
-    if 'logged_in' in request.session:
-        if request.session['logged_in']:
-            if request.session['access'] == "10kl":
-                return static_file("path.html", root='static/static/alco/')
-            elif request.session['access'] == "admin":
-                return static_file("admin_page.html", root='static/static/alco/')
-            else:
-                return "nolevel"
+    
+    @for_10kl
+    def main10kl():
+        return static_file("path.html", root='static/static/alco/')
+
+    @for_admin
+    def mainadmin():
+        return static_file("admin_page.html", root='static/static/alco/')
+
     redirect("/")
 
 
