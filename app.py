@@ -19,17 +19,17 @@ zvXYeN1tmK9PKRvwb8V5
 cquNfumzsM5qEhkNEXsM'''
 
 session_opts = {
-    'session.type': 'file',
+    'session.type': 'cookie',
     'session.data_dir': './session/',
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': randomkey,
-    'session.validate_key': 'JUKI',
+    #'session.validate_key': 'JUKI',
     'session.timeout': 1800,  # 1/2 hour
     #'session.type': 'cookie',
-    'session.type': 'cookie',
-    #'session.validate_key': True,
-    'session.secure': True,
+    #'session.type': 'cookie',
+    'session.validate_key': True,
+    #'session.secure': True,
     
 
 }
