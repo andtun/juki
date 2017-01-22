@@ -82,11 +82,9 @@ def for_10kl(webpage):
         if 'logged_in' in request.session:
             if request.session['logged_in']:
                 if request.session['access'] == "10kl":
+                    print("success")
                     webpage()
-            else:
-                return HTTPError(401)
-        else:
-            return HTTPError(401)
+        return HTTPError(401)
     return wrapper
 
 
@@ -148,8 +146,6 @@ def main():
     @for_admin
     def mainadmin():
         return static_file("admin_page.html", root='static/static/alco/')
-
-    redirect("/")
 
 
 @route("/submit", method="POST")
