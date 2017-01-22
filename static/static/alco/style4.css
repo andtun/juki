@@ -1,0 +1,85 @@
+@charset "utf-8";
+html {
+    background-image: url(https://wallpaperbrowse.com/media/images/Winter-of-Solitude-1.jpg);
+    background-size: cover;
+    }
+body {
+    font-family:'Open Sans',sans-serif;
+    font-size:16px
+    font-weight:bold;
+    color:#727272;
+    }
+#main-form {
+    background-color:#F5F5F5;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    margin:180px auto;
+    width:355px;
+    font-family:'Open Sans',sans-serif;
+    font-size:16px;
+    -webkit-box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
+    box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
+    }
+#main-form fieldset {
+    border:none;
+    position:relative;
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+    }
+#main-form fieldset form{
+    margin-left: 20px;
+	margin-right: 20px;
+}
+
+#main-form fieldset form button[type="submit"] {
+    background-color:#3299BB;
+    border:none;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    color:white;
+    cursor:pointer;
+    float:none;
+    font-weight:normal;
+    padding:0;
+    -webkit-appearance:none;
+    width: 100px;
+    font-size: 16;
+    }
+
+#sub-form input[type="submit"] {
+    background-color:white;
+    border:none;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    color:#3299BB;
+    cursor:pointer;
+    float:none;
+    font-weight:normal;
+    font-size: 16;
+    padding:0px;
+    margin-left: 220px;
+    }
+#sub-form{
+	background-color:white;
+    border-radius:5px 5px 0px 0px;
+    -moz-border-radius:5px 5px 0px 0px;
+    -webkit-border-radius:5px 5px 0px 0px;
+    padding:20px;
+    text-align:left;
+    font-family:'Open Sans',sans-serif;
+    font-size:18px;
+    margin-bottom: 0;
+    padding-bottom: 15px; 
+}
+.chert{
+	width: 100%;
+	height: 5px;
+	background-color: #BCBCBC;
+}
+.table{
+    margin-left: -25px;
+}

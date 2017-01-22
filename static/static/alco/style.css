@@ -1,7 +1,7 @@
 @charset "utf-8";
 html {
-    background: grey;
-    background: linear-gradient(grey, grey);
+    background-image: url(https://wallpaperbrowse.com/media/images/Winter-of-Solitude-1.jpg);
+    background-size: cover;
     }
 body {
     color:#424242;
@@ -15,7 +15,8 @@ body {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     margin:180px auto;
-    width:300px;
+    margin-bottom: 0;
+    width:316px;
     font-family:'Open Sans',sans-serif;
     font-size:16px;
     -webkit-box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
@@ -27,6 +28,8 @@ body {
     -moz-border-radius:5px 5px 0px 0px;
     -webkit-border-radius:5px 5px 0px 0px;
     padding:20px;
+    padding-bottom: 15px;
+    padding-left: 25px;
     text-align:left;
     font-family:'Open Sans',sans-serif;
     font-size:18px;
@@ -38,12 +41,18 @@ body {
 	height: 5px;
 	background-color: #BCBCBC;
 	}
+.nev{
+	margin:0;
+	margin-left: 5px;
+}
 #login-form fieldset {
     border:none;
     position:relative;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     text-align: center;
     padding-top: 20px;
+    text-align: left;
+    padding-left: 20px;
     }
 #login-form fieldset form {
     overflow:hidden;
@@ -59,20 +68,25 @@ body {
     }
 #login-form fieldset form input[type="text"] {
     border:1px solid #292829;
-    border-radius:3px 3px 0px 0px;
-    -moz-border-radius:3px 3px 0px 0px;
-    -webkit-border-radius:3px 3px 0px 0px;
+    border-radius:3px 3px 3px 3px;
+    -moz-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius:3px 3px 3px 3px;
     padding:12px 10px;
-    -webkit-appearance:none
+    -webkit-appearance:none;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
     }
 #login-form fieldset form input[type="password"] {
     border:1px solid #292829;
-    border-top:none;
-    border-radius:0px 0px 3px 3px;
-    -moz-border-radius:0px 0px 3px 3px;
-    -webkit-border-radius:0px 0px 3px 3px;
+    border-radius:3px 3px 3px 3px;
+    -moz-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius:3px 3px 3px 3px;
     padding:12px 10px;
-    -webkit-appearance:none
+    -webkit-appearance:none;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
     }
 #login-form fieldset form input[type="submit"] {
     background-color:#3299BB;
@@ -84,8 +98,8 @@ body {
     cursor:pointer;
     float:none;
     font-weight:normal;
-    margin-top:20px;
     padding:12px 12px;
     -webkit-appearance:none;
     font-size: 16;
+    width: 100%;
     }

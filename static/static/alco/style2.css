@@ -1,7 +1,7 @@
 @charset "utf-8";
 html {
-    background: grey;
-    background: linear-gradient(grey, grey);
+    background-image: url(https://wallpaperbrowse.com/media/images/Winter-of-Solitude-1.jpg);
+    background-size: cover;
     }
 body {
     font-family:'Open Sans',sans-serif;
@@ -27,6 +27,7 @@ body {
     text-align: left;
     width: 200px;
     padding-top: 20px;
+    padding-left: 0;
     }
 #main-form fieldset form{
     margin-left: 20px;
@@ -40,7 +41,7 @@ body {
     padding:12px;
     -webkit-appearance:none;
     font-family:'Open Sans',sans-serif;
-    width:92%;
+    width:99%;
     margin-top: 10px;
     }
 #main-form fieldset form input[type='date'] {
@@ -48,8 +49,8 @@ body {
     border-radius:3px 3px 3px 3px;
     -moz-border-radius:3px 3px 3px 3px;
     -webkit-border-radius:3px 3px 3px 3px;
-    padding-right:46px;
-    padding-left: 99px;
+    padding-right:56px;
+    padding-left: 109px;
     padding-top: 12px;
     padding-bottom: 12px;
     -webkit-appearance:none;
@@ -67,7 +68,7 @@ body {
     font-weight:normal;
     padding:12px 12px;
     -webkit-appearance:none;
-    width: 287px;
+    width: 309px;
     font-size: 16;
     }
 
