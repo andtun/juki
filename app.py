@@ -132,6 +132,7 @@ def do_form():
         date = cal(cal_str)['data']
         month = cal(cal_str)['month']
 
+        print(fio, date, month)
         
         workbook = xlrd.open_workbook('export.xlsx')
         sheet = workbook.sheet_by_index(0)
