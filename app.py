@@ -116,13 +116,12 @@ def do_form():
 
         date, month = cal(cal_str)
 
-        date = int(date)
-
-        print(fio, date, month)
+        
+        print(fio, date, month, YesNo)
         
         workbook = xlrd.open_workbook('export.xlsx')
         sheet = workbook.sheet_by_index(0)
-        curcol = 1   
+        #curcol = 1   
         for i in range(sheet.nrows):
             data = sheet.cell_value(i, 0)
             if data == fio.decode('utf-8'):
