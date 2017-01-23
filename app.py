@@ -84,7 +84,7 @@ def forlevel(access_level):
                 if request.session['logged_in']:
                     if request.session['access'] == access_level:
                         return webpage()
-            return HTTPError(401)
+            #return HTTPError(401)
         return wrapper
     return decorator_body
 
@@ -124,15 +124,16 @@ def logerror():
 
 
 @route("/main")
-@forlevel('10kl')
-def main10kl():
-    return static_file("path.html", root='static/static/alco/')
+def smth():
+    @forlevel('10kl')
+    def main10kl():
+        return static_file("path.html", root='static/static/alco/')
 
-@route("/main")
-@forlevel('admin')
-def mainadmin():
-    return static_file("admin_page.html", root='static/static/alco/')
+    @forlevel('admin')
+    def mainadmin():
+        return static_file("admin_page.html", root='static/static/alco/')
 
+    return HTTPError(401)
 
 
 @route("/submit", method="POST")
