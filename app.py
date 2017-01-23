@@ -84,7 +84,7 @@ def forlevel(access_level):
                 if request.session['logged_in']:
                     if request.session['access'] == access_level:
                         return webpage()
-            #return HTTPError(401)
+            return HTTPError(401)
         return wrapper
     return decorator_body
 
