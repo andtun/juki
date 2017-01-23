@@ -128,11 +128,13 @@ def main():
     
     @forlevel('10kl')
     def main10kl():
-        return static_file("path.html", root='static/static/alco/')
+        return "logged as user"
+        #return static_file("path.html", root='static/static/alco/')
 
     @forlevel('admin')
     def mainadmin():
-        return static_file("admin_page.html", root='static/static/alco/')
+        return "as admin"
+        #return static_file("admin_page.html", root='static/static/alco/')
 
 
 
