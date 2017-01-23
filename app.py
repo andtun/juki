@@ -140,14 +140,12 @@ def main():
     
     @for_10kl
     def main10kl():
-        print('10kl main st')
         return static_file("path.html", root='static/static/alco/')
 
     @for_admin
     def mainadmin():
         return static_file("admin_page.html", root='static/static/alco/')
 
-    return 'not passed'
 
 
 @route("/submit", method="POST")
