@@ -22,10 +22,13 @@ cquNfumzsM5qEhkNEXsM'''
 VALIDATEKEY = 'JUKI'
 
 #cookie lifetime, seconds
-CTIME = 1800
+CTIME = 1800 # 1/2 hour
 
 #hashing round number (how many times we apply hash algorythm)
 HRN = 20000
+
+#static file root directory
+STAT_FILE_ROOT = 'static/static/alco/'
 
 #=======================DESCRIBING STUFF=========================#
 
@@ -38,7 +41,7 @@ session_opts = {
     'session.cookie_expires': True,
     'session.encrypt_key': RANDOMKEY,
     'session.validate_key': VALIDATEKEY,
-    'session.timeout': CTIME,  # 1/2 hour
+    'session.timeout': CTIME,
     #'session.type': 'cookie',
     #'session.type': 'file',
     'session.validate_key': True,
@@ -77,16 +80,26 @@ def setup_request():
 
 #=====================DECORATORS=========================#
 
-def forlevel(access_level):
-    def decorator_body(webpage):
-        def wrapper():
-            if 'logged_in' in request.session:
-                if request.session['logged_in']:
-                    if request.session['access'] == access_level:
-                        return webpage()
-            return HTTPError(401)
-        return wrapper
-    return decorator_body
+def need_auth(webpage):
+    def wrapper():
+        if 'logged_in' in request.session:
+            if request.session['logged_in']:
+                return webpage()
+        return HTTPError(401)
+    return wrapper
+
+def access_is(access_level):
+    ans = (access_level == request.session['access'])
+    return ans
+
+def stat_file(filename):
+    return static_file(filename, root = STAT_FILE_ROOT)
+
+def logout():
+    request.session['access'] = ""
+    request.session['username'] = ""
+    request.session['logged_in'] = False
+
 
 
 #=====================USER PAGES========================#
@@ -96,12 +109,14 @@ def login():
     if 'logged_in' in request.session:
         if request.session['logged_in']:
             redirect("/main")
-    return static_file("login.html", root='static/static/alco/')
+    return stat_file("login.html")
 
 @get("/menu")
-@forlevel('10kl')
+@need_auth
 def menu():
-    return static_file("menu.html", root='static/static/alco/')
+    if access_is('10kl'):
+        return stat_file("menu.html")
+    return ('menu unavailable for this user')
 
 @post("/")
 def chklgn():
@@ -120,83 +135,78 @@ def chklgn():
 
 @get("/logerror")
 def logerror():
-    return static_file("login-notlogged.html", root='static/static/alco/')
+    return stat_file("login-notlogged.html")
 
 
 @route("/main")
-def smth():
-    @forlevel('10kl')
-    def main10kl():
-        return static_file("path.html", root='static/static/alco/')
+@need_auth
+def main():
+    
+    if access_is('10kl'):   
+        return stat_file("path.html")
 
-    @forlevel('admin')
-    def mainadmin():
-        return static_file("admin_page.html", root='static/static/alco/')
+    if access_is('admin'):
+        return stat_file("admin_page.html")
 
 
 
 @route("/submit", method="POST")
-@forlevel('10kl')
+@need_auth
 def do_form():
     def cal(calendar_str):
-      indx = calendar_str.find('-')
-      calendar_str = calendar_str[(indx+1):]
-      indx = calendar_str.find('-')
-      monthnum = calendar_str[:indx]
-      calendar_str = calendar_str[(indx+1):]
-      month = {'01': "январь", '02': "февраль", '03': "март", '04': "апрель", '05': "май", '06': "июнь", '07': "июль",
+        indx = calendar_str.find('-')
+        calendar_str = calendar_str[(indx+1):]
+        indx = calendar_str.find('-')
+        monthnum = calendar_str[:indx]
+        calendar_str = calendar_str[(indx+1):]
+        month = {'01': "январь", '02': "февраль", '03': "март", '04': "апрель", '05': "май", '06': "июнь", '07': "июль",
              '08': "август", '09': "сентябрь", '10': "октябрь", '11': "ноябрь", '12': "декабрь"}
-      return calendar_str, month[monthnum]
-
-
-    if request.session['logged_in']:
+        return calendar_str, month[monthnum]
 
     
-        fio=request.forms.get('FIO')
-        cal_str=request.forms.get('calendar')
-        YesNo=request.forms.get('YesNo')
+    fio=request.forms.get('FIO')
+    cal_str=request.forms.get('calendar')
+    YesNo=request.forms.get('YesNo')
 
-        date, month = cal(cal_str)
+    date, month = cal(cal_str)
 
         
-        print(fio, date, month, YesNo)
+    print(fio, date, month, YesNo)
         
-        workbook = xlrd.open_workbook('export.xlsx')
-        sheet = workbook.sheet_by_index(0)
-        #curcol = 1   
-        for i in range(sheet.nrows):
-            data = sheet.cell_value(i, 0)
-            if data == fio.decode('utf-8'):
-                currow = i
-                break
-        for i in range(sheet.ncols):
-            data = sheet.cell_value(0, i)
-            if data == month.decode('utf-8'):
-                curcol = i
-                break
-        for i in range(curcol, sheet.ncols - curcol):
-            data = sheet.cell_value(1, i)
-            if data == int(date):
-                curcol = i
-                break
+    workbook = xlrd.open_workbook('export.xlsx')
+    sheet = workbook.sheet_by_index(0)
+    #curcol = 1   
+    for i in range(sheet.nrows):
+        data = sheet.cell_value(i, 0)
+        if data == fio.decode('utf-8'):
+            currow = i
+            break
+    for i in range(sheet.ncols):
+        data = sheet.cell_value(0, i)
+        if data == month.decode('utf-8'):
+            curcol = i
+            break
+    for i in range(curcol, sheet.ncols - curcol):
+        data = sheet.cell_value(1, i)
+        if data == int(date):
+            curcol = i
+            break
      
      
-        book=load_workbook('export.xlsx')
-        sheet = book.active
-        currow += 1
-        curcol += 1
-        if YesNo == 'Yes':
-            sheet.cell(row=currow, column=curcol).value = ""
-        else:
-            sheet.cell(row=currow, column=curcol).value = "H"
-        book.save('export.xlsx')
-        if request.session['logged_in']:
-            return static_file("back.html", root='static/static/alco/')
-    return HTTPError(401)
+    book=load_workbook('export.xlsx')
+    sheet = book.active
+    currow += 1
+    curcol += 1
+    if YesNo == 'Yes':
+        sheet.cell(row=currow, column=curcol).value = ""
+    else:
+        sheet.cell(row=currow, column=curcol).value = "H"
+    book.save('export.xlsx')
+    return stat_file("back.html")
 
 
 @route("/fileDownload")
-@forlevel('10kl')
+@need_auth
 def download():
     return static_file("export.xlsx", root='.', download=True)
 
@@ -212,27 +222,25 @@ def forgot():
     return '''Если забыли пароль, напишите <a href="http://vk.com/easytofindme">администратору сайта.</a>'''
 
 @get("/change_password")
-def chngpswhtml():
-    if 'logged_in' in request.session:
-        if request.session['logged_in']:
-            return static_file("change_pswd.html", root='static/static/alco/')
-    return HTTPError(401)
+@need_auth
+def chngpsw_html():
+    return stat_file("change_pswd.html")
 
 @post("/change_password")
-def chngpswprocess():
-    if request.session['logged_in']:
-        its_username = request.session['username']
-        old_password = request.forms.get('old_password')
-        new_password = request.forms.get('new_password')
-        new_password_conf = request.forms.get('new_password_repeated')
-        if new_password != new_password_conf:
-            return '''Пароли не совпадают. <a href="/change_password">Повторить.</a>'''
-        global d
+@need_auth
+def chngpsw_process():
+    its_username = request.session['username']
+    old_password = request.forms.get('old_password')
+    new_password = request.forms.get('new_password')
+    new_password_conf = request.forms.get('new_password_repeated')
+    if new_password != new_password_conf:
+        return stat_file("fail_to_change_pwd.html")
+    global d
     if ((its_username in d) and (pbkdf2_sha256.verify(old_password, d[its_username]))):
-        d[its_username] = pbkdf2_sha256.hash(new_password, rounds=200000, salt_size=16)
-        request.session['logged_in'] = False
-        return '''Пароль изменён. Нажмите <a href="/logout">здесь</a>, чтобы войти заново'''
-    return '''Вы что-то ввели не так:( <a href="/change_password">Попробуйте снова</a> '''
+        d[its_username] = pbkdf2_sha256.hash(new_password, rounds=HRN)
+        logout()
+        return stat_file("pwd_changed.html")
+    return stat_file("something_wrong_pwd.html")
 
 @get("/check_user")
 def chk_usr():
@@ -242,109 +250,116 @@ def chk_usr():
 #                     ADMIN STUFF
 
 @route("/showuserlist")
-@forlevel('admin')
+@need_auth
 def showusr():
-    return(str(d), str(access))
+    if access_is('admin'):
+        return(str(d), str(access))
 
 @route("/userlistdownload")
-@forlevel('admin')
+@need_auth
 def downloadusr():
-    print("started")
-    ulist = open('usrlist.txt', 'w')
-    ulist.writelines(str(d))
-    ulist = open('usrlist.txt', 'a')
-    ulist.write(str(access))
-    ulist.close()
+    if access_is('admin'):
+        print("started")
+        ulist = open('usrlist.txt', 'w')
+        ulist.writelines(str(d))
+        ulist = open('usrlist.txt', 'a')
+        ulist.write(str(access))
+        ulist.close()
     return static_file("usrlist.txt", root='.', download=True)
 
 @route("/delete_user")
-@forlevel('admin')
+@need_auth
 def delusr():
-    global d
-    global access
-    username = str(request.query.username)
-    if username in d:
-        del d[username]
-        del access[username]
+    if access_is('admin'):
+        global d
+        global access
+        username = str(request.query.username)
+        if username in d:
+            del d[username]
+            del access[username]
         return ("User "+username+" deleted!")
     else:
         return "No such user"
 
 
 @post("/add_user")
+@need_auth
 def addusr():
     global d
     global access
-    if (request.session['logged_in'] and (request.session['access'] == "admin")):
+    if access_is('admin'):
         his_username = request.forms.get('username')
         his_password = request.forms.get('password')
         his_access_level = request.forms.get('access_level')
         if his_username in d:
             return "User already exists"
-        d[his_username] = pbkdf2_sha256.hash(his_password, rounds=200000, salt_size=16)
+        d[his_username] = pbkdf2_sha256.hash(his_password, rounds=HRN)
         access[his_username] = his_access_level
         return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level)
-    return HTTPError(401)
 
 @post("/change_access")
+@need_auth
 def chngaccs():
     global d
     global access
-    if (request.session['logged_in'] and (request.session['access'] == "admin")):
+    if access_is('admin'):
         his_username = request.forms.get('username')
         new_access_level = request.forms.get('access_level')
         if his_username in d:
             access[his_username] = new_access_level
             return ("Access level for "+his_username+" changed to "+ new_access_level)
         return "No such user"
-        
-    return HTTPError(401)
+
 
 
 
 
 #======================================================================
-#                       STYLES
+#                       STYLES & IMAGES
 
 @route("/style.css")
 def style():
-    return static_file("style.css", root='static/static/alco/')
+    return stat_file("style.css")
 
 @route("/style2.css")
 def style2():
-    return static_file("style2.css", root='static/static/alco/')
+    return stat_file("style2.css")
 
 @route("/style3.css")
 def style3():
-    return static_file("style3.css", root='static/static/alco/')
+    return stat_file("style3.css")
 
 @route("/style4.css")
 def style3():
-    return static_file("style4.css", root='static/static/alco/')
+    return stat_file("style4.css")
 
 @route("/Pencil.png")
 def pencil():
-    return static_file("Pencil.png", root='static/static/alco/')
+    return stat_file("Pencil.png")
 
 @route("/download.png")
 def dencil():
-    return static_file("download.png", root='static/static/alco/')
+    return stat_file("download.png")
 
 
 
 #======================================================================
+#                        ERRORS CATCHING
 
 @bottle.error(500)
 def ff(error):
-    return static_file("err500page.html", root='static/static/alco/')
+    return stat_file("err500page.html")
 
 @bottle.error(404)
 def notfound(error):
-    return('''Страница не найдена. <a href="/main">Выйти на главную.</a> ''')
+    return stat_file("404error.html")
 
 @bottle.error(401)
 def fff(error):
-    return static_file("notloggederror.html", root='static/static/alco/')
+    return stat_file("notloggederror.html")
+
+#========================================================================
+#===========================RUN========RUN===============================
 
 bottle.run(app=app, host="0.0.0.0", port=os.environ.get('PORT', 5000), quiet=False)
 
