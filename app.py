@@ -124,17 +124,18 @@ def logerror():
 
 
 @route("/main")
+@forlevel('10kl')
 def main():
     
-    @forlevel('10kl')
-    def main10kl():
-        return "logged as user"
-        #return static_file("path.html", root='static/static/alco/')
+    #@forlevel('10kl')
+    #def main10kl():
+        #return "logged as user"
+    return static_file("path.html", root='static/static/alco/')
 
-    @forlevel('admin')
+    '''@forlevel('admin')
     def mainadmin():
         return "as admin"
-        #return static_file("admin_page.html", root='static/static/alco/')
+        #return static_file("admin_page.html", root='static/static/alco/')'''
 
 
 
