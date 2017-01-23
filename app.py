@@ -77,7 +77,7 @@ def setup_request():
 
 #=====================DECORATORS=========================#
 
-def forlevel(access_level)
+def forlevel(access_level):
     def decorator_body(webpage):
         def wrapper():
             if 'logged_in' in request.session:
@@ -197,7 +197,7 @@ def do_form():
 
 
 @route("/fileDownload")
-@for_10kl
+@forlevel('10kl')
 def download():
     return static_file("export.xlsx", root='.', download=True)
 
@@ -243,12 +243,12 @@ def chk_usr():
 #                     ADMIN STUFF
 
 @route("/showuserlist")
-@for_admin
+@forlevel('admin')
 def showusr():
     return(str(d), str(access))
 
 @route("/userlistdownload")
-@for_admin
+@forlevel('admin')
 def downloadusr():
     print("started")
     ulist = open('usrlist.txt', 'w')
@@ -259,7 +259,7 @@ def downloadusr():
     return static_file("usrlist.txt", root='.', download=True)
 
 @route("/delete_user")
-@for_admin
+@forlevel('admin')
 def delusr():
     global d
     global access
