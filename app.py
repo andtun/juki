@@ -133,7 +133,6 @@ def smth():
     def mainadmin():
         return static_file("admin_page.html", root='static/static/alco/')
 
-    return HTTPError(401)
 
 
 @route("/submit", method="POST")
