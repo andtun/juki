@@ -77,28 +77,16 @@ def setup_request():
 
 #=====================DECORATORS=========================#
 
-def for_10kl(webpage):
-    def wrapper():
-        if 'logged_in' in request.session:
-            if request.session['logged_in']:
-                if request.session['access'] == "10kl":
-                    return webpage()
-        return HTTPError(401)
-    return wrapper
-
-
-def for_admin(webpage):
-    def wrapper():
-        if 'logged_in' in request.session:
-            if request.session['logged_in']:
-                if request.session['access'] == "admin":
-                    webpage()
-            else:
-                return HTTPError(401)
-        else:
+def forlevel(access_level)
+    def decorator_body(webpage):
+        def wrapper():
+            if 'logged_in' in request.session:
+                if request.session['logged_in']:
+                    if request.session['access'] == access_level:
+                        return webpage()
             return HTTPError(401)
-    return wrapper
-    
+        return wrapper
+    return decorator_body
 
 
 #=====================USER PAGES========================#
@@ -111,7 +99,7 @@ def login():
     return static_file("login.html", root='static/static/alco/')
 
 @get("/menu")
-@for_10kl
+@forlevel('10kl')
 def menu():
     return static_file("menu.html", root='static/static/alco/')
 
@@ -138,18 +126,18 @@ def logerror():
 @route("/main")
 def main():
     
-    @for_10kl
+    @forlevel('10kl')
     def main10kl():
         return static_file("path.html", root='static/static/alco/')
 
-    @for_admin
+    @forlevel('admin')
     def mainadmin():
         return static_file("admin_page.html", root='static/static/alco/')
 
 
 
 @route("/submit", method="POST")
-@for_10kl
+@forlevel('10kl')
 def do_form():
     def cal(calendar_str):
       indx = calendar_str.find('-')
