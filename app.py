@@ -132,7 +132,7 @@ def syncdics():     # in case the server crashes, all dics will be stored in .tx
 
     hash_file.write('\n'+'\n'+curtime+"   -----------------    ")
     access_file.write('\n'+'\n'+curtime+"   -----------------    ")
-    email_file.write('\n'+'\n'curtime+"   -----------------    ")
+    email_file.write('\n'+'\n'+curtime+"   -----------------    ")
 
     hash_file.write(str(d))
     access_file.write(str(access))
