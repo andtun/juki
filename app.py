@@ -429,7 +429,7 @@ def chngemail():
 @need_auth
 def gt_accs():
     if access_is('admin'):
-        what_to_load = request.query.load
+        load = str(request.query.load)
         
         if load == 'access':
             filename = 'access_file.txt'
