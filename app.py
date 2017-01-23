@@ -125,11 +125,11 @@ def logerror():
 
 @route("/main")
 @forlevel('10kl')
-    def main10kl():
-        return static_file("path.html", root='static/static/alco/')
+def main10kl():
+    return static_file("path.html", root='static/static/alco/')
 @forlevel('admin')
-    def mainadmin():
-        return static_file("admin_page.html", root='static/static/alco/')
+def mainadmin():
+    return static_file("admin_page.html", root='static/static/alco/')
 
 
 
