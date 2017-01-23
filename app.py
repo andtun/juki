@@ -8,7 +8,7 @@ import xlrd
 from openpyxl import load_workbook
 import beaker.middleware
 from passlib.hash import pbkdf2_sha256
-import cPickle
+import pickle
 import time
 
 
