@@ -8,7 +8,6 @@ import xlrd
 from openpyxl import load_workbook
 import beaker.middleware
 from passlib.hash import pbkdf2_sha256
-import _pickle as cPickle
 import time
 
 
@@ -131,13 +130,13 @@ def syncdics():     # in case the server crashes, all dics will be stored in .tx
 
     curtime = time.asctime()
 
-    hash_file.write('\n'+curtime+"   -----------------    ")
-    access_file.write('\n'+curtime+"   -----------------    ")
-    email_file.write('\n'+curtime+"   -----------------    ")
+    hash_file.write('\n'+'\n'+curtime+"   -----------------    ")
+    access_file.write('\n'+'\n'+curtime+"   -----------------    ")
+    email_file.write('\n'+'\n'curtime+"   -----------------    ")
 
-    cPickle.dump(d, hash_file)
-    cPickle.dump(access, access_file)
-    cPickle.dump(email, email_file)
+    hash_file.write(str(d))
+    access_file.write(str(access))
+    email_file.write(str(email))
 
     hash_file.close()
     access_file.close()
