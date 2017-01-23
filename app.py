@@ -63,6 +63,7 @@ app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 #dics, where user info is stored
 d = {}       #dic for username and password hashes: d[username] returns hash
 access = {}  #dic for access levels
+email = {}
 
 
 d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=HRN)
