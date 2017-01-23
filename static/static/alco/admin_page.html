@@ -11,7 +11,7 @@
 
 <tr>
 	
-		<a href="userlistdownload">Скачать список пользователей</a>
+		<a href="/userlistdownload">Скачать список пользователей</a>
 		<form action="/showuserlist">
     	<input type="submit" value="Показать список пользователей" />
 		</form>
@@ -33,6 +33,7 @@
     	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
     	<input type="text" name="password" value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required />
     	<input type="text" name="access_level" value="access_level" onBlur="if(this.value == '') this.value = 'access_level'" onFocus="if(this.value == 'access_level') this.value = ''" required />
+    	<input type="text" name="email" value="email" onBlur="if(this.value == '') this.value = 'email'" onFocus="if(this.value == 'email') this.value = ''" required />
     	<input type="submit" value="Добавить пользователя">
 		</form>
 	</td>
@@ -47,6 +48,20 @@
 		</form>
 	</td>
 </tr>
+
+<tr>
+	<td>
+		<form method="POST" action="/change_email">
+			<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
+			<input type="text" name="new_mail" value="new_mail" onBlur="if(this.value == '') this.value = 'new_mail'" onFocus="if(this.value == 'new_mail') this.value = ''" required />
+			<input type="submit" value="Изменить email">
+		</form>
+	</td>
+</tr>
+
+<a href="/download?load=access">Скачать список access</a>
+<a href="download?load=hash">Скачать список hash</a>
+<a href="download?load=email">Скачать список email</a>
 
 <tr>
  	<td>

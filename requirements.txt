@@ -5,3 +5,5 @@ xlrd
 openpyxl
 pycrypto
 passlib
+time
+cPickle
