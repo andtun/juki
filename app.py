@@ -82,8 +82,7 @@ def for_10kl(webpage):
         if 'logged_in' in request.session:
             if request.session['logged_in']:
                 if request.session['access'] == "10kl":
-                    print("success")
-                    webpage()
+                    return webpage()
         return HTTPError(401)
     return wrapper
 
