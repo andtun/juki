@@ -105,8 +105,8 @@ def need_auth(webpage):   #see how it works in the code down
             if request.session['logged_in']:
                 return webpage()
             
-        #return HTTPError(401)
-        return 'adas'
+        return bottle.HTTPError(401)
+        #return 'adas'
     return wrapper
 
 
