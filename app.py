@@ -180,7 +180,7 @@ def menu():
     if access_is('10kl'):
         return stat_file("menu.html")
     
-    return ('menu unavailable for this user')
+    redirect('/main')
 
 
 #!!!REQUEST.SESSION['USERNAME'] WILL RETURN THE USRNAME OF THE LOGGED IN USER!!!
@@ -323,6 +323,7 @@ def chngpsw_process():
 
 
 @get("/check_user")
+@need_auth
 def chk_usr():
     return request.session['username']
 
@@ -416,7 +417,7 @@ def chngemail():
     if access_is('admin'):
         
         his_username = request.forms.get('username')
-        new_email = request.forms.get('email')
+        new_email = request.forms.get('new_mail')
         
         if his_username in d:
             email[his_username] = new_email
@@ -442,6 +443,12 @@ def gt_accs():
             filename = 'hash_file.txt'
             
         return static_file(filename, root='.', download = True)
+
+
+@get("syncdics")
+@need_auth
+def syncalldics():
+    syncdics()
 
 
 
