@@ -73,7 +73,7 @@ def main():
 @route("/submit", method="POST")
 @need_auth
 def do_form():
-    return do_calendar_form
+    return do_calendar_form()
 #--------------------------------------------------------------------
 
 @route("/fileDownload")
