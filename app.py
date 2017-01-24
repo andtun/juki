@@ -105,7 +105,8 @@ def need_auth(webpage):   #see how it works in the code down
             if request.session['logged_in']:
                 return webpage()
             
-        return HTTPError(401)
+        #return HTTPError(401)
+        return 'adas'
     return wrapper
 
 
@@ -131,9 +132,9 @@ def syncdics():     # in case the server crashes, all dics will be stored in .tx
 
     curtime = time.asctime()
 
-    hash_file.write('\n'+'\n'+curtime+"   -----------------    ")
-    access_file.write('\n'+'\n'+curtime+"   -----------------    ")
-    email_file.write('\n'+'\n'+curtime+"   -----------------    ")
+    hash_file.write('\n \n '+curtime+"   -----------------    ")
+    access_file.write('\n \n '+curtime+"   -----------------    ")
+    email_file.write('\n \n '+curtime+"   -----------------    ")
 
     hash_file.write(str(d))
     access_file.write(str(access))
