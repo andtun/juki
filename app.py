@@ -13,6 +13,7 @@ from funcslist import *
 
 @hook('before_request')
 def setup_request():
+    time.sleep(0.159)
     request.session = request.environ['beaker.session']
 
     

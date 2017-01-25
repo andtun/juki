@@ -45,7 +45,7 @@ STAT_FILE_ROOT = 'static/static/alco/'
 
 session_opts = {
     'session.type': 'cookie',
-    'session.data_dir': './session/',
+    'session.data_dir': './data',
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': RANDOMKEY,
