@@ -49,7 +49,7 @@ session_opts = {
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': RANDOMKEY,
-    'session.validate_key': VALIDATEKEY,
+    'session.validate_key': True,
     'session.timeout': CTIME,
     #'session.type': 'cookie',
     #'session.type': 'file',
