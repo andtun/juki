@@ -16,7 +16,7 @@ from funcslist import *
 def setup_request():
     #time.sleep(0.159)
     request.session = request.environ['beaker.session']
-    request.session.save()
+    #request.session.save()
 
     
 #=====================USER PAGES========================#
