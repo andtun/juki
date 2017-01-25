@@ -44,17 +44,17 @@ STAT_FILE_ROOT = 'static/static/alco/'
 
 
 session_opts = {
-    'session.type': 'cookie',
+    #'session.type': 'cookie',
     'session.data_dir': './session/',
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': RANDOMKEY,
-    'session.validate_key': VALIDATEKEY,
+    #'session.validate_key': VALIDATEKEY,
     'session.timeout': CTIME,
     #'session.type': 'cookie',
-    #'session.type': 'file',
+    'session.type': 'file',
     'session.validate_key': True,
-    'session.secure': True,
+    #'session.secure': True,
 }
 
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
