@@ -53,7 +53,7 @@ session_opts = {
     'session.timeout': CTIME,
     #'session.type': 'cookie',
     #'session.type': 'file',
-    'session.validate_key': True,
+    #'session.validate_key': True,
     'session.secure': True,
 }
 
