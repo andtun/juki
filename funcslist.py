@@ -99,13 +99,13 @@ def setup_request():
 
 def need_auth(webpage):   #see how it works in the code down
     def wrapper():
-        
+        request.session = request.environ['beaker.session']        
         if 'logged_in' in request.session:
             
             if request.session['logged_in']:
                 return webpage()
-            else:
-                redirect("/")
+        else:
+            redirect("/")
 
     return wrapper
 
