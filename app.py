@@ -11,10 +11,31 @@ from passlib.hash import pbkdf2_sha256
 import time
 from funcslist import *
 
+
+
+
+session_opts = {
+    'session.type': 'file',
+    'session.data_dir': './data',
+    'session.auto': True,
+    'session.cookie_expires': True,
+    'session.encrypt_key': RANDOMKEY,
+    'session.validate_key': True,
+    'session.timeout': CTIME,
+    #'session.type': 'cookie',
+    #'session.type': 'file',
+    #'session.validate_key': True,
+    'session.secure': True,
+}
+
+app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
+
+
 @hook('before_request')
 def setup_request():
-    time.sleep(0.159)
+    #time.sleep(0.159)
     request.session = request.environ['beaker.session']
+    request.session.save()
 
     
 #=====================USER PAGES========================#

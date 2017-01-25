@@ -43,22 +43,6 @@ STAT_FILE_ROOT = 'static/static/alco/'
 #bottle.debug(True)
 
 
-session_opts = {
-    'session.type': 'cookie',
-    'session.data_dir': './data',
-    'session.auto': True,
-    'session.cookie_expires': True,
-    'session.encrypt_key': RANDOMKEY,
-    'session.validate_key': True,
-    'session.timeout': CTIME,
-    #'session.type': 'cookie',
-    #'session.type': 'file',
-    #'session.validate_key': True,
-    'session.secure': True,
-}
-
-app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
-
 
 #dics, where user info is stored
 d = {}       #dic for username and password hashes: d[username] returns hash
@@ -84,12 +68,6 @@ def check_login(username, password):
     if username in d:
         return pbkdf2_sha256.verify(password, d[username])
     return False
-
-
-#maintaining session
-@hook('before_request')
-def setup_request():
-    request.session = request.environ['beaker.session']
 
 
 #request.session['logged_in'] = False
