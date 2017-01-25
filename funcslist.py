@@ -104,9 +104,9 @@ def need_auth(webpage):   #see how it works in the code down
             
             if request.session['logged_in']:
                 return webpage()
-            
-        redirect("/")
-        #return 'adas'
+            else:
+                redirect("/")
+
     return wrapper
 
 
