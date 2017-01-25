@@ -43,8 +43,6 @@ STAT_FILE_ROOT = 'static/static/alco/'
 #bottle.debug(True)
 
 
-<<<<<<< HEAD
-=======
 session_opts = {
     #'session.type': 'cookie',
     'session.data_dir': './session/',
@@ -61,7 +59,6 @@ session_opts = {
 
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 
->>>>>>> mainbra
 
 #dics, where user info is stored
 d = {}       #dic for username and password hashes: d[username] returns hash
