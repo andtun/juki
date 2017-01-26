@@ -44,15 +44,15 @@ STAT_FILE_ROOT = 'static/static/alco/'
 
 
 session_opts = {
-    #'session.type': 'cookie',
+    'session.type': 'cookie',
     'session.data_dir': './session/',
     'session.auto': True,
     'session.cookie_expires': True,
     'session.encrypt_key': RANDOMKEY,
-    #'session.validate_key': VALIDATEKEY,
+    'session.validate_key': VALIDATEKEY,
     'session.timeout': CTIME,
     #'session.type': 'cookie',
-    'session.type': 'file',
+    #'session.type': 'file',
     'session.validate_key': True,
     #'session.secure': True,
 }
@@ -95,11 +95,11 @@ def need_auth(webpage):   #see how it works in the code down
     def wrapper():
         request.session = request.environ['beaker.session']        
         if 'logged_in' in request.session:
-            print("logged in !!!!!!!!")            
+            #print("logged in !!!!!!!!")            
             if request.session['logged_in']:
                 return webpage()
-        else:
-            redirect("/")
+            
+        redirect("/")
 
     return wrapper
 
