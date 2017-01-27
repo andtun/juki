@@ -23,13 +23,12 @@ def setup_request():
     
 @get("/")   #login html
 def login():
-    return "git success"
-    '''if 'logged_in' in request.session:
+    if 'logged_in' in request.session:
         
         if request.session['logged_in']:
             redirect("/main")
             
-    return stat_file("login.html")'''
+    return stat_file("login.html")
 
 
 @post("/")   #processing login info
