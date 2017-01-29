@@ -1,15 +1,17 @@
 # This Python file uses the following encoding: utf-8
 
+#import time
 import os
 import bottle
-from bottle import *
 import requests
 import xlrd
-from openpyxl import load_workbook
 import beaker.middleware
-from passlib.hash import pbkdf2_sha256
-import time
+import json
+from bottle import *
 from funcslist import *
+from passlib.hash import pbkdf2_sha256
+from openpyxl import load_workbook
+
 
 
 @hook('before_request')
@@ -258,6 +260,12 @@ def gt_accs():
 def syncalldics():
     syncdics()
 
+
+@post("/post_info")
+def postinfo():
+    if schoolserver():
+        new_events = json.loads(str(request.forms.get('new_events_json')))
+        print(new_events['a'])
 
 
 

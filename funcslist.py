@@ -9,6 +9,7 @@ from openpyxl import load_workbook
 import beaker.middleware
 from passlib.hash import pbkdf2_sha256
 import time
+from socket import gethostname, gethostbyname
 
 
 #================DECLARING CONSTANTS (NAMES USE ONLY CAPS)=================#
@@ -35,6 +36,10 @@ HRN = 20000
 
 #static file root directory
 STAT_FILE_ROOT = 'static/static/alco/'
+
+
+#IP adress of the main server
+MAINSERVER_IP = '______________'
 
 
 
@@ -138,6 +143,37 @@ def syncdics():     # in case the server crashes, all dics will be stored in .tx
     access_file.close()
     email_file.close()
 
+def find_cell(fio, month, date):
+               #working with table    
+    workbook = xlrd.open_workbook('export.xlsx')
+    sheet = workbook.sheet_by_index(0)
+    curcol = 1
+    currow = 1
+    
+    for i in range(sheet.nrows):
+        data = sheet.cell_value(i, 0)
+        if data == fio.decode('utf-8'):
+            currow = i
+            break
+        
+    for i in range(sheet.ncols):
+        data = sheet.cell_value(0, i)
+        if data == month.decode('utf-8'):
+            curcol = i
+            break
+        
+    for i in range(curcol, sheet.ncols - curcol):
+        data = sheet.cell_value(1, i)
+        if data == int(date):
+            curcol = i
+            break
+
+    book=load_workbook('export.xlsx')
+    sheet = book.active
+    currow += 1
+    curcol += 1
+    return currow, curcol
+
 
 def do_calendar_form():
 
@@ -163,45 +199,30 @@ def do_calendar_form():
            #formatting info
     date, month = cal(cal_str)
 
+    currow, curcol = find_cell(fio, month, date)
         
     #print(fio, date, month, YesNo)
 
-    
-           #working with table    
-    workbook = xlrd.open_workbook('export.xlsx')
-    sheet = workbook.sheet_by_index(0)
-    #curcol = 1
-    
-    for i in range(sheet.nrows):
-        data = sheet.cell_value(i, 0)
-        if data == fio.decode('utf-8'):
-            currow = i
-            break
-        
-    for i in range(sheet.ncols):
-        data = sheet.cell_value(0, i)
-        if data == month.decode('utf-8'):
-            curcol = i
-            break
-        
-    for i in range(curcol, sheet.ncols - curcol):
-        data = sheet.cell_value(1, i)
-        if data == int(date):
-            curcol = i
-            break
-
-    book=load_workbook('export.xlsx')
-    sheet = book.active
-    currow += 1
-    curcol += 1
 
             #deciding what to insert into the cell
     if YesNo == 'Yes':
         sheet.cell(row=currow, column=curcol).value = ""
     else:
-        sheet.cell(row=currow, column=curcol).value = "H"
+        sheet.cell(row=currow, column=curcol).value = "X"
     book.save('export.xlsx')
 
             #returning success page
     return stat_file("back.html")
 
+
+def do_calendar_from_db(name, month, date):
+    currow, curcol = find_cell(name, month, date)
+    data = sheet.cell_value(currow, curcol)
+    if data != X:
+        sheet.cell(row=currow, column=curcol).value = ""
+    
+
+
+def schoolserver():
+    ip = gethostbyname(gethostname())
+    return (ip == MAINSERVER_IP)
