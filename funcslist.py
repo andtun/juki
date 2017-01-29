@@ -2,14 +2,16 @@
 
 import os
 import bottle
-from bottle import *
 import requests
 import xlrd
-from openpyxl import load_workbook
 import beaker.middleware
+from openpyxl import load_workbook
 from passlib.hash import pbkdf2_sha256
-import time
+from bottle import *
 from socket import gethostname, gethostbyname
+
+import time
+
 
 
 #================DECLARING CONSTANTS (NAMES USE ONLY CAPS)=================#
@@ -142,6 +144,7 @@ def syncdics():     # in case the server crashes, all dics will be stored in .tx
     hash_file.close()
     access_file.close()
     email_file.close()
+    
 
 def find_cell(fio, month, date):
                #working with table    
@@ -172,7 +175,7 @@ def find_cell(fio, month, date):
     sheet = book.active
     currow += 1
     curcol += 1
-    return currow, curcol
+    return currow, curcol, book, sheet
 
 
 def do_calendar_form():
@@ -199,7 +202,7 @@ def do_calendar_form():
            #formatting info
     date, month = cal(cal_str)
 
-    currow, curcol = find_cell(fio, month, date)
+    currow, curcol, book, sheet = find_cell(fio, month, date)
         
     #print(fio, date, month, YesNo)
 
