@@ -67,6 +67,8 @@ session_opts = {
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 
 
+#------DICS FOR AUTH-------------------------------------------------------#
+
 #dics, where user info is stored
 d = {}       #dic for username and password hashes: d[username] returns hash
 access = {}  #dic for access levels
@@ -85,6 +87,8 @@ email['user1'] = "email@example.com"
 email['admin'] = "email@example.com"
 email['user_test'] = "email@example.com"
 
+#--------------------------------------------------------------------------
+
 
 #function returns True if login and pwd match
 def check_login(username, password):
@@ -92,8 +96,8 @@ def check_login(username, password):
         return pbkdf2_sha256.verify(password, d[username])
     return False
 
-
 #request.session['logged_in'] = False
+
 
 
 #===============DECORATORS&FUNCTIONS====================#
@@ -144,41 +148,52 @@ def syncdics():     # in case the server crashes, all dics will be stored in .tx
     hash_file.close()
     access_file.close()
     email_file.close()
-    
 
-def find_cell(fio, month, date):
-               #working with table    
+
+#=======================FORM METHODS==========================#    
+
+
+def find_cell(fio, month, date):        #find a cell
+    
+               #setting up table    
     workbook = xlrd.open_workbook('export.xlsx')
     sheet = workbook.sheet_by_index(0)
     curcol = 1
     currow = 1
-    
+
+               #finding fio
     for i in range(sheet.nrows):
         data = sheet.cell_value(i, 0)
         if data == fio.decode('utf-8'):
             currow = i
             break
-        
+
+                #finding month
     for i in range(sheet.ncols):
         data = sheet.cell_value(0, i)
         if data == month.decode('utf-8'):
             curcol = i
             break
-        
+
+                #finding date
     for i in range(curcol, sheet.ncols - curcol):
         data = sheet.cell_value(1, i)
         if data == int(date):
             curcol = i
             break
 
+                #ending work
     book=load_workbook('export.xlsx')
     sheet = book.active
     currow += 1
     curcol += 1
+
+    #return the cell we need and the table object, in which the cell is
     return currow, curcol, book, sheet
 
 
-def do_calendar_form():
+
+def do_calendar_form():     #filling the table using form (manual)
 
     
     def cal(calendar_str):  #turns yyyy-mm-dd  into  'monthname' and date
@@ -202,9 +217,8 @@ def do_calendar_form():
            #formatting info
     date, month = cal(cal_str)
 
+            #finding the cell
     currow, curcol, book, sheet = find_cell(fio, month, date)
-        
-    #print(fio, date, month, YesNo)
 
 
             #deciding what to insert into the cell
@@ -218,14 +232,16 @@ def do_calendar_form():
     return stat_file("back.html")
 
 
-def do_calendar_from_db(name, month, date):
+
+def do_calendar_from_db(name, month, date):   #filling the table using DB (automatic)
     currow, curcol = find_cell(name, month, date)
     data = sheet.cell_value(currow, curcol)
-    if data != X:
+    
+    if data != X:  #if data is X, don't change the cell. If not X - the student is in school, so set the cell empty
         sheet.cell(row=currow, column=curcol).value = ""
     
 
-
+#checking the IP - only the DB sent from school server will be used
 def schoolserver():
     ip = gethostbyname(gethostname())
     return (ip == MAINSERVER_IP)
