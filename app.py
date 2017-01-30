@@ -120,7 +120,7 @@ def chngpsw_process():
     new_password_conf = request.forms.get('new_password_repeated')
     
     if new_password != new_password_conf:
-        return stat_file("fail_to_change_pwd.html")
+        return stat_file("smth_wrong_pwd.html")
     
     global d
     if ((its_username in d) and (pbkdf2_sha256.verify(old_password, d[its_username]))):   # if the username exists and the old password is correct
@@ -129,7 +129,7 @@ def chngpsw_process():
         logout()
         
         return stat_file("pwd_changed.html")
-    return stat_file("something_wrong_pwd.html")
+    return stat_file("smth_wrong_pwd.html")
 
 
 @get("/check_user")
@@ -295,6 +295,14 @@ def st():
 @route("/smtwrpswd.css")
 def smth():
     return stat_file("smtwrpswd.css")
+
+@route("/styleback.css")
+def smth():
+    return stat_file("styleback.css")
+
+@route("/styleadm.css")
+def smth():
+    return stat_file("styleadm.css")
 
 @route("/background2-min.png")
 def pencil():
