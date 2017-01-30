@@ -1,7 +1,8 @@
 @charset "utf-8";
 html {
-    background-image: url(https://wallpaperbrowse.com/media/images/Winter-of-Solitude-1.jpg);
+    background-image: url(background2-min.png);
     background-size: cover;
+    background-repeat: no-repeat;
     }
 body {
     color:#424242;

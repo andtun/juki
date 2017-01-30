@@ -3,7 +3,7 @@
 <head>
 <link rel="shortcut icon" href="test1.png" type="image/x-icon">
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style3.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Вход в систему</title>
 </head>
@@ -16,17 +16,19 @@
 
         
           <h1>Войти в систему</h1>
-          <div class="chert"></div>
+          <div class='chert'></div>
           <fieldset>
 
-            <form action="/" method="POST">
+            <form action="http:///" method="POST">
             <p class='nev'>Логин:</p>
             <input name="username" type="text">
             <p class='nev'>Пароль:</p>
             <input name="password" type="password">
               
             <input type="submit" value="Войти">
-            </form>
+            <p class='nevv'>Неверный логин или пароль</p>
+            <p style='margin-top: 0px'><a type='forgot' href="http:/forgot_password" target="_blank">Восстановить пароль</a>
+            </p></form>
 
           </fieldset>
 

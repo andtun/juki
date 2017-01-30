@@ -1,7 +1,8 @@
 @charset "utf-8";
 html {
-    background-image: url(https://wallpaperbrowse.com/media/images/Winter-of-Solitude-1.jpg);
+    background-image: url(background2-min.png);
     background-size: cover;
+    background-repeat: no-repeat;
     }
 body {
     font-family:'Open Sans',sans-serif;
@@ -15,12 +16,13 @@ body {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     margin:180px auto;
-    width:355px;
+    width:325px;
     font-family:'Open Sans',sans-serif;
     font-size:16px;
     -webkit-box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
     box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
     }
+
 #main-form fieldset {
     border:none;
     position:relative;
@@ -34,7 +36,7 @@ body {
 }
 
 #main-form fieldset form button[type="submit"] {
-    background-color:#3299BB;
+    background-color:#F5F5F5;
     border:none;
     border-radius:3px;
     -moz-border-radius:3px;
@@ -46,7 +48,9 @@ body {
     padding:0;
     -webkit-appearance:none;
     width: 100px;
+    height: 100px;
     font-size: 16;
+    <!box-shadow:0px 5px 10px 0px rgba(0,0,0,.3)>
     }
 
 #sub-form input[type="submit"] {
@@ -61,7 +65,7 @@ body {
     font-weight:normal;
     font-size: 16;
     padding:0px;
-    margin-left: 220px;
+    margin-left: 165px;
     }
 #sub-form{
 	background-color:white;
@@ -74,6 +78,7 @@ body {
     font-size:18px;
     margin-bottom: 0;
     padding-bottom: 15px; 
+    padding-right: 5px;
 }
 .chert{
 	width: 100%;
@@ -82,4 +87,9 @@ body {
 }
 .table{
     margin-left: -25px;
+}
+.gran{
+    margin: 0px;
+    width: 3px;
+    color: #BCBCBC
 }

@@ -1,7 +1,8 @@
 @charset "utf-8";
 html {
-    background-image: url(https://wallpaperbrowse.com/media/images/Winter-of-Solitude-1.jpg);
+    background-image: url(background2-min.png);
     background-size: cover;
+    background-repeat: no-repeat;
     }
 body {
     font-family:'Open Sans',sans-serif;
@@ -28,6 +29,7 @@ body {
     width: 200px;
     padding-top: 20px;
     padding-left: 0;
+    height: 380px;
     }
 #main-form fieldset form{
     margin-left: 20px;

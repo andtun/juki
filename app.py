@@ -288,18 +288,49 @@ def style3():
 def style3():
     return stat_file("style4.css")
 
-@route("/Pencil.png")
+@route("/stylechangepassword.css")
+def st():
+    return stat_file("stylechangepassword.css")
+
+@route("/smtwrpswd.css")
+def smth():
+    return stat_file("smtwrpswd.css")
+
+@route("/background2-min.png")
 def pencil():
-    return stat_file("Pencil.png")
+    return stat_file("background2-min.png")
 
 @route("/download.png")
 def dencil():
     return stat_file("download.png")
 
+@route("/downl.png")
+def dencil():
+    return stat_file("downl.png")
+
+@route("/edit.png")
+def return_img():
+    return stat_file("edit.png")
+
+@route("/lock.png")
+def return_img():
+    return stat_file("lock.png")
+
+@route("/lock1.png")
+def return_img():
+    return stat_file("lock1.png")
+
+@route("/Pencil.png")
+def return_img():
+    return stat_file("Pencil.png")
+
+@route("/login.png")
+def return_img():
+    return stat_file("login.png")
+
 @route("/test1.png")
 def return_img():
     return stat_file("test1.png")
-
 
 
 #======================================================================

@@ -2,19 +2,32 @@
 <html class="pointerfocus">
  <head>
   <meta charset="utf-8">
-  <title>XL</title>
+  <link rel="stylesheet" type="text/css" href="stylechangepassword.css">
+  <link rel="shortcut icon" href="test1.png" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <title>Поменять пароль</title>
  </head>
  
  <body>
- 
- <table cellpadding=1 rules="none" >
+  <div>
+     
+     
+     <div id='login-form'>
+      <div>
 
+        
+          <h1>Изменить пароль</h1>
+          <div class="chert"></div>
+          <fieldset>
 
-<form method="POST" action="/change_password">
-			<input type="text" name="old_password" value="Старый пароль" onBlur="if(this.value == '') this.value = 'Старый пароль'" onFocus="if(this.value == 'Старый пароль') this.value = ''" required />
-			<input type="text" name="new_password" value="Новый пароль" onBlur="if(this.value == '') this.value = 'Новый пароль'" onFocus="if(this.value == 'Новый пароль') this.value = ''" required />
-			<input type="text" name="new_password_repeated" value="Повторите новый пароль" onBlur="if(this.value == '') this.value = 'Повторите новый пароль'" onFocus="if(this.value == 'Повторите новый пароль') this.value = ''" required />
-			<input type="submit" value="Изменить пароль">
+            <form method="POST" action="/change_password">
+            Старый пароль:
+			<input type="password" name="old_password" value='' onBlur="if(this.value == '') this.value = ''" onFocus="if(this.value == '') this.value = ''" required />
+			Новый пароль:
+			<input type="password" name="new_password" value="" onBlur="if(this.value == '') this.value = ''" onFocus="if(this.value == '') this.value = ''" required />
+			Повторите новый пароль:
+			<input type="password" name="new_password_repeated" value="" onBlur="if(this.value == '') this.value = ''" onFocus="if(this.value == '') this.value = ''" required />
+			<input type="submit" value="Подвердить">
 
 	<form action="/main">
 			<input type="submit" value="Отмена">
@@ -22,12 +35,15 @@
 
 </form>
 
+          </fieldset>
 
+        
+      </div> 
 
-
- </table>
-
-
+    </div>
+   
+    
+ </div>
 
  </body>
 </html>
