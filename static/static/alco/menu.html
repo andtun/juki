@@ -12,11 +12,11 @@
 
 
 <div id='main-form'>
-<form id='sub-form' action="http:///logout" target="_blank" onsubmit="try {return window.confirm(&quot;Вы передаете информацию на внешнюю страницу.\nВы уверены?&quot;);} catch (e) {return false;}">
+<div id='sub-form'>
     User
     <input type="submit" value="Выйти"> |
     <a href="/change_pswd" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a>
-</form>
+</div>
 
 <div class='chert'></div>
  <fieldset>
@@ -25,14 +25,14 @@
 <table class='table'>
     <tr>
     	<td>
-			<form action="http:///" method="POST" target="_blank" onsubmit="try {return window.confirm(&quot;Вы передаете информацию на внешнюю страницу.\nВы уверены?&quot;);} catch (e) {return false;}">
-   				<button type="submit" title='Редактировать таблицу'>
+			<form action="/path">
+   				<button type="submit" title='Редактировать таблицу' >
    				<img src="edit.png" style="width: 70px; height: 70px">
    				</button>
 			</form>
 		</td>
 		<td>
-			<form action="http:///" method="POST" target="_blank" onsubmit="try {return window.confirm(&quot;Вы передаете информацию на внешнюю страницу.\nВы уверены?&quot;);} catch (e) {return false;}">
+			<form action='/fileDownload'>
    				<button type="submit" title="Скачать таблицу">
    				<img src="downl.png" style="width: 70px; height: 70px">
    				</button>
