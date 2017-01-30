@@ -63,7 +63,7 @@ def menu():
 
 @get("/logerror")   # if pw didn't match login
 def logerror():
-    return stat_file("login-notlogged.html")
+    return stat_file("faillogin.html")
 
 
 @route("/main")   # main page
