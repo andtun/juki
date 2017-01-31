@@ -241,7 +241,7 @@ def chngemail():
 @need_auth
 def gt_accs():
     if access_is('admin'):
-        'filename = 'access_file.txt            
+        filename = 'access_file.txt'            
         return static_file(filename, root='.', download = True)
 
 @get("/downloadhash")
