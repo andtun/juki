@@ -242,6 +242,9 @@ def chngemail():
 def gt_accs():
     if access_is('admin'):
         load = str(request.query.load)
+        print(load)
+
+        filename = "export.xlsx"
         
         if load == 'access':
             filename = 'access_file.txt'
@@ -259,6 +262,7 @@ def gt_accs():
 @need_auth
 def syncalldics():
     syncdics()
+    redirect("/main?adm")
 
 
 @post("/post_info")
