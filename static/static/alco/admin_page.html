@@ -13,7 +13,7 @@
  <form id='sub-form' action="/logout">
     Admin
     <input type="submit" value="Выйти">|
-    <a href="/change_pswd" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a>
+    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a>
 </form>
 <div class='chert'></div>
  <fieldset>
@@ -56,13 +56,13 @@
 <form method="GET" action="/showuserlist" style="width: 230px">
 <input type="submit" value="Показать список пользователей">
 </form>
-<form method="GET" action="/download?load=access" style="width: 230px">
+<form method="GET" action="/downloadaccess" style="width: 230px">
 <input type='submit' value='Скачать список access'>
 </form>
-<form method="GET" action="/download?load=hash" style="width: 230px">
+<form method="GET" action="/downloadhash" style="width: 230px">
 <input type='submit' value='Скачать список hash'>
 </form>
-<form method="GET" action="/download?load=email" style="width: 230px">
+<form method="GET" action="/downloademail" style="width: 230px">
 <input type='submit' value='Скачать список email'>
 </form>
 		

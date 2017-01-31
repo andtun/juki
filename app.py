@@ -237,26 +237,27 @@ def chngemail():
         return "No such user"
 
 
-@get("/download")
+@get("/downloadaccess")
 @need_auth
 def gt_accs():
     if access_is('admin'):
-        load = request.query['load']
-        print(load)
-        print("-----")
-
-        filename = "export.xlsx"
-        
-        if load == 'access':
-            filename = 'access_file.txt'
-            
-        if load == 'email':
-            filename = 'email_file.txt'
-            
-        if load == 'hash':
-            filename = 'hash_file.txt'
-            
+        'filename = 'access_file.txt            
         return static_file(filename, root='.', download = True)
+
+@get("/downloadhash")
+@need_auth
+def gt_accs():
+    if access_is('admin'):
+        filename = 'hash_file.txt'
+        return static_file(filename, root='.', download = True)
+
+@get("/downloademail")
+@need_auth
+def gt_accs():
+    if access_is('admin'):
+        filename = 'email_file.txt'
+        return static_file(filename, root='.', download = True)
+
 
 
 @get("/syncdics")
