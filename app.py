@@ -241,7 +241,7 @@ def chngemail():
 @need_auth
 def gt_accs():
     if access_is('admin'):
-        load = request.query.load
+        load = request.query['load']
         print(load)
         print("-----")
 
