@@ -14,7 +14,7 @@
 <div id='main-form'>
 <div id='sub-form'>
     User
-    <input type="submit" value="Выйти"> |
+    <a class='acl' href='/logout'>Выйти</a> |
     <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a>
 </div>
 
@@ -24,21 +24,21 @@
 <div align="center">
 <table class='table'>
     <tr>
-    	<td>
-			<form action="/main">
-   				<button type="submit" title='Редактировать таблицу' >
-   				<img src="edit.png" style="width: 70px; height: 70px">
-   				</button>
-			</form>
-		</td>
-		<td>
-			<form action='/fileDownload'>
-   				<button type="submit" title="Скачать таблицу">
-   				<img src="downl.png" style="width: 70px; height: 70px">
-   				</button>
-			</form>
-		</td>
-	</tr>
+      <td>
+      <form action="/main">
+          <button type="submit" title='Редактировать таблицу' >
+          <img src="edit.png" style="width: 70px; height: 70px">
+          </button>
+      </form>
+    </td>
+    <td>
+      <form action='/fileDownload'>
+          <button type="submit" title="Скачать таблицу">
+          <img src="downl.png" style="width: 70px; height: 70px">
+          </button>
+      </form>
+    </td>
+  </tr>
 </table>
 </fieldset>
 </div> 
