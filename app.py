@@ -241,8 +241,9 @@ def chngemail():
 @need_auth
 def gt_accs():
     if access_is('admin'):
-        load = str(request.query.load)
+        load = request.query.load
         print(load)
+        print("-----")
 
         filename = "export.xlsx"
         
