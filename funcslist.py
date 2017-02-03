@@ -73,6 +73,7 @@ app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 d = {}       #dic for username and password hashes: d[username] returns hash
 access = {}  #dic for access levels
 email = {}
+FIo = {}
 
 
 d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=HRN)
@@ -86,6 +87,11 @@ access['user_test'] = "10kl"
 email['user1'] = "email@example.com"
 email['admin'] = "email@example.com"
 email['user_test'] = "email@example.com"
+
+FIo['user1'] = "Юзер Первый Иванович"
+FIo['admin'] = "Админ Админович Админко"
+FIo['user_test'] = "Юзер Тест Тестович"
+
 
 #--------------------------------------------------------------------------
 

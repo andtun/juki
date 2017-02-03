@@ -135,7 +135,7 @@ def chngpsw_process():
 @get("/check_user")
 @need_auth
 def chk_usr():
-    return request.session['username']
+    return FIo[request.session['username']]
 
 #======================================================================
 #                     ADMIN STUFF
@@ -271,7 +271,7 @@ def syncalldics():
 def postinfo():
     if schoolserver():
         new_events = json.loads(str(request.forms.get('new_events_json')))
-        print(new_events['a'])
+        print(str(new_events))
 
 
 
