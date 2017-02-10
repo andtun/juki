@@ -267,7 +267,7 @@ def syncalldics():
     redirect("/main?adm")
 
 
-@put("/post_info")
+@post("/post_info")
 def postinfo():
     new_events = str(request.body)
     print(new_events)
