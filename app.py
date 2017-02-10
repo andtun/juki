@@ -269,8 +269,8 @@ def syncalldics():
 
 @put("/post_info")
 def postinfo():
-    new_events = json.loads(str(request.forms.get('new_events_json')))
-    print(str(new_events))
+    new_events = str(request.body)
+    print(new_events)
 
 
 
