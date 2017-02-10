@@ -267,7 +267,7 @@ def syncalldics():
     redirect("/main?adm")
 
 
-@post("/post_info")
+@put("/post_info")
 def postinfo():
     if schoolserver():
         new_events = json.loads(str(request.forms.get('new_events_json')))
