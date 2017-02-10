@@ -269,12 +269,8 @@ def syncalldics():
 
 @put("/post_info")
 def postinfo():
-    if schoolserver():
-        data = request.files.data
-        raw = data.file.read()
-        rawprnt = str(raw)
-        #new_events = json.loads(str(request.forms.get('new_events_json')))
-        print(rawprnt)
+    new_events = json.loads(str(request.forms.get('new_events_json')))
+    print(str(new_events))
 
 
 
