@@ -269,7 +269,7 @@ def syncalldics():
 
 @post("/post_info")
 def postinfo():
-    new_events = str(request.body)
+    new_events = str(dir(request.body))
     print(new_events)
 
 
