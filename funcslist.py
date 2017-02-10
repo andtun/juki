@@ -88,9 +88,9 @@ email['user1'] = "email@example.com"
 email['admin'] = "email@example.com"
 email['user_test'] = "email@example.com"
 
-FIo['user1'] = "Юзер Первый Иванович"
-FIo['admin'] = "Админ Админович Админко"
-FIo['user_test'] = "Юзер Тест Тестович"
+FIo['user1'] = "Юзер П. И."
+FIo['admin'] = "Админ F. F."
+FIo['user_test'] = "Юзер Т. Т."
 
 
 #--------------------------------------------------------------------------
