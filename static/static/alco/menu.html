@@ -9,11 +9,36 @@
 </head>
 <body>
 
+<script>
+function addtxt() {
 
+  var xmlhttp;
+if (window.XMLHttpRequest)
+  {// код для IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// код для IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("uname").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","/check_user",true);
+xmlhttp.send();
+}
+
+addtxt()
+
+</script>
 
 <div id='main-form'>
 <div id='sub-form'>
-    User
+    <span id='uname'></span>
     <a class='acl' href='/logout'>Выйти</a> |
     <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a>
 </div>
