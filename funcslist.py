@@ -40,9 +40,6 @@ HRN = 20000
 STAT_FILE_ROOT = 'static/static/alco/'
 
 
-#IP adress of the main server
-MAINSERVER_IP = '______________'
-
 
 
 #=======================DESCRIBING STUFF=========================#
@@ -61,7 +58,7 @@ session_opts = {
     #'session.type': 'cookie',
     #'session.type': 'file',
     'session.validate_key': True,
-    #'session.secure': True,
+    'session.secure': True,
 }
 
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
@@ -245,9 +242,4 @@ def do_calendar_from_db(name, month, date):   #filling the table using DB (autom
     
     if data != X:  #if data is X, don't change the cell. If not X - the student is in school, so set the cell empty
         sheet.cell(row=currow, column=curcol).value = ""
-    
 
-#checking the IP - only the DB sent from school server will be used
-def schoolserver():
-    ip = gethostbyname(gethostname())
-    return (ip == MAINSERVER_IP)

@@ -46,7 +46,7 @@ def chklgn():
         redirect("/menu")
 
     else:   # if password and login don't match
-        redirect("/logerror")
+        return stat_file("faillogin.html")
 
 
 @get("/menu")   # main page for the user
@@ -63,7 +63,7 @@ def menu():
 
 @get("/logerror")   # if pw didn't match login
 def logerror():
-    return stat_file("faillogin.html")
+    redirect("/")
 
 
 @route("/main")   # main page
