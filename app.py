@@ -372,6 +372,17 @@ def return_img():
 def return_img():
     return stat_file("test1.png")
 
+@route("/pwdchng.css")
+def pwdc():
+    return stat_file("pwdchng.css")
+
+@route("/datepickermin.css")
+def pwdc():
+    return stat_file("datepickermin.css")
+
+@route("/datepickermin.js")
+def pwdc():
+    return stat_file("datepickermin.js")
 
 #======================================================================
 #                        ERRORS CATCHING

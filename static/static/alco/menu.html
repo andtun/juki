@@ -5,13 +5,12 @@
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style4.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<title>User</title>
+<title>Меню</title>
 </head>
 <body>
 
 <script>
 function addtxt() {
-
   var xmlhttp;
 if (window.XMLHttpRequest)
   {// код для IE7+, Firefox, Chrome, Opera, Safari
@@ -26,21 +25,19 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     document.getElementById("uname").innerHTML=xmlhttp.responseText;
-    }
+    }
   }
 xmlhttp.open("GET","/check_user",true);
 xmlhttp.send();
 }
-
 addtxt()
-
 </script>
 
 <div id='main-form'>
-<div id='sub-form'>
+<div id='sub-form' action='/logout'>
     <span id='uname'></span>
-    <a class='acl' href='/logout'>Выйти</a> |
-    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a>
+    <div style='text-align: right; margin-right: 15px;'><input type="submit" value="Выйти"> |
+    <a href="/change_pswd" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a></div>
 </div>
 
 <div class='chert'></div>
@@ -49,21 +46,23 @@ addtxt()
 <div align="center">
 <table class='table'>
     <tr>
-      <td>
-      <form action="/main">
-          <button type="submit" title='Редактировать таблицу' >
-          <img src="edit.png" style="width: 70px; height: 70px">
-          </button>
-      </form>
-    </td>
-    <td>
-      <form action='/fileDownload'>
-          <button type="submit" title="Скачать таблицу">
-          <img src="downl.png" style="width: 70px; height: 70px">
-          </button>
-      </form>
-    </td>
-  </tr>
+    	<td>
+			<form action="/path">
+   				<button type="submit" title='Редактировать таблицу' >
+   				<img src="edit.png" style="width: 70px; height: 70px; filter: drop-shadow(-2px 3px 2px rgba(0,0,0,0.3)); border-radius: 6px; margin-left: 20px">
+          <p style='margin-top: 10px; color: #3299BB; width: 120%; margin-left: -12px; text-shadow: -2px 3px 2px rgba(0,0,0,0.15)'>Редактировать таблицу</p>
+   				</button>
+			</form>
+		</td>
+		<td>
+			<form action='/fileDownload'>
+   				<button type="submit" title="Скачать таблицу">
+   				<img src="downl.png" style="width: 50px; height: 70px; filter: drop-shadow(-2px 3px 2px rgba(0,0,0,0.3)); border-radius: 6px; border-radius: 6px">
+          <p style='margin-top: 10px; color: #3299BB; width: 120%; margin-left: -10px; text-shadow: -2px 3px 2px rgba(0,0,0,0.15)'>Скачать таблицу</p>
+   				</button>
+			</form>
+		</td>
+	</tr>
 </table>
 </fieldset>
 </div> 
