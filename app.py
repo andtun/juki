@@ -271,7 +271,7 @@ def syncalldics():
 #=======================================================================
 
 def postinfo():
-    new_events = request.forms.get('sendJson')
+    new_events = request.forms.get()
     print("sendJSON: " + str(new_events))
 
 
