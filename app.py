@@ -271,7 +271,7 @@ def syncalldics():
 #=======================================================================
 
 def postinfo():
-    new_events = str(read(request.body))
+    new_events = str(request.json)
     print(new_events)
 
 
