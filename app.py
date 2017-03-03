@@ -266,14 +266,30 @@ def syncalldics():
     syncdics()
     redirect("/main?adm")
 
+#=======================================================================
+    #==================UPLOADING JSON========================
+#=======================================================================
 
-@post("/post_info")
 def postinfo():
-    new_events = str(dir(request.body))
+    new_events = str(read(request.body))
     print(new_events)
 
 
 
+
+
+
+
+
+@post("/post_info")
+def pinfo():
+    postinfo()
+
+@put("/post_info")
+def putinfo():
+    postinfo()
+
+#======================================================================
 #======================================================================
 #                       STYLES & IMAGES
 
