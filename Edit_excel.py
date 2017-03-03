@@ -35,33 +35,6 @@ list2 = ['Алеев Мурат', 'Алексеев Илья', 'Архипова
          'Хаханова Маргарита', 'Чернышев Артем', 'Шашкин Иван', 'Шерстнева Мария', 'Элиович Алиса']
 
 
-class UsersDB:
-    _db_connection = None
-    _db_cur = None
-
-    def __init__(self):
-        self._db_connection = fdb.connect(
-            dsn="/var/lib/firebird/2.5/data/SCD17K.FDB",  # DESTINATION
-            user="SYSDBA",
-            password="mike2112hungry",  # PASSWORD FOR SYSDBA
-            charset="UTF8"  # CHARSET
-        )
-        self._db_cur = self._db_connection.cursor()
-
-    def query(self, query):
-        self._db_cur.execute(query)
-        self._db_connection.commit()
-        return
-
-    def fetch(self, query):
-        return self._db_cur.execute(query).fetchall()
-
-    def __del__(self):
-        self._db_connection.close()
-        return
-
-
-con = UsersDB()  # Connect to DataBase
 
 allDate = con.fetch("Select date_ev from reg_events group by date_ev having count(*)>1")
 student_list = []  # FINAL LIST

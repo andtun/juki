@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 #import time
-from insertPoint import addPoint, convert, 3rdname
+from insertPoint import addPoint, convert, rdname
 import os
 import bottle
 import requests
@@ -281,7 +281,7 @@ def postinfo():
         wrkdct = dct['event']
         name = str(wrkdct['personInfo']['last_name']) + ' ' + str(wrkdct['personInfo']['first_name'])
         try:
-            name = 3rdname(name)
+            name = rdname(name)
         except ValueError:
             pass
         m = dct['event']['datetime']['date']
