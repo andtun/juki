@@ -80,6 +80,20 @@ body {
     padding-bottom: 15px; 
     padding-right: 5px;
 }
+#sub-form input[type="submit"] {
+    background-color:white;
+    border:none;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    color:#3299BB;
+    cursor:pointer;
+    float:none;
+    font-weight:normal;
+    font-size: 16px;
+    padding:0px;
+    margin-left: 165px;
+    }
 .chert{
 	width: 100%;
 	height: 5px;

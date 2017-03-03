@@ -2,6 +2,9 @@
 <html>
 <head>
 <link rel="shortcut icon" href="test1.png" type="image/x-icon">
+<link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="dist/js/datepicker.min.js"></script>
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style2.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,7 +14,6 @@
  
 <script>
 function addtxt() {
-
   var xmlhttp;
 if (window.XMLHttpRequest)
   {// код для IE7+, Firefox, Chrome, Opera, Safari
@@ -26,21 +28,21 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     document.getElementById("uname").innerHTML=xmlhttp.responseText;
-    }
+    }
   }
 xmlhttp.open("GET","/check_user",true);
 xmlhttp.send();
 }
-
 addtxt()
-
 </script>
 
- <div id='main-form'>
- <form id='sub-form' action="/logout">
+
+<div id='main-form'>
+<div id='sub-form' action='/logout'>
     <span id='uname'></span>
-    <input type="submit" value="Выйти">
-</form>
+    <div style='text-align: right; margin-right: 0px;'><input type="submit" value="Выйти"> |
+    <a href="/change_pswd" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a></div>
+</div>
 <div class='chert'></div>
  <fieldset>
  <table class='table' cellpadding="0" rules="none">
@@ -48,7 +50,7 @@ addtxt()
   <tr>
   <div>
    <td width="340" valign="top">
-<form name="0.1_XL" method="post" action="/submit" >
+<form name="0.1_XL" action='/submit'>
 <label><p style='margin-bottom: 20px'>
 Введите имя ученика:
 <br><input list="FIOs" name="FIO" type='text'>
@@ -112,7 +114,7 @@ addtxt()
 </label>
 </datalist>
 
-<p style='margin-bottom: 20px'>Выберите дату: <br><input type="date" name="calendar">
+<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' class="datepicker-here" />
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
   <ul>
@@ -124,7 +126,7 @@ addtxt()
   </li>
   
   <li>
-    <input type="radio" id="s-option" name="YesNo" value='No' checked>
+    <input type="radio" id="s-option" name="YesNo" value='No'>
     <label for="s-option" class='label2'>Нет</label>
     
     <div class="check2"><div class="inside"></div></div>
@@ -133,10 +135,12 @@ addtxt()
   </div>
   <p id='lowh'>
   <input type="submit" value="Отправить">
+  
   </p>
   </form>
   <form action="/menu">
   <input type="submit" value="Вернуться в меню" style='margin-top: 20px; margin-left: -20px;'>
+
   </form>
    </td>
    </div>
@@ -150,5 +154,6 @@ addtxt()
 
 
  </div>
+ 
 </body>
 </html>

@@ -3,11 +3,16 @@
 <head>
 <link rel="shortcut icon" href="test1.png" type="image/x-icon">
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style3.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Вход в систему</title>
 </head>
 <body>     
+<script type="text/javascript">
+function changeDivContent(){document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"/forgot_password\" >Восстановить пароль</a><div class='ch'></div>"}
+
+changeDivContent();
+</script>
  <div>
      
      
@@ -19,14 +24,16 @@
           <div class="chert"></div>
           <fieldset>
 
-            <form action="/" method="POST">
+            <form method="POST">
             <p class='nev'>Логин:</p>
             <input name="username" type="text">
             <p class='nev'>Пароль:</p>
             <input name="password" type="password">
               
-            <input type="submit" value="Войти">
+            <input type="submit" value="Войти" onClick="changeDivContent()">
             </form>
+            <div id="content">
+</div>
 
           </fieldset>
 

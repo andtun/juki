@@ -41,7 +41,6 @@ body {
     -moz-border-radius:3px 3px 3px 3px;
     -webkit-border-radius:3px 3px 3px 3px;
     padding:12px;
-    -webkit-appearance:none;
     font-family:'Open Sans',sans-serif;
     width:305px;
     margin-top: 10px;
@@ -55,6 +54,7 @@ body {
     padding-left: 109px;
     padding-top: 12px;
     padding-bottom: 12px;
+    -webkit-appearance:none;
     margin-top: 10px;
     }
 #main-form fieldset form input[type="submit"] {
@@ -85,7 +85,7 @@ body {
     font-weight:normal;
     font-size: 16px;
     padding:0px;
-    margin-left: 210px;
+    margin-left: 185px;
     }
 #sub-form{
 	background-color:white;
