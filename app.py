@@ -58,7 +58,7 @@ def menu():
     if access_is('10kl'):
         return stat_file("menu.html")
     
-    redirect('/main')
+    redirect('/main?adm')
 
 
 #!!!REQUEST.SESSION['USERNAME'] WILL RETURN THE USRNAME OF THE LOGGED IN USER!!!
