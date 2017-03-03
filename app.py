@@ -44,9 +44,11 @@ def chklgn():
     if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
         request.session['access'] = access[username]
         request.session['username'] = username      #setting atributes of the cookie
+        print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
 
     else:   # if password and login don't match
+        print("EVENT:   failed login")
         return stat_file("faillogin.html")
 
 
@@ -276,6 +278,8 @@ def postinfo():
     new_events = request.json
     print("JSON: " + str(new_events))
     dct = json.loads(new_events)
+
+    print("-----  filling table from db started  -----")
     
     for event in dct.keys():
         wrkdct = dct['event']
@@ -287,9 +291,11 @@ def postinfo():
         m = dct['event']['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]
         day = m[:m.find('.')]
+        topr = name + " " + convert(month) + " " + str(day)
+        print(topr)
         addPoint(name, convert(month), int(day))
 
-
+    print("-----  table filling finished successfully  -----")
 
 
 @post("/post_info")
@@ -389,6 +395,7 @@ def pwdc():
 
 @bottle.error(500)
 def ff(error):
+    print("!!!!!  something went wrong (500) error occurred  !!!!!")
     return stat_file("err500page.html")
 
 @bottle.error(404)
@@ -397,7 +404,12 @@ def notfound(error):
 
 @bottle.error(401)
 def fff(error):
+    print("!unauthorized access try!")
     redirect("/")
+
+@bottle.error(405)
+def fff(error):
+    print("!!!  error 405 (method not allowed)  detected  !!!")
 
 #========================================================================
 #===========================RUN========RUN===============================
