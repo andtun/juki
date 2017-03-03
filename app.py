@@ -305,12 +305,12 @@ def postinfo():
     print("JSON: " + str(new_events))
     dct = json.loads(new_events)
     for event in dct.keys():
-        name = str(dct[event][personInfo][last_name]) + ' ' + str(dct[event][personInfo][first_name])
+        name = str(dct['event']['personInfo']['last_name']) + ' ' + str(dct['event']['personInfo']['first_name'])
         try:
             name = list1[list2.index(name)]
         except ValueError:
             pass
-        m = dct[event][datetime][date]
+        m = dct['event']['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]
         day = m[:m.find('.')]
         addPoint(name, convert(month), int(day))
