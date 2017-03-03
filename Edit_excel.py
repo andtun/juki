@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 import fdb
 import datetime
 from insertPoint import addPoint, convert

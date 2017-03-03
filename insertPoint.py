@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 import xlrd
 from openpyxl import load_workbook
 import warnings
