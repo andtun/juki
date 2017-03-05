@@ -44,8 +44,8 @@ if (login_status == "failed") {
 }
 
 
-function submitForm(form) {
-	form.action = form_action;
+function submitForm() {
+	
     var http = new XMLHttpRequest();
     http.open("POST", "https://jukiproject.herokuapp.com/", true);
     var username = document.getElementById("username").value;
@@ -54,6 +54,10 @@ function submitForm(form) {
     alert(username+password+" success")
 }
 
+
+function get_action(form) {
+	form.action = submitForm();
+}
 
 
 
@@ -70,7 +74,7 @@ changeDivContent();
           <div class="chert"></div>
           <fieldset>
 
-            <form onsubmit="submitForm(this);">
+            <form onsubmit="get_action(this);">
             <p class='nev'>Логин:</p>
             <input id="username" name="username" type="text">
             <p class='nev'>Пароль:</p>
