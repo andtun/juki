@@ -41,8 +41,6 @@ def chklgn():
     cut = postdata.find("|")
     request.session['username'] = postdata[:cut]    #getting usrname & pw
     request.session['password'] = postdata[cut+1:]
-
-    print(username + password)
     
     request.session['logged_in'] = check_login(request.session['username'], request.session['password'])  #if pw and usrname match, 'logged_in' in cookie is set to True
     
