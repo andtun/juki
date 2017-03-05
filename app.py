@@ -396,6 +396,14 @@ def pwdc():
 def pwdc():
     return stat_file("datepickermin.js")
 
+@route("/dist/js/datepicker.min.js")
+def pwdc():
+    return stat_file("datepicker.min.js")
+
+@route("/dist/js/datepicker.min.css")
+def pwdc():
+    return stat_file("datepicker.min.css")
+
 #======================================================================
 #                        ERRORS CATCHING
 

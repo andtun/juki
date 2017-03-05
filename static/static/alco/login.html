@@ -21,27 +21,27 @@ function get_cookie ( cookie_name )
 
 
 function changeDivContent() {
-	
+  
 var login_status = get_cookie("failed_login");
 
 
 if (login_status == "failed") {
 
 
-	document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"/forgot_password\" >Восстановить пароль</a><div class='ch'></div>";
+  document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"/forgot_password\" >Восстановить пароль</a><div class='ch'></div>";
 
-		}
+    }
 
 else if (login_status == "succeded") {
 
-	window.location.reload();
+  window.location.reload();
 } else {submitForm();}
 
 }
 
 
 function submitForm() {
-	
+  
     var http = new XMLHttpRequest();
     http.open("POST", "https://jukiproject.herokuapp.com/", true);
     var username = document.getElementById("username").value;
@@ -54,7 +54,7 @@ function submitForm() {
 
 
 function get_action(form) {
-	form.action = submitForm();
+  form.action = submitForm();
 }
 
 
