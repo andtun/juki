@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
 function changeDivContent() {
-
+	var login_status;
 	var xmlhttp;
 if (window.XMLHttpRequest)
   {// код для IE7+, Firefox, Chrome, Opera, Safari
@@ -25,9 +25,7 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-    var login_status;
     login_status=xmlhttp.responseText;
-    print(login_status)
     }
   }
 
