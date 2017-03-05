@@ -62,7 +62,7 @@ def chklgn():
 @need_auth      # need_auth decorator: if not authorized, you'll get 401 Error
 def menu():
     if access_is('10kl'):
-        return stat_file("menu.html")
+        return stat_file("main.html")
     
     redirect('/main?adm')
 
