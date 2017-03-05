@@ -78,6 +78,7 @@ def logerror():
 def chk():
     if 'failed_login' in request.session:
         return str(request.session['failed_login'])
+        print(str(request.session['failed_login']))
     return "OK"
 
 
