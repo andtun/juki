@@ -78,8 +78,8 @@ def logerror():
 @get("/check_failedlogin")
 def chk():
     if 'failed_login' in request.session:
+        print(request.session['failed_login'])
         return request.session['failed_login']
-    print(str(request.session['failed_login']))
     return "OK"
 
 
