@@ -56,6 +56,7 @@ def chklgn():
     else:   # if password and login don't match
         print("EVENT:   failed login")
         request.session['failed_login'] = "failed"
+        print(str(request.session['failed_login']))
 
 
 @get("/menu")   # main page for the user
@@ -77,7 +78,7 @@ def logerror():
 @get("/check_failedlogin")
 def chk():
     if 'failed_login' in request.session:
-        return str(request.session['failed_login'])
+        return request.session['failed_login']
         print(str(request.session['failed_login']))
     return "OK"
 
