@@ -71,7 +71,7 @@ def logerror():
 
 @get("/check_failedlogin")
 def chk():
-    if request.session['failed_login'] in globals():
+    if 'failed_login' in request.session:
         return str(request.session['failed_login'])
     return "OK"
 
