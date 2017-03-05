@@ -131,6 +131,7 @@ def logout():
     request.session['access'] = ""
     request.session['username'] = ""
     request.session['logged_in'] = False
+    response.set_cookie("failed_login", 'undefined')
 
 
 def syncdics():     # in case the server crashes, all dics will be stored in .txt files
