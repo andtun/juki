@@ -55,6 +55,8 @@ def chklgn():
 
     else:   # if password and login don't match
         print("EVENT:   failed login")
+        request.session['username'] = username
+        request.session['access'] = "failedlogin"
         request.session['failed_login'] = "failed"
         print(str(request.session['failed_login']))
 
