@@ -107,7 +107,7 @@ def check_login(username, password):
 
 def need_auth(webpage):   #see how it works in the code down
     def wrapper():
-        request.session = request.environ['beaker.session']        
+        #request.session = request.environ['beaker.session']        
         if 'logged_in' in request.session:
             #print("logged in !!!!!!!!")            
             if request.session['logged_in']:
