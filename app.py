@@ -49,7 +49,7 @@ def chklgn():
     if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
         request.session['access'] = access[username]
         request.session['username'] = username      #setting atributes of the cookie
-        request.session['failed_login'] = "OK"
+        request.session['failed_login'] = "succeded"
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
 
