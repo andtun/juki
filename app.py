@@ -26,10 +26,13 @@ def setup_request():
     
 @get("/")   #login html
 def login():
+    if not request.get_cookie("failed_login"):
+        response.set_cookie("failed_login", 'undefined')
+    
     if 'logged_in' in request.session:
         
         if request.session['logged_in']:
-            redirect("/main")
+            redirect("/menu")
             
     return stat_file("login.html")
 
@@ -40,21 +43,19 @@ def chklgn():
     print(postdata)
     cut = postdata.find("|")
     request.session['username'] = postdata[:cut]    #getting usrname & pw
-    request.session['password'] = postdata[cut+1:]
+    password = postdata[cut+1:]
     
-    request.session['logged_in'] = check_login(request.session['username'], request.session['password'])  #if pw and usrname match, 'logged_in' in cookie is set to True
+    request.session['logged_in'] = check_login(request.session['username'], password)  #if pw and usrname match, 'logged_in' in cookie is set to True
     
     if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
         request.session['access'] = access[request.session['username']]     #setting atributes of the cookie
-        request.session['failed_login'] = "succeded"
+        response.set_cookie("failed_login", 'succeded')
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
 
     else:   # if password and login don't match
         print("EVENT:   failed login")
-        request.session['failed_login'] = "failed"
-        return request.session['failed_login']
-        print(str(request.session['failed_login']))
+        response.set_cookie("failed_login", 'failed')
 
 
 @get("/menu")   # main page for the user
@@ -72,13 +73,6 @@ def menu():
 @get("/logerror")   # if pw didn't match login
 def logerror():
     redirect("/")
-
-@get("/check_failedlogin")
-def chk():
-    if 'failed_login' in request.session:
-        print(request.session['failed_login'])
-        return request.session['failed_login']
-    return "OK"
 
 
 @route("/main")   # main page
