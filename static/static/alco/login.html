@@ -27,13 +27,14 @@ xmlhttp.onreadystatechange=function()
     {
     var login_status;
     login_status=xmlhttp.responseText;
+    print(login_status)
     }
   }
 
 xmlhttp.open("GET","/check_failedlogin",true);
 xmlhttp.send();
 
-print(login_status)
+
 
 if (login_status == "failed") {
 
