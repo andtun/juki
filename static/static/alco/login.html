@@ -49,9 +49,11 @@ function submitForm() {
     var http = new XMLHttpRequest();
     http.open("POST", "https://jukiproject.herokuapp.com/", true);
     var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;// probably use document.getElementById(...).value
-    http.send(username, password);
-    alert(username+password+" success")
+    var password = document.getElementById("password").value;
+    var space = "|||"// probably use document.getElementById(...).value
+    var tosend = username+space+password
+    http.send(tosend);
+    alert(tosend+" success")
 }
 
 
@@ -74,7 +76,7 @@ changeDivContent();
           <div class="chert"></div>
           <fieldset>
 
-            <form action="" onsubmit="get_action(this);">
+            <form action="none" onsubmit="get_action(this);">
             <p class='nev'>Логин:</p>
             <input id="username" name="username" type="text">
             <p class='nev'>Пароль:</p>
