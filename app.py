@@ -400,7 +400,7 @@ def pwdc():
 def pwdc():
     return stat_file("datepicker.min.js")
 
-@route("/dist/js/datepicker.min.css")
+@route("/dist/css/datepicker.min.css")
 def pwdc():
     return stat_file("datepicker.min.css")
 
