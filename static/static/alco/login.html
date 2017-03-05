@@ -22,17 +22,17 @@ function get_cookie ( cookie_name )
 
 function changeDivContent() {
 	
-window.login_status = get_cookie("failed_login");
+var login_status = get_cookie("failed_login");
 
 
-if (window.login_status == "failed") {
+if (login_status == "failed") {
 
 
 	document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"/forgot_password\" >Восстановить пароль</a><div class='ch'></div>";
 
 		}
 
-if (window.login_status == "succeded") {
+if (login_status == "succeded") {
 
 	window.location.reload();
 }
@@ -76,7 +76,7 @@ changeDivContent();
           <div class="chert"></div>
           <fieldset>
 
-            <form action="javascript:get_action(form);">
+            <form action="javascript:submitForm();">
             <p class='nev'>Логин:</p>
             <input id="username" name="username" type="text">
             <p class='nev'>Пароль:</p>
