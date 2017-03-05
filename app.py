@@ -36,22 +36,24 @@ def login():
 
 @post("/")   #processing login info
 def chklgn():
-    username = request.forms.get('username')    #getting usrname & pw
-    password = request.forms.get('password')
+    postdata = request.body.read()
+    print(postdata)
+    #username = request.forms.get('username')    #getting usrname & pw
+    #password = request.forms.get('password')
     
-    request.session['logged_in'] = check_login(username, password)  #if pw and usrname match, 'logged_in' in cookie is set to True
+    #request.session['logged_in'] = check_login(username, password)  #if pw and usrname match, 'logged_in' in cookie is set to True
     
-    if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
-        request.session['access'] = access[username]
-        request.session['username'] = username      #setting atributes of the cookie
+    #if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
+    #    request.session['access'] = access[username]
+    #    request.session['username'] = username      #setting atributes of the cookie
         request.session['failed_login'] = "OK"
-        print("EVENT:    user " + request.session['username'] + " logged in successfuly")
+        #print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
 
-    else:   # if password and login don't match
-        print("EVENT:   failed login")
-        request.session['failed_login'] = "failed"
-        redirect("/")
+    #else:   # if password and login don't match
+        #print("EVENT:   failed login")
+        #request.session['failed_login'] = "failed"
+        #redirect("/")
 
 
 @get("/menu")   # main page for the user
