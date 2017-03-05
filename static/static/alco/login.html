@@ -6,8 +6,7 @@
 <link rel="stylesheet" type="text/css" href="style3.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Вход в систему</title>
-</head>
-<body>     
+
 <script type="text/javascript">
 
 function changeDivContent() {
@@ -65,6 +64,10 @@ function get_action(form) {
 
 changeDivContent();
 </script>
+
+</head>
+<body>     
+
  <div>
      
      
@@ -76,13 +79,13 @@ changeDivContent();
           <div class="chert"></div>
           <fieldset>
 
-            <form action="javascript:;" onsubmit="get_action(this);">
+            <form action="javascript:submitForm();">
             <p class='nev'>Логин:</p>
             <input id="username" name="username" type="text">
             <p class='nev'>Пароль:</p>
             <input id="password" name="password" type="password">
               
-            <button type="submit">Войти</button>
+            <input type="submit" value="Войти">
             </form>
             <div id="content">
 </div>
