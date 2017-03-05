@@ -9,7 +9,38 @@
 </head>
 <body>     
 <script type="text/javascript">
-function changeDivContent(){document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"/forgot_password\" >Восстановить пароль</a><div class='ch'></div>"}
+
+function changeDivContent() {
+
+	var xmlhttp;
+if (window.XMLHttpRequest)
+  {// код для IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// код для IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    login_status=xmlhttp.responseText;
+    }
+  }
+
+xmlhttp.open("GET","/check_failedlogin",true);
+xmlhttp.send();
+
+if (login_status == "failed") {
+
+
+	document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"/forgot_password\" >Восстановить пароль</a><div class='ch'></div>"
+
+		}
+
+}
+
 
 changeDivContent();
 </script>

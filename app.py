@@ -44,12 +44,13 @@ def chklgn():
     if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
         request.session['access'] = access[username]
         request.session['username'] = username      #setting atributes of the cookie
+        request.session['failed_login'] = "OK"
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
 
     else:   # if password and login don't match
         print("EVENT:   failed login")
-        return stat_file("faillogin.html")
+        request.session['failed_login'] = "failed"
 
 
 @get("/menu")   # main page for the user
@@ -67,6 +68,12 @@ def menu():
 @get("/logerror")   # if pw didn't match login
 def logerror():
     redirect("/")
+
+@get("/check_failedlogin")
+def chk():
+    if request.session['failed_login'] in globals():
+        return str(request.session['failed_login'])
+    return "OK"
 
 
 @route("/main")   # main page
