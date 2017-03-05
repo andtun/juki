@@ -49,7 +49,7 @@ function submitForm() {
     http.open("POST", "https://jukiproject.herokuapp.com/", true);
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    var space = "|||"// probably use document.getElementById(...).value
+    var space = "|"// probably use document.getElementById(...).value
     var tosend = username+space+password
     http.send(tosend);
     alert(tosend+" success")
