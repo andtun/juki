@@ -38,8 +38,8 @@ def login():
 def chklgn():
     postdata = request.body.read()
     print(postdata)
-    #username = request.forms.get('username')    #getting usrname & pw
-    #password = request.forms.get('password')
+    username = request.forms.get('username')    #getting usrname & pw
+    password = request.forms.get('password')
     
     #request.session['logged_in'] = check_login(username, password)  #if pw and usrname match, 'logged_in' in cookie is set to True
     
