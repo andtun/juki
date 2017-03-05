@@ -39,24 +39,21 @@ def chklgn():
     postdata = request.body.read()
     print(postdata)
     cut = postdata.find("|")
-    username = postdata[:cut]    #getting usrname & pw
-    password = postdata[cut+1:]
+    request.session['username'] = postdata[:cut]    #getting usrname & pw
+    request.session['password'] = postdata[cut+1:]
 
     print(username + password)
     
-    request.session['logged_in'] = check_login(username, password)  #if pw and usrname match, 'logged_in' in cookie is set to True
+    request.session['logged_in'] = check_login(request.session['username'], request.session['password'])  #if pw and usrname match, 'logged_in' in cookie is set to True
     
     if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
-        request.session['access'] = access[username]
-        request.session['username'] = username      #setting atributes of the cookie
+        request.session['access'] = access[request.session['username']]     #setting atributes of the cookie
         request.session['failed_login'] = "succeded"
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
-        return request.session['failed_login']
+        redirect("/menu")
 
     else:   # if password and login don't match
         print("EVENT:   failed login")
-        request.session['username'] = username
-        request.session['access'] = "failedlogin"
         request.session['failed_login'] = "failed"
         return request.session['failed_login']
         print(str(request.session['failed_login']))
