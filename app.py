@@ -51,6 +51,7 @@ def chklgn():
     else:   # if password and login don't match
         print("EVENT:   failed login")
         request.session['failed_login'] = "failed"
+        redirect("/")
 
 
 @get("/menu")   # main page for the user
