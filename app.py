@@ -51,13 +51,14 @@ def chklgn():
         request.session['username'] = username      #setting atributes of the cookie
         request.session['failed_login'] = "succeded"
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
-        redirect("/menu")
+        return "succeded"
 
     else:   # if password and login don't match
         print("EVENT:   failed login")
         request.session['username'] = username
         request.session['access'] = "failedlogin"
         request.session['failed_login'] = "failed"
+        return "failed"
         print(str(request.session['failed_login']))
 
 

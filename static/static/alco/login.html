@@ -28,7 +28,7 @@ xmlhttp.onreadystatechange=function()
     }
   }
 
-xmlhttp.open("GET","/check_failedlogin",true);
+xmlhttp.open("POST","/",true);
 xmlhttp.send();
 
 
@@ -42,7 +42,7 @@ if (window.login_status == "failed") {
 
 if (window.login_status == "succeded") {
 
-	window.location.reload();
+	window.location.href = "https://jukiproject.herokuapp.com/menu";
 }
 
 }
