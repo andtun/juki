@@ -205,7 +205,7 @@ def addusr():
         
         d[his_username] = pbkdf2_sha256.hash(his_password, rounds=HRN)  #generating password hash
         access[his_username] = his_access_level     #setting access
-        email[his_username] = his_email
+        FIo[his_username] = his_email
         syncdics()
 
         return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level+", email="+his_email)
@@ -239,9 +239,9 @@ def chngemail():
         new_email = request.forms.get('new_mail')
         
         if his_username in d:
-            email[his_username] = new_email
+            FIo[his_username] = new_email
             syncdics()
-            return ("Email for "+his_username+" changed to "+ new_email)
+            return ("FIO for "+his_username+" changed to "+ new_email)
 
         return "No such user"
 
