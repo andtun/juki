@@ -58,7 +58,7 @@ session_opts = {
     #'session.type': 'cookie',
     #'session.type': 'file',
     'session.validate_key': True,
-    #'session.secure': True,
+    'session.secure': True,
 }
 
 app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
