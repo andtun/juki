@@ -51,7 +51,7 @@ else if (login_status == "succeded") {
 function submitForm() {
   
     var http = new XMLHttpRequest();
-    http.open("POST", "https://jukiproject.herokuapp.com/", true);
+    http.open("POST", "/", false);
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var space = "|"// probably use document.getElementById(...).value
