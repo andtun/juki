@@ -208,7 +208,7 @@ def addusr():
         FIo[his_username] = his_email
         syncdics()
 
-        return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level+", email="+his_email)
+        return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level+", FIO="+his_email)
 
 
 @post("/change_access")
