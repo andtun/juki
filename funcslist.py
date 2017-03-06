@@ -201,16 +201,17 @@ def do_calendar_form():     #filling the table using form (manual)
 
     
     def cal(calendar_str):  #turns yyyy-mm-dd  into  'monthname' and date
-        indx = calendar_str.find('-')
+        indx = calendar_str.find('.')
+        day = calendar_str[:indx]
         calendar_str = calendar_str[(indx+1):]
-        indx = calendar_str.find('-')
+        indx = calendar_str.find('.')
         monthnum = calendar_str[:indx]
-        calendar_str = calendar_str[(indx+1):]
         
         month = {'01': "январь", '02': "февраль", '03': "март", '04': "апрель", '05': "май", '06': "июнь", '07': "июль",
              '08': "август", '09': "сентябрь", '10': "октябрь", '11': "ноябрь", '12': "декабрь"}
         
-        return calendar_str, month[monthnum]
+        return day, month[monthnum]
+
 
 
            #getting info from the form 
