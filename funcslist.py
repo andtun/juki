@@ -66,29 +66,15 @@ app = beaker.middleware.SessionMiddleware(bottle.app(), session_opts)
 
 #------DICS FOR AUTH-------------------------------------------------------#
 
+def hsh(password): #hashing pwd
+    return pbkdf2_sha256.hash(password, rounds=HRN)
+
+
 #dics, where user info is stored
-d = {}       #dic for username and password hashes: d[username] returns hash
-access = {}  #dic for access levels
+d = {'user1': hsh("qwerty"), 'zapolsky': hsh("iazap"), 'anikina': hsh('eaani'), 'tiunova': hsh('mvtiu'), 'sgibnev': hsh("aisgi"), 'admin': hsh("adminpsw")}       #dic for username and password hashes: d[username] returns hash
+access = {'user1': '10kl', 'zapolsky': '10kl', 'anikina': '10kl', 'tiunova': '10kl', 'sgibnev': '10kl', 'admin': 'admin'}  #dic for access levels
 email = {}
-FIo = {}
-
-
-d['user1'] = pbkdf2_sha256.hash("qwerty", rounds=HRN)
-d['admin'] = pbkdf2_sha256.hash("adminpsw", rounds=HRN)
-d['user_test'] = pbkdf2_sha256.hash("qwerty", rounds=HRN)
-
-access['user1'] = "10kl"
-access['admin'] = "admin"
-access['user_test'] = "10kl"
-
-email['user1'] = "email@example.com"
-email['admin'] = "email@example.com"
-email['user_test'] = "email@example.com"
-
-FIo['user1'] = "Юзер П. И."
-FIo['admin'] = "Админ F. F."
-FIo['user_test'] = "Юзер Т. Т."
-
+FIo = {'user1': 'Тестовый Юзер', 'zapolsky': 'Запольский И. А.', 'anikina': 'Аникина Е. А.', 'tiunova': 'Тиунова М. В.', 'sgibnev': 'Сгибнев А. И.', 'admin': 'admin'}
 
 #--------------------------------------------------------------------------
 
