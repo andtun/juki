@@ -44,8 +44,9 @@ def rdname(name):
     print(list1)
     print(list2)
     c = 0
+    ans = None
     for i in list2:
-        if i == name:
+        if i.encode('utf-8') == name:
             ans =list1[c]
         c +=1
 
