@@ -12,6 +12,7 @@ from bottle import *
 from funcslist import *
 from passlib.hash import pbkdf2_sha256
 from openpyxl import load_workbook
+from all_day_no import allNo
 
 
 
@@ -275,10 +276,17 @@ def syncalldics():
     syncdics()
     redirect("/main?adm")
 
+
+@get("/setallno")
+def alln():
+    allNo()
+    return "All No filled"
+
+
 #=======================================================================
     #==================UPLOADING JSON========================
 #=======================================================================
-    
+ 
 
 def postinfo():
     new_events = request.json

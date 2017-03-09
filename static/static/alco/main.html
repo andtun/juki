@@ -33,36 +33,44 @@ xmlhttp.send();
 addtxt()
 </script>
 
-<div id='main-form'>
+<div id='main-form' style='padding: 0'>
 <form id='sub-form' action='/logout'>
-    
-    <div style='margin-right: 0px;'><span id='uname'></span><input type="submit" value="Выйти" style='margin-left: 93px'> |
-    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a></div>
-</form>
+<table style='width: 102%; border: none; padding: 0; margin-left: -4px;'>
+<tr style="padding: 0; margin: 0; border: none;">
+<td style="padding: 0; margin: 0; border: none;"><span id='uname'></span></td>
+<td style="padding: 0; margin: 0; border: none;">
 
+    
+    <div style='text-align: right; margin-right: 0px; padding: 0px;'><input type="submit" value="Выйти" style='margin-left: 0px'> |
+    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a></div>
+
+</td>
+</tr>
+</table>
+</form>
 <div class='chert'></div>
  <fieldset>
 
 <div align="center">
 <table class='table'>
     <tr>
-    	<td>
-			<form action="/main">
-   				<button type="submit" title='Редактировать таблицу' >
-   				<img src="edit.png" style="width: 70px; height: 70px; filter: drop-shadow(-2px 3px 2px rgba(0,0,0,0.3)); border-radius: 6px; margin-left: 20px">
+      <td>
+      <form action="/main">
+          <button type="submit" title='Редактировать таблицу' >
+          <img src="edit.png" style="width: 70px; height: 70px; filter: drop-shadow(-2px 3px 2px rgba(0,0,0,0.3)); border-radius: 6px; margin-left: 20px">
           <p style='margin-top: 10px; color: #3299BB; width: 120%; margin-left: -12px; text-shadow: -2px 3px 2px rgba(0,0,0,0.15)'>Редактировать таблицу</p>
-   				</button>
-			</form>
-		</td>
-		<td>
-			<form action='/fileDownload'>
-   				<button type="submit" title="Скачать таблицу">
-   				<img src="downl.png" style="width: 50px; height: 70px; filter: drop-shadow(-2px 3px 2px rgba(0,0,0,0.3)); border-radius: 6px; border-radius: 6px">
+          </button>
+      </form>
+    </td>
+    <td>
+      <form action='/fileDownload'>
+          <button type="submit" title="Скачать таблицу">
+          <img src="downl.png" style="width: 50px; height: 70px; filter: drop-shadow(-2px 3px 2px rgba(0,0,0,0.3)); border-radius: 6px; border-radius: 6px">
           <p style='margin-top: 10px; color: #3299BB; width: 120%; margin-left: -10px; text-shadow: -2px 3px 2px rgba(0,0,0,0.15)'>Скачать таблицу</p>
-   				</button>
-			</form>
-		</td>
-	</tr>
+          </button>
+      </form>
+    </td>
+  </tr>
 </table>
 </fieldset>
 </div> 
