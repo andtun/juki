@@ -43,7 +43,12 @@ def rdname(name):
     print(name)
     print(list1)
     print(list2)
-    ans = list1[list2.index(name)]
+    for i in list2:
+    if i == name:
+        ans =list1[c]
+    c +=1
+
+    #ans = list1[list2.index(name)]
     return ans
 
 
