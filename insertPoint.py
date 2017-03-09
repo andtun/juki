@@ -48,10 +48,12 @@ def addPoint(name, month, date):
     sheet = workbook.sheet_by_index(0)
     curcol = 1
     currow = 1
+    print(name)
     for i in range(sheet.nrows):
         data = sheet.cell_value(i, 0)
         if data == name:
             currow = i
+        print(currow)
             break
     for i in range(sheet.ncols):
         data = sheet.cell_value(0, i)
