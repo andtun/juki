@@ -12,7 +12,7 @@ from bottle import *
 from funcslist import *
 from passlib.hash import pbkdf2_sha256
 from openpyxl import load_workbook
-from all_day_no import allNo
+#from all_day_no import allNo
 
 
 
@@ -302,7 +302,7 @@ def postinfo():
             name = rdname(name)
         except ValueError:
             pass
-        m = dct['event']['datetime']['date']
+        m = dct[event]['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]
         day = m[:m.find('.')]
         topr = name + " " + convert(month) + " " + str(day)
