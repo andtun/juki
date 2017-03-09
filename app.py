@@ -93,6 +93,7 @@ def main():
 @route("/submit", method="POST")
 @need_auth
 def do_form():
+    print(request.body.read())
     return do_calendar_form()
 #--------------------------------------------------------------------
 
