@@ -13,64 +13,13 @@
 <body onload="changeDivContent">﻿
 
 <script>
-function addtxt() {
-  var xmlhttp;
-if (window.XMLHttpRequest)
-  {// код для IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// код для IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("uname").innerHTML=xmlhttp.responseText;
-    }
-  }
-xmlhttp.open("GET","/check_user",true);
-xmlhttp.send();
-}
-addtxt()
-
-function get_cookie ( cookie_name )
-{
-  var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
- 
-  if ( results )
-    return ( unescape ( results[2] ) );
-  else
-    return null;
-}
 
 
 function changeDivContent() {
 
-var login_status = "undefined";
-
-while (login_status == "undefined")  {
-login_status = get_cookie("failed_login");
-
-};
-
-
-
-if (login_status == "failed") {
-
-
   document.getElementById("content").innerHTML = "<style>.nevv{font-family:'Open sans' sans-serif; font-size:16pt; color: #424242; text-align: center}</style><p class='nevv'>Форма отправлена</p></div>";
 
-  document.cookie = "failed_login=undefined";
-
-    }
-
-else if (login_status == "succeded") {
-
-  window.location.reload();
-};
-
+ 
 }
 
 
@@ -92,15 +41,11 @@ function submitForm() {
     }
     var sp= "|"; // probably use document.getElementById(...).value
     var tosend = FIO+sp+calendar+sp+YesNo;
-    alert(tosend);
     http.send(tosend);
+    changeDivContent();
     
+
 }
-
-
-function get_action(form) {
-        form.action = submitForm();
-    }
 
 
 </script>
