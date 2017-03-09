@@ -296,7 +296,7 @@ def postinfo():
     print("-----  filling table from db started  -----")
     
     for event in dct.keys():
-        wrkdct = dct['event']
+        wrkdct = dct[event]
         name = str(wrkdct['personInfo']['last_name']) + ' ' + str(wrkdct['personInfo']['first_name'])
         try:
             name = rdname(name)
