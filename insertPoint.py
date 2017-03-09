@@ -67,7 +67,7 @@ def addPoint(name, month, date):
     sheet = book.active
     currow += 1
     curcol += 1
-    sheet.cell(row=currow, column=curcol).value = "X"
+    sheet.cell(row=currow, column=curcol).value = ""
     book.save('export.xlsx')
 
 

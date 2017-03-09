@@ -17,23 +17,14 @@ def allNo():
     month = convert(d[1]).decode('utf-8') # нужна ф-ция convert() чтоб был "месяц..."
     date = int(d[2])
 
-    print(month, date)
-
     workbook = xlrd.open_workbook('export.xlsx')
     sheet = workbook.sheet_by_index(0)
-    colstr = sheet.nrows - 3
 
     for i in range(sheet.ncols):
         data = sheet.cell_value(0, i)
         if data == month:
-            curcol = i
             break
-    for i in range(curcol, sheet.ncols - curcol):
-        data = sheet.cell_value(1, i)
-        if data == int(date):
-            curcol = i
-            break
-    curcol += 1
+    curcol = i + date
 
     for i in range(3,sheet.nrows+1):
         book=load_workbook('export.xlsx')

@@ -8,6 +8,7 @@ import requests
 import xlrd
 import beaker.middleware
 import json
+import insertPoint
 from bottle import *
 from funcslist import *
 from passlib.hash import pbkdf2_sha256
@@ -307,7 +308,7 @@ def postinfo():
         day = m[:m.find('.')]
         topr = name + " " + convert(month) + " " + str(day)
         print(topr)
-        addPoint(name, convert(month).decode('utf-8'), int(day))
+        insertPoint.addPoint(name, convert(month).decode('utf-8'), int(day))
 
     print("-----  table filling finished successfully  -----")
 
