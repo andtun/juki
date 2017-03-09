@@ -40,18 +40,9 @@ list2 = ['Алеев Мурат', 'Алексеев Илья', 'Архипова
 
 
 def rdname(name):
-    print(name)
     name = name.decode('utf8')
     print(name)
-    i = 0
-    ans = None
-    for item in list2:
-        if name==item:
-            print(name, item)
-            ans = list1[i]
-        i += 1
-            
-    # ans = list1[list2.index(name)]
+    ans = list1[list2.index(name)]
     return ans
 
 
