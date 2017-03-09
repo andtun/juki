@@ -43,8 +43,8 @@ def rdname(name):
     name = name.decode('utf8')
     name = name.decode('utf8')
     print(name)
-    ans = list1[list2.index(name.decode('utf8')).decode('utf8')].decode('utf8')
-    return ans.decode('utf8')
+    ans = list1[list2.index(name)]
+    return ans
 
 
 def addPoint(name, month, date):
