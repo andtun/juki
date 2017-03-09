@@ -43,7 +43,11 @@ def rdname(name):
     print(name)
     name = name.decode('utf8')
     print(name)
-    ans = list1[list2.index(name)]
+    for item in list2:
+        if name==item:
+            print(name, item)
+            
+    # ans = list1[list2.index(name)]
     return ans
 
 
