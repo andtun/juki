@@ -208,6 +208,7 @@ def do_calendar_form():     #filling the table using form (manual)
     cut = data.find("|")
     cal_str = data[:cut]
     YesNo = data[cut+1:]
+    print(fio, cal_str, YesNo)
     
            #formatting info
     date, month = cal(cal_str)
