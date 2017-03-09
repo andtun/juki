@@ -301,7 +301,7 @@ def postinfo():
         wrkdct = dct[event]
         name = str(wrkdct['personInfo']['last_name']) + ' ' + str(wrkdct['personInfo']['first_name'])
         try:
-            name = rdname(name)
+            name = rdname(name.decode("utf-8"))
         except ValueError:
             print("Value Err")
             pass
