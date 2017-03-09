@@ -40,7 +40,7 @@ list2 = ['Алеев Мурат', 'Алексеев Илья', 'Архипова
 
 
 def rdname(name):
-    name = name.decode('utf-8')
+    name = name.decode('utf8')
     print(name)
     ans = list1[list2.index(name.decode('utf8')).decode('utf8')].decode('utf8')
     return ans.decode('utf8')
