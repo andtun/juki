@@ -200,10 +200,14 @@ def do_calendar_form():     #filling the table using form (manual)
 
 
 
-           #getting info from the form 
-    fio=request.forms.get('FIO')
-    cal_str=request.forms.get('calendar')
-    YesNo=request.forms.get('YesNo')
+           #getting info from the form
+    data = request.body.read()
+    cut = data.find("|")
+    fio = data[:cut]
+    data = data[cut+1:]
+    cut = data.find("|")
+    cal_str = data[:cut]
+    YesNo = data[cut+1:]
     
            #formatting info
     date, month = cal(cal_str)
