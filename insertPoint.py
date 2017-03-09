@@ -3,6 +3,7 @@
 import xlrd
 from openpyxl import load_workbook
 import warnings
+import funcslist
 
 # name = 'Бешкуров Михаил Борисович'
 # month = 'сентябрь'
@@ -44,31 +45,9 @@ def rdname(name):
 
 
 def addPoint(name, month, date):
-    workbook = xlrd.open_workbook('export.xlsx')
-    sheet = workbook.sheet_by_index(0)
-    curcol = 1
-    currow = 1
-    print(name)
-    for i in range(sheet.nrows):
-        data = sheet.cell_value(i, 0)
-        if data == name:
-            print(currow)
-            currow = i
-            break
-    for i in range(sheet.ncols):
-        data = sheet.cell_value(0, i)
-        if data == month:
-            curcol = i
-            break
-    for i in range(curcol, sheet.ncols - curcol):
-        data = sheet.cell_value(1, i)
-        if data == int(date):
-            curcol = i
-            break
-    book = load_workbook('export.xlsx')
-    sheet = book.active
-    currow += 1
-    curcol += 1
+
+    currow, curcol, book, sheet = funcslist.find_cell(name, month, date)
+    
     sheet.cell(row=currow, column=curcol).value = "thru INSERTPOINT"
     book.save('export.xlsx')
 
