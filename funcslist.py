@@ -166,17 +166,12 @@ def find_cell(fio, month, date):        #find a cell
             break
 
                 #finding date
-    for i in range(curcol, sheet.ncols - curcol):
-        data = sheet.cell_value(1, i)
-        if data == int(date):
-            curcol = i
-            break
+    curcol += date
 
                 #ending work
     book=load_workbook('export.xlsx')
     sheet = book.active
     currow += 1
-    curcol += 1
 
     #return the cell we need and the table object, in which the cell is
     return currow, curcol, book, sheet

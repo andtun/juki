@@ -10,21 +10,20 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Изменить таблицу</title>
 </head>
-<body onload="changeDivContent">﻿
+<body>
 
 <script>
 
 
 function changeDivContent() {
 
-  document.getElementById("content").innerHTML = "<style>.nevv{font-family:'Open sans' sans-serif; font-size:16pt; color: #424242; text-align: center}</style><p class='nevv'>Форма отправлена</p></div>";
-
+  document.getElementById("content").innerHTML = "<style>.nevv{font-family:'Open sans' sans-serif; font-size:16; color: #727272; text-align: center; background-color: #F5F5F5; margin-top: 0; margin-left: -2px; width: 95%}</style><p class='nevv'>Форма отправлена</p></div>";
+  document.getElementById("content1").innerHTML = "<style>.neff{color: #F5F5F5; background-color: #F5F5F5; margin-top: -35px; margin-left: -2px; width: 95%; height: 40px; border-radius: 5px;}</style><p class='neff'>___</p></div>";
  
 }
 
 
 function submitForm() {
-  
     var http = new XMLHttpRequest();
     http.open("POST", "/submit", true);
     var FIO = document.getElementById("FIO").value;
@@ -32,12 +31,12 @@ function submitForm() {
     var YesNo = "";
     if (document.getElementById('s-option').checked) {
 
-    	YesNo = "No"
+      YesNo = "No"
     }
 
     else if (document.getElementById('f-option').checked) {
 
-    		YesNo = "Yes"
+        YesNo = "Yes"
     }
     var sp= "|"; // probably use document.getElementById(...).value
     var tosend = FIO+sp+calendar+sp+YesNo;
@@ -156,7 +155,10 @@ function submitForm() {
   </li>
   </ul>
   </div>
+  <div id="content">
+  </div>
   <p id='lowh'>
+  
   <input type="submit" value="Отправить">
   
   </p>
@@ -170,10 +172,9 @@ function submitForm() {
   </tr>
  </table>
 
+<div id="content1"></div>
 
-<br>
-<div id="content">
-</div>
+
 </fieldset>
 
 
