@@ -302,6 +302,7 @@ def postinfo():
         try:
             name = rdname(name)
         except ValueError:
+            print("Value Err")
             pass
         m = dct[event]['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]

@@ -154,14 +154,14 @@ def find_cell(fio, month, date):        #find a cell
                #finding fio
     for i in range(sheet.nrows):
         data = sheet.cell_value(i, 0)
-        if data == fio.decode('utf-8'):
+        if data == fio:
             currow = i
             break
 
                 #finding month
     for i in range(sheet.ncols):
         data = sheet.cell_value(0, i)
-        if data == month.decode('utf-8'):
+        if data == month:
             curcol = i
             break
 
