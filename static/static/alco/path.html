@@ -80,7 +80,16 @@ function submitForm() {
     http.open("POST", "/submit", true);
     var FIO = document.getElementById("FIO").value;
     var calendar = document.getElementById("calendar").value;
-    var YesNo = document.getElementById("YesNo").value;
+    var YesNo = "";
+    if (document.getElementById('s-option').checked) {
+
+    	YesNo = "No"
+    }
+
+    else if (document.getElementById('f-option').checked) {
+
+    		YesNo = "Yes"
+    }
     var sp= "|"; // probably use document.getElementById(...).value
     var tosend = FIO+sp+calendar+sp+YesNo;
     alert(tosend);
@@ -188,14 +197,14 @@ function get_action(form) {
      <div class="container">
   <ul>
   <li>
-    <input type="radio" id="f-option" name="YesNo" id="YesNo" value='Yes' checked>
+    <input type="radio" id="f-option" name="YesNo" value='Yes' checked>
     <label for="f-option" class='label1'>Да</label>
     
     <div class="check"></div>
   </li>
   
   <li>
-    <input type="radio" id="s-option" name="YesNo" id="YesNo" value='No'>
+    <input type="radio" id="s-option" name="YesNo" value='No'>
     <label for="s-option" class='label2'>Нет</label>
     
     <div class="check2"><div class="inside"></div></div>
