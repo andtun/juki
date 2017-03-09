@@ -2,7 +2,7 @@
 
 import xlrd
 from openpyxl import load_workbook
-import warnings
+#import warnings
 from datetime import datetime
 
 def allNo():
