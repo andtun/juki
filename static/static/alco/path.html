@@ -81,11 +81,10 @@ function submitForm() {
     var FIO = document.getElementById("FIO").value;
     var calendar = document.getElementById("calendar").value;
     var YesNo = document.getElementById("YesNo").value;
-    var sp= "|"// probably use document.getElementById(...).value
-    var tosend = FIO+sp+calendar+sp+YesNo
-    alert(tosend)
+    var sp= "|"; // probably use document.getElementById(...).value
+    var tosend = FIO+sp+calendar+sp+YesNo;
+    alert(tosend);
     http.send(tosend);
-    changeDivContent();
     
 }
 
