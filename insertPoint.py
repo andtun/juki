@@ -47,7 +47,7 @@ def rdname(name):
 def addPoint(name, month, date):
 
     currow, curcol, book, sheet = funcslist.find_cell(name, month, date)
-    
+    print(currow, curcol)
     sheet.cell(row=currow, column=curcol).value = "thru INSERTPOINT"
     book.save('export.xlsx')
 
