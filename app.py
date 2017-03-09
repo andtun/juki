@@ -308,7 +308,7 @@ def postinfo():
         day = m[:m.find('.')]
         topr = name + " " + convert(month) + " " + str(day)
         print(topr)
-        insertPoint.addPoint(name, convert(month).decode('utf-8'), int(day))
+        addPoint(name, convert(month).decode('utf-8'), int(day))
 
     print("-----  table filling finished successfully  -----")
 
