@@ -301,9 +301,9 @@ def postinfo():
         wrkdct = dct[event]
         name = str(wrkdct['personInfo']['last_name']) + ' ' + str(wrkdct['personInfo']['first_name'])
         try:
-            name = rdname(name.decode("utf-8"))
+            name = rdname(name)
         except ValueError:
-            print("Value Err")
+            print("Value Error in app.py")
             pass
         m = dct[event]['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]
