@@ -417,11 +417,11 @@ def pwdc():
 
 @route('/list1.png')
 def retrn():
-    return stat_file('list1.png')
+    return stat_file("list1.png")
 
-@route('/sync.png')
+@route("/sync.png")
 def retrn():
-    return stat_file('sync.png')
+    return stat_file("sync.png")
 
 #======================================================================
 #                        ERRORS CATCHING
