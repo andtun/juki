@@ -423,8 +423,6 @@ def retrn():
 def retrn():
     return stat_file('sync.png')
 
-
-
 #======================================================================
 #                        ERRORS CATCHING
 
