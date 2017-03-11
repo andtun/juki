@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html class="pointerfocus">
  <head>
   <meta charset="utf-8">
@@ -29,29 +29,48 @@
 <div class='chert'></div>
  <fieldset>
  
-
-
-		Добавить пользователя:
+<table style="border: none; border-collapse: collapse; width: 600px;">
+<tr>
+<td style="border-right: 5px solid #BCBCBC; border-bottom: 5px solid #BCBCBC; width: 200px">
+		<p class="zagol">Добавить пользователя</p>
 		<form method="POST" action="/add_user">
-    	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
-    	<input type="text" name="password" value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required />
-    	<input type="text" name="access_level" value="access_level" onBlur="if(this.value == '') this.value = 'access_level'" onFocus="if(this.value == 'access_level') this.value = ''" required />
-    	<input type="text" name="email" value="FIO" onBlur="if(this.value == '') this.value = 'FIO'" onFocus="if(this.value == 'FIO') this.value = ''" required />
-    	<input type="submit" value="Добавить" style="width: 100px; margin-left: 30px">
+    	<input type="text" style='width: 150px' name="email" value="FIO" onBlur="if(this.value == '') this.value = 'FIO'" onFocus="if(this.value == 'FIO') this.value = ''" required />
+      <input type="text" style='width: 50px' name="access_level" value="accs_lvl" onBlur="if(this.value == '') this.value = 'access_level'" onFocus="if(this.value == 'access_level') this.value = ''" required />
+      <input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
+      <input type="text" name="password" value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required />
+    	<input type="submit" value="Добавить" style="width: 100px; margin-top: 15px; vertical-align: bottom;">
 		</form>
-		Удалить пользователя:
-		<br>
-		<form action="/delete_user" style="width: 50%; display: inline-block;">
-   	 	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required/>
-    	<input type="submit" value="Удалить" style="width: 100px; background-color: coral">
+</td>
+<td style="border-left: 5px solid #BCBCBC; border-bottom: 5px solid #BCBCBC;">
+		<p class='zagol'>Удалить пользователя</p>
+		<form action="/delete_user" style="width: 50%; display: inline-block; margin-top: 25px; margin-bottom: 10px">
+   	 	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required/ style="vertical-align: middle;">
+    	<input type="submit" value="Удалить" style="width: 100px; background-color: #3299BB; margin-top: 42.5px; vertical-align: bottom;">
 		</form>
-		
-<form action="/showuserlist" style="width: 10%; margin-top: 10px; margin-right: 0px; display: inline-block;">
-<input type="submit" value="Показать список пользователей" style="margin-left: 100px">
+</td>
+</tr>
+<tr">
+<td style="padding-top: 10px; border-right: 5px solid #BCBCBC; border-top: 5px solid #BCBCBC;">
+<form action="/showuserlist" style="width: 100%; margin-top: 10px; margin-right: 0px; display: inline-block; text-align: center;">
+<button type="submit" title="Посмотреть список пользователей">
+          <img src="list1.png" style="width: 90px; height: 90px; border-radius: 6px; border-radius: 6px">
+          <p class='butt' style="margin-left: -12px">Пользователи</p>
+          </button>
 </form>
+</td>
+<td style="padding-top: 10px; border-left: 5px solid #BCBCBC; border-top: 5px solid #BCBCBC;">
+<form action="/syncdics" method='GET' style="width: 100%; margin-top: 10px; margin-right: 0px; display: inline-block; text-align: center;">
+<button type="submit" title="Синхронизировать базу">
+          <img src="sync.png" style="width: 90px; height: 90px; border-radius: 6px; border-radius: 6px">
+          <p class='butt' style='width: 120px; margin-left: -22px;'>Синхронизировать</p>
+          </button>
+</form>
+</td>
+</tr>
+</table>
 		
 </fieldset>
 </div>
-<p style='color: #F5F5F5; font-size: 7pt; text-align: center'>ЖУКИ © 2017</p>
+<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; margin-left: 645px'>ЖУКИ © 2017</p>
 </body>
 </html>

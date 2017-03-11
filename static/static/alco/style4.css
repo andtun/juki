@@ -30,6 +30,7 @@ body {
     text-align: center;
     width: 100%;
     padding-top: 20px;
+    height: 135px;
     }
 #main-form fieldset form{
     margin-left: 20px;
@@ -106,4 +107,21 @@ body {
     margin: 0px;
     width: 3px;
     color: #BCBCBC
+}
+.butt{
+    background-color:#3299BB;
+    border:none;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    color:white;
+    cursor:pointer;
+    float:none;
+    font-weight:normal;
+    padding:12px 12px;
+    -webkit-appearance:none;
+    width: 100px;
+    font-size: 12px;
+    margin-bottom: 7px;
+    margin-left: -10px;
 }
