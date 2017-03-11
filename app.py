@@ -415,6 +415,14 @@ def pwdc():
 def pwdc():
     return stat_file("datepicker.min.css")
 
+@route('/list1.png')
+def retrn():
+    return stat_file('list1.png')
+
+@route('/sync.png')
+def retrn():
+    return stat_file('sync.png')
+
 #======================================================================
 #                        ERRORS CATCHING
 
