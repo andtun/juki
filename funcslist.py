@@ -4,11 +4,13 @@ import os
 import bottle
 import requests
 import xlrd
+import UserDB
 import beaker.middleware
 from openpyxl import load_workbook
+from UserDB import db
 from passlib.hash import pbkdf2_sha256
 from bottle import *
-from socket import gethostname, gethostbyname
+#from socket import gethostname, gethostbyname
 
 import time
 
@@ -105,7 +107,7 @@ def need_auth(webpage):   #see how it works in the code down
 
 
 def access_is(access_level):   #used to check the access level
-    ans = (access_level == request.session['access'])
+    ans = (access_level == UserDB.get(request.session['username']).access_level)
     return ans
 
 
@@ -114,30 +116,9 @@ def stat_file(filename):   #an easier way to return static file
 
 
 def logout():
-    request.session['access'] = ""
     request.session['username'] = ""
-    request.session['logged_in'] = False
     response.set_cookie("failed_login", 'undefined')
 
-
-def syncdics():     # in case the server crashes, all dics will be stored in .txt files
-    hash_file = open("hash_file.txt", 'a')
-    access_file = open("access_file.txt", 'a')
-    email_file = open("email_file.txt", 'a')
-
-    curtime = time.asctime()
-
-    hash_file.write('\n \n '+curtime+"   -----------------    ")
-    access_file.write('\n \n '+curtime+"   -----------------    ")
-    email_file.write('\n \n '+curtime+"   -----------------    ")
-
-    hash_file.write(str(d))
-    access_file.write(str(access))
-    email_file.write(str(email))
-
-    hash_file.close()
-    access_file.close()
-    email_file.close()
 
 
 #=======================FORM METHODS==========================#    
@@ -230,4 +211,3 @@ def do_calendar_from_db(name, month, date):   #filling the table using DB (autom
     
     if data != X:  #if data is X, don't change the cell. If not X - the student is in school, so set the cell empty
         sheet.cell(row=currow, column=curcol).value = ""
-

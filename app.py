@@ -9,9 +9,11 @@ import xlrd
 import beaker.middleware
 import json
 import insertPoint
+import UserDB
 from bottle import *
 from funcslist import *
 from passlib.hash import pbkdf2_sha256
+from UserDB import db
 from openpyxl import load_workbook
 #from all_day_no import allNo
 
@@ -31,10 +33,8 @@ def login():
     if not request.get_cookie("failed_login"):
         response.set_cookie("failed_login", 'undefined')
     
-    if 'logged_in' in request.session:
-        
-        if request.session['logged_in']:
-            redirect("/menu")
+    if request.session['username']:
+        redirect("/menu")
             
     return stat_file("login.html")
 
@@ -46,11 +46,9 @@ def chklgn():
     cut = postdata.find("|")
     request.session['username'] = postdata[:cut]    #getting usrname & pw
     password = postdata[cut+1:]
-    
-    request.session['logged_in'] = check_login(request.session['username'], password)  #if pw and usrname match, 'logged_in' in cookie is set to True
-    
-    if request.session['logged_in']:    #if already in, you'll be redirected to the menu page
-        request.session['access'] = access[request.session['username']]     #setting atributes of the cookie
+
+    if check_login(request.session['username'], password):    #if already in, you'll be redirected to the menu page
+        request.session['access'] = UserDB.get(request.session['username']).access_level     #setting atributes of the cookie
         response.set_cookie("failed_login", 'succeded')
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
@@ -147,7 +145,7 @@ def chngpsw_process():
 @get("/check_user")
 @need_auth
 def chk_usr():
-    return FIo[request.session['username']]
+    return UserDB.get(request.session['username']).fio
 
 #======================================================================
 #                     ADMIN STUFF
@@ -183,7 +181,6 @@ def delusr():
         if username in d:   # deleting user
             del d[username]
             del access[username]
-            syncdics()
             
         return ("User "+username+" deleted!")
     else:
@@ -203,13 +200,10 @@ def addusr():
         his_access_level = request.forms.get('access_level')
         his_email = request.forms.get('email')
         
-        if his_username in d:
+        if UserDB.check(his_username):
             return "User already exists"
         
-        d[his_username] = pbkdf2_sha256.hash(his_password, rounds=HRN)  #generating password hash
-        access[his_username] = his_access_level     #setting access
-        FIo[his_username] = his_email
-        syncdics()
+        UserDB.User(his_username, his_access_level, his_email, his_password)
 
         return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level+", FIO="+his_email)
 
@@ -224,9 +218,9 @@ def chngaccs():
         his_username = request.forms.get('username')
         new_access_level = request.forms.get('access_level')
         
-        if his_username in d:
-            access[his_username] = new_access_level
-            syncdics()
+        if UserDB.check(his_username):
+            cmnd = "UPDATE UserList SET access_level='%s' WHERE username='%s';" % (new_access_level, his_username)
+            db.query(cmnd)
             return ("Access level for "+his_username+" changed to "+ new_access_level)
 
         return "No such user"
@@ -241,42 +235,21 @@ def chngemail():
         his_username = request.forms.get('username')
         new_email = request.forms.get('new_mail')
         
-        if his_username in d:
-            FIo[his_username] = new_email
-            syncdics()
+        if UserDB.check(his_username):
+            cmnd = "UPDATE UserList SET fio='%s' WHERE username='%s';" % (new_email, his_username)
+            db.query(cmnd)
             return ("FIO for "+his_username+" changed to "+ new_email)
 
         return "No such user"
 
 
-@get("/downloadaccess")
+
+@get("/download_db")
 @need_auth
 def gt_accs():
     if access_is('admin'):
-        filename = 'access_file.txt'            
+        filename = 'UserList.db'
         return static_file(filename, root='.', download = True)
-
-@get("/downloadhash")
-@need_auth
-def gt_accs():
-    if access_is('admin'):
-        filename = 'hash_file.txt'
-        return static_file(filename, root='.', download = True)
-
-@get("/downloademail")
-@need_auth
-def gt_accs():
-    if access_is('admin'):
-        filename = 'email_file.txt'
-        return static_file(filename, root='.', download = True)
-
-
-
-@get("/syncdics")
-@need_auth
-def syncalldics():
-    syncdics()
-    redirect("/main?adm")
 
 
 @get("/setallno")
