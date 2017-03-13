@@ -5,4 +5,3 @@ xlrd
 openpyxl
 pycrypto
 passlib
-sqlite3
