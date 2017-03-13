@@ -32,9 +32,12 @@ def setup_request():
 def login():
     if not request.get_cookie("failed_login"):
         response.set_cookie("failed_login", 'undefined')
-    
-    if request.session['username']:
-        redirect("/menu")
+
+    try:
+        if request.session['username']:
+            redirect("/menu")
+    except KeyError:
+        request.session['username'] = ""
             
     return stat_file("login.html")
 
