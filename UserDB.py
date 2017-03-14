@@ -2,7 +2,7 @@
 
 import sqlite3
 from passlib.hash import pbkdf2_sha256
-from funcslist import hsh
+from funcslist import *
 
 
 class DataBase:
