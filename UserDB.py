@@ -1,8 +1,12 @@
 # This Python file uses the following encoding: utf-8
 
 import sqlite3
-#from passlib.hash import pbkdf2_sha256
-import funcslist
+from passlib.hash import pbkdf2_sha256
+from funcslist import HRN
+
+
+def hsh(password): #hashing pwd
+    return pbkdf2_sha256.hash(password, rounds=HRN)
 
 
 class DataBase:
@@ -77,10 +81,10 @@ username text, pw text,
 fio text, access_level text);'''
 db.query(cmnd)
 
-add('user1', funcslist.hsh('qwerty'), 'Петров И. И.', '10kl')
-add('usertest', funcslist.hsh('123'), 'Иванов А. А.', '10kl')
-add('sgibnev', funcslist.hsh('aisgi'), 'Сгибнев А. И.', '10kl')
-add('anikina', funcslist.hsh('eaani'), 'Аникина Е. А.', '10kl')
-add('zapolsky', funcslist.hsh('iazap'), 'Запольский И. А.', '10kl')
-add('tiunova', funcslist.hsh('mvtiu'), 'Тиунова М. В.', '10kl')
-add ('admin', funcslist.hsh('adminpsw'), 'Администратор', 'admin')
+add('user1', hsh('qwerty'), 'Петров И. И.', '10kl')
+add('usertest', hsh('123'), 'Иванов А. А.', '10kl')
+add('sgibnev', hsh('aisgi'), 'Сгибнев А. И.', '10kl')
+add('anikina', hsh('eaani'), 'Аникина Е. А.', '10kl')
+add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl')
+add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl')
+add ('admin', hsh('adminpsw'), 'Администратор', 'admin')

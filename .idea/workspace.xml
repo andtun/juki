@@ -25,8 +25,8 @@
       <file leaf-file-name="funcslist.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/funcslist.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1120">
-              <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+            <state relative-caret-position="112">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="51" />
               <folding>
                 <element signature="e#55#64#0" expanded="true" />
               </folding>
@@ -37,11 +37,9 @@
       <file leaf-file-name="UserDB.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UserDB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-              <folding>
-                <element signature="e#55#69#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-882">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -444,8 +442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/funcslist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        <state relative-caret-position="112">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="51" />
           <folding>
             <element signature="e#55#64#0" expanded="true" />
           </folding>
@@ -454,11 +452,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/UserDB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding>
-            <element signature="e#55#69#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-882">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
