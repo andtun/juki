@@ -83,8 +83,8 @@ FIo = {'user1': 'Тестовый Юзер', 'zapolsky': 'Запольский �
 
 #function returns True if login and pwd match
 def check_login(username, password):
-    if username in d:
-        return pbkdf2_sha256.verify(password, d[username])
+    if UserDB.check(username):
+        return pbkdf2_sha256.verify(password, UserDB.get(username).pw)
     return False
 
 #request.session['logged_in'] = False
@@ -96,9 +96,9 @@ def check_login(username, password):
 def need_auth(webpage):   #see how it works in the code down
     def wrapper():
         #request.session = request.environ['beaker.session']        
-        if 'logged_in' in request.session:
+        if 'username' in request.session:
             #print("logged in !!!!!!!!")            
-            if request.session['logged_in']:
+            if request.session['username'] != "":
                 return webpage()
             
         redirect("/")

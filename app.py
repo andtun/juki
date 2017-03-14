@@ -33,11 +33,9 @@ def login():
     if not request.get_cookie("failed_login"):
         response.set_cookie("failed_login", 'undefined')
 
-    try:
-        if request.session['username']:
+    if 'username' in request.session:
+        if request.session['username'] != "":
             redirect("/menu")
-    except KeyError:
-        request.session['username'] = ""
             
     return stat_file("login.html")
 
@@ -51,7 +49,7 @@ def chklgn():
     password = postdata[cut+1:]
 
     if check_login(request.session['username'], password):    #if already in, you'll be redirected to the menu page
-        request.session['access'] = UserDB.get(request.session['username']).access_level     #setting atributes of the cookie
+        #request.session['access'] = UserDB.get(request.session['username']).access_level     #setting atributes of the cookie
         response.set_cookie("failed_login", 'succeded')
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
