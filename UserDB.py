@@ -1,6 +1,8 @@
 # This Python file uses the following encoding: utf-8
 
 import sqlite3
+from passlib.hash import pbkdf2_sha256
+from funcslist import hsh
 
 
 class DataBase:
@@ -70,15 +72,15 @@ class User:
 
 db = DataBase()
 
-"""cmnd = '''CREATE TABLE UserList (
+cmnd = '''CREATE TABLE UserList (
 username text, pw text,
 fio text, access_level text);'''
 db.query(cmnd)
 
-add('user1', 'qwerty', 'Петров И. И.', '10kl')
-add('usertest', '123', 'Иванов А. А.', '10kl')
-add('sgibnev', 'aisgi', 'Сгибнев А. И.', '10kl')
-add('anikina', 'eaani', 'Аникина Е. А.', '10kl')
-add('zapolsky', 'iazap', 'Запольский И. А.', '10kl')
-add('tiunova', 'mvtiu', 'Тиунова М. В.', '10kl')
-add ('admin', 'adminpsw', 'Администратор', 'admin')"""
+add('user1', hsh('qwerty'), 'Петров И. И.', '10kl')
+add('usertest', hsh('123'), 'Иванов А. А.', '10kl')
+add('sgibnev', hsh('aisgi'), 'Сгибнев А. И.', '10kl')
+add('anikina', hsh('eaani'), 'Аникина Е. А.', '10kl')
+add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl')
+add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl')
+add ('admin', hsh('adminpsw'), 'Администратор', 'admin')

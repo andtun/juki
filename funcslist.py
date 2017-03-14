@@ -72,12 +72,6 @@ def hsh(password): #hashing pwd
     return pbkdf2_sha256.hash(password, rounds=HRN)
 
 
-#dics, where user info is stored
-d = {'user1': hsh("qwerty"), 'zapolsky': hsh("iazap"), 'anikina': hsh('eaani'), 'tiunova': hsh('mvtiu'), 'sgibnev': hsh("aisgi"), 'admin': hsh("adminpsw")}       #dic for username and password hashes: d[username] returns hash
-access = {'user1': '10kl', 'zapolsky': '10kl', 'anikina': '10kl', 'tiunova': '10kl', 'sgibnev': '10kl', 'admin': 'admin'}  #dic for access levels
-email = {}
-FIo = {'user1': 'Тестовый Юзер', 'zapolsky': 'Запольский И. А.', 'anikina': 'Аникина Е. А.', 'tiunova': 'Тиунова М. В.', 'sgibnev': 'Сгибнев А. И.', 'admin': 'admin'}
-
 #--------------------------------------------------------------------------
 
 
