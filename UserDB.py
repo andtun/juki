@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 import sqlite3
 #from passlib.hash import pbkdf2_sha256
 
