@@ -2,11 +2,7 @@
 
 import sqlite3
 from passlib.hash import pbkdf2_sha256
-from funcslist import HRN
-
-
-def hsh(password): #hashing pwd
-    return pbkdf2_sha256.hash(password, rounds=HRN)
+from funcslist import hsh
 
 
 class DataBase:

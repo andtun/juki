@@ -7,7 +7,7 @@ import xlrd
 import UserDB
 import beaker.middleware
 from openpyxl import load_workbook
-from UserDB import db
+#from UserDB import db
 from passlib.hash import pbkdf2_sha256
 from bottle import *
 #from socket import gethostname, gethostbyname
