@@ -146,7 +146,7 @@ def chngpsw_process():
 @get("/check_user")
 @need_auth
 def chk_usr():
-    return UserDB.get(request.session['username']).fio.encode('utf-8')
+    return UserDB.get(request.session['username']).fio.encode('Unicode')
 
 #======================================================================
 #                     ADMIN STUFF
