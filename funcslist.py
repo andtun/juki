@@ -101,6 +101,7 @@ def need_auth(webpage):   #see how it works in the code down
 
 
 def access_is(access_level):   #used to check the access level
+    print(UserDB.get(request.session['username']).access_level)
     ans = (access_level == UserDB.get(request.session['username']).access_level)
     return ans
 
