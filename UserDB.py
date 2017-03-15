@@ -83,3 +83,5 @@ add('anikina', hsh('eaani'), 'Аникина Е. А.', '10kl')
 add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl')
 add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl')
 add ('admin', hsh('adminpsw'), 'Администратор', 'admin')"""
+
+print(db.fetch("SELECT * from Userlist"))

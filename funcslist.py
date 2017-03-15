@@ -77,6 +77,7 @@ def hsh(password): #hashing pwd
 #function returns True if login and pwd match
 def check_login(username, password):
     if UserDB.check(username):
+        print(UserDB.get(username).pw)
         return pbkdf2_sha256.verify(password, UserDB.get(username).pw)
     return False
 
