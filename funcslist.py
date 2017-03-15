@@ -78,7 +78,7 @@ def hsh(password): #hashing pwd
 def check_login(username, password):
     if UserDB.check(username):
         print(UserDB.get(username).pw)
-        return pbkdf2_sha256.verify(password, UserDB.get(username).pw)
+        return pbkdf2_sha256.verify(password, UserDB.get(username).pw[1:])
     return False
 
 #request.session['logged_in'] = False
