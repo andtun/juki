@@ -155,7 +155,7 @@ def chk_usr():
 @need_auth
 def showusr():
     if access_is('admin'):
-        ulist = UserDB.db.fetch('SELECT username, fio, access_level FROM Userlist;').decode('unicode_escape')
+        ulist = str(UserDB.db.fetch('SELECT username, fio, access_level FROM Userlist;')).decode('unicode_escape')
         return ulist
 
 
