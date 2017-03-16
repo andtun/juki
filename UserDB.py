@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 
 import sqlite3
-from funcslist import hsh
+#from funcslist import hsh
 #from passlib.hash import pbkdf2_sha256
 
 
