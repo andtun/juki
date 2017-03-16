@@ -155,8 +155,8 @@ def chk_usr():
 @need_auth
 def showusr():
     if access_is('admin'):
-        
-        return(str(access))
+        ulist = UserDB.db.fetch('SELECT * FROM Userlist')
+        return ulist
 
 
 @route("/userlistdownload")
