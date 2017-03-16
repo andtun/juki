@@ -95,3 +95,5 @@ add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl')
 add ('admin', hsh('adminpsw'), 'Администратор', 'admin')"""
 
 #print(get('tiunova').fio)
+
+print(db.fetch('select * from Userlist'))
