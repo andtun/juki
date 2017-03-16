@@ -146,7 +146,7 @@ def chngpsw_process():
 @get("/check_user")
 @need_auth
 def chk_usr():
-    return str(UserDB.get(request.session['username']).fio)
+    return UserDB.get(request.session['username']).fio
 
 #======================================================================
 #                     ADMIN STUFF

@@ -72,15 +72,17 @@ class User:
 
 db = DataBase()
 
-cmnd = '''CREATE TABLE UserList (
+"""cmnd = '''CREATE TABLE UserList (
 username text, pw text,
 fio text, access_level text);'''
 db.query(cmnd)
 
-add('user1', hsh('qwerty'), 'Петров И. И.'.decode('utf8'), '10kl')
+add('user1', hsh('qwerty'), 'Петров И. И.', '10kl')
 add('usertest', hsh('123'), 'Иванов А. А.', '10kl')
-add('sgibnev', hsh('aisgi'), 'Сгибнев А. И.'.decode('utf8'), '10kl')
+add('sgibnev', hsh('aisgi'), 'Сгибнев А. И.', '10kl')
 add('anikina', hsh('eaani'), 'Аникина Е. А.', '10kl')
 add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl')
 add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl')
-add ('admin', hsh('adminpsw'), 'Администратор', 'admin')
+add ('admin', hsh('adminpsw'), 'Администратор', 'admin')"""
+
+#print(get('tiunova').fio)
