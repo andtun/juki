@@ -22,6 +22,7 @@ def allNo():
 
     for i in range(sheet.ncols):
         data = sheet.cell_value(0, i)
+        print(data)
         if data == month:
             break
     curcol = i + date
@@ -30,6 +31,7 @@ def allNo():
         book=load_workbook('export.xlsx')
         sheet = book.active
         sheet.cell(row=i, column=curcol).value = "H"
+        print(i,curcol)
         book.save('export.xlsx')
 
 
