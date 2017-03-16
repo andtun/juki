@@ -134,7 +134,7 @@ def chngpsw_process():
         return stat_file("smth_wrong_pwd.html")
     
     global d
-    if ((its_username in d) and (pbkdf2_sha256.verify(old_password, d[its_username]))):   # if the username exists and the old password is correct
+    if (UserDB.check(its_username) and (pbkdf2_sha256.verify(old_password, d[its_username]))):   # if the username exists and the old password is correct
         
         d[its_username] = pbkdf2_sha256.hash(new_password, rounds=HRN)  # generate new pwd hash
         logout()
