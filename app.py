@@ -134,9 +134,9 @@ def chngpsw_process():
         return stat_file("smth_wrong_pwd.html")
     
     global d
-    if (UserDB.check(its_username) and (pbkdf2_sha256.verify(old_password, d[its_username]))):   # if the username exists and the old password is correct
+    if (UserDB.check(its_username) and (pbkdf2_sha256.verify(old_password, UserDB.get(its_username).pw))):   # if the username exists and the old password is correct
         
-        d[its_username] = pbkdf2_sha256.hash(new_password, rounds=HRN)  # generate new pwd hash
+        UserDB.set(its_username, 'pw', pbkdf2_sha256.hash(new_password, rounds=HRN))  # generate new pwd hash
         logout()
         
         return stat_file("pwd_changed.html")
@@ -174,14 +174,11 @@ def downloadusr():
 @need_auth
 def delusr():
     if access_is('admin'):
-        
-        global d
-        global access
+
         username = str(request.query.username)  #username is the one we entered
         
-        if username in d:   # deleting user
-            del d[username]
-            del access[username]
+        if UserDB.check(username):   # deleting user
+            UserDB.delete(username)
             
         return ("User "+username+" deleted!")
     else:
@@ -191,9 +188,7 @@ def delusr():
 @post("/add_user")
 @need_auth
 def addusr():
-    global d
-    global access
-    global email
+
     if access_is('admin'):
         
         his_username = request.forms.get('username')    #getting info from the form
@@ -204,7 +199,7 @@ def addusr():
         if UserDB.check(his_username):
             return "User already exists"
         
-        UserDB.User(his_username, his_access_level, his_email, his_password)
+        UserDB.add(his_username, his_password, his_email, his_access_level)
 
         return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level+", FIO="+his_email)
 
@@ -212,8 +207,7 @@ def addusr():
 @post("/change_access")
 @need_auth
 def chngaccs():
-    global d
-    global access
+
     if access_is('admin'):
         
         his_username = request.forms.get('username')

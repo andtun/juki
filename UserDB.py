@@ -54,6 +54,15 @@ def get(username):
     reslt = User(d['username'], d['access_level'], d['fio'], d['pw'])
     return reslt
 
+def set(username, column, value):
+    cmnd = "UPDATE Userlist SET %s=%s WHERE username = %s;" % (column, value, username)
+    db.query(cmnd)
+
+def delete(username):
+    cmnd = "DELETE FROM Userlist WHERE username = %s;" % username
+    db.query(cmnd)
+
+
 # =============================================================
 
 class User:
