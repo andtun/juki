@@ -278,7 +278,7 @@ def postinfo():
         m = dct[event]['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]
         day = m[:m.find('.')]
-        topr = name + " " + convert(month) + " " + str(day)
+        # topr = name + " " + convert(month) + " " + str(day)
         # print(topr)
         addPoint(name, convert(month), int(day))
 
