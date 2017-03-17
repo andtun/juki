@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 """name = "\u041b\u0438 \u0422\u0438\u043c\u043e\u0444\u0435\u0439"
 print(name)
 
