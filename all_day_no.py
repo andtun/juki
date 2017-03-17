@@ -23,7 +23,7 @@ def allNo():
     for i in range(sheet.ncols):
         data = sheet.cell_value(0, i)
         print(data)
-        if data == month:
+        if data == month.decode('utf-8'):
             break
     curcol = i + date
 
