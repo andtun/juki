@@ -268,7 +268,7 @@ def postinfo():
     for event in dct.keys():
         wrkdct = dct[event]
         print(wrkdct)
-        name = str(wrkdct['personInfo']['last_name'].decode('utf-8')) + ' ' + str(wrkdct['personInfo']['first_name'].decode('utf-8'))
+        name = wrkdct['personInfo']['last_name'] + ' ' + wrkdct['personInfo']['first_name']
         print(name)
         try:
             name = rdname(name)
