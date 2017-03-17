@@ -14,7 +14,7 @@ def allNo():
     d = str(datetime.now())
     d = d[:d.find(" ")]
     d = d.split("-")
-    month = convert(d[1]).decode('utf-8') # нужна ф-ция convert() чтоб был "месяц..."
+    month = convert(d[1]) # нужна ф-ция convert() чтоб был "месяц..."
     date = int(d[2])
 
     workbook = xlrd.open_workbook('export.xlsx')
