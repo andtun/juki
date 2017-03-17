@@ -2,8 +2,6 @@
 
 import xlrd
 from openpyxl import load_workbook
-#import warnings
-from datetime import datetime
 from insertPoint import convert
 from datetime import datetime
 
