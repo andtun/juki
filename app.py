@@ -269,7 +269,7 @@ def postinfo():
         wrkdct = dct[event]
         print(wrkdct)
         name = wrkdct['personInfo']['last_name'] + ' ' + wrkdct['personInfo']['first_name']
-        print(name)
+        print(name.encode('utf-8'))
         try:
             name = rdname(name)
         except ValueError:
