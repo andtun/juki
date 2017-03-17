@@ -20,6 +20,7 @@ from datetime import datetime
 
 
 @route("/allDayNo")
+@need_auth
 def allDayNo():
     d = str(datetime.now())
     d = d[:d.find(" ")]

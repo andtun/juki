@@ -1,4 +1,4 @@
-name = "\u041b\u0438 \u0422\u0438\u043c\u043e\u0444\u0435\u0439"
+"""name = "\u041b\u0438 \u0422\u0438\u043c\u043e\u0444\u0435\u0439"
 print(name)
 
 
@@ -34,4 +34,35 @@ for i in list2:
     if i == name:
         print(list1[c])
     c +=1
-    
+"""
+
+from insertPoint import convert
+from funcslist import *
+
+
+def allDayNo():
+    d = str(datetime.now())
+    d = d[:d.find(" ")]
+    d = d.split("-")
+    month = convert(d[1])
+    date = int(d[2])
+
+    workbook = xlrd.open_workbook('10kl.xlsx')
+    sheet = workbook.sheet_by_index(0)
+
+    for i in range(sheet.ncols):
+        data = sheet.cell_value(0, i)
+        if data == month.decode("utf-8"):
+            break
+
+    curcol = i + date
+
+    for i in range(3, sheet.nrows + 1):
+        book = load_workbook('export.xlsx')
+        sheet = book.active
+        sheet.cell(row=i, column=curcol).value = "H"
+        book.save('export.xlsx')
+
+print('started')
+allDayNo()
+print('success')
