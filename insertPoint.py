@@ -46,8 +46,8 @@ def rdname(name):
     c = 0
     ans = None
     for i in list2:
-        if i.encode('utf-8') == name:
-            ans =list1[c]
+        if str(i) == name:
+            ans = str(list1[c])
         c +=1
 
     #ans = list1[list2.index(name)]
