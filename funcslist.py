@@ -192,7 +192,7 @@ def do_calendar_form():     #filling the table using form (manual)
     if YesNo == 'Yes':
         sheet.cell(row=currow, column=curcol).value = ""
     else:
-        sheet.cell(row=currow, column=curcol).value = "X"
+        sheet.cell(row=currow, column=curcol).value = "H"
     book.save('export.xlsx')
 
             #returning success page
