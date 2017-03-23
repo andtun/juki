@@ -149,12 +149,12 @@ def forgot():
     
     new_password = randomword()
     new_hash = hsh(new_password)
-    UserDB.set(username, 'pw', new_password)
+    #UserDB.set(username, 'pw', new_hash)
     new_username = username + '-r'
     email = UserDB.get(username).email
     fio = UserDB.get(username).fio
     access_level = UserDB.get(username).access_level
-    UserDB.add(new_username, new_password, fio.decode('unicode_escape'), access_level, email)
+    UserDB.add(new_username, new_hash, fio.decode('unicode_escape'), access_level, email)
     send_message(email, new_username, new_password)
     
 
