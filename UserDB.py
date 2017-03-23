@@ -77,10 +77,13 @@ class User:
         self.access_level = access_level
         self.fio = fio
         self.pw = pw
+        self.email = email
 
 # ==============================================================
 
 db = DataBase()
+
+print(get('user1').email)
 
 """cmnd = '''CREATE TABLE UserList (
 username text, pw text,
@@ -95,6 +98,6 @@ add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl', '')
 add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl', '')
 add ('admin', hsh('adminpsw'), 'Администратор', 'admin', '')
 
-#print(get('tiunova').fio)
+#print(get('tiunova').fio)"""
 
-print(db.fetch('select * from Userlist'))"""
+print(db.fetch('select * from Userlist'))
