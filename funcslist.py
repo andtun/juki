@@ -87,7 +87,7 @@ import random, string
 
 def randomword():
     length = 7
-    return hsh(''.join(random.choice(string.lowercase) for i in range(length)))
+    return ''.join(random.choice(string.lowercase) for i in range(length))
 
 
 def send_message(adress, new_username, new_password):
