@@ -135,9 +135,14 @@ def lout():
     redirect("/main?1")
 
 
-@route("/forgot_password")
+@get("/forgot_password")
 def forgot():
-    username = request.query.username
+    return stat_file("forgot_password.html")
+
+
+@post("/forgot_password")
+def forgot():
+    username = request.forms.get('username')
     
     if not UserDB.check(username):
         return "User doesn't exist"
