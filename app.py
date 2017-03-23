@@ -234,14 +234,15 @@ def addusr():
     if access_is('admin'):
         
         his_username = request.forms.get('username')    #getting info from the form
-        his_password = request.forms.get('password')
+        his_password = hsh(request.forms.get('password'))
         his_access_level = request.forms.get('access_level')
         his_email = request.forms.get('email')
+        his_FIO = request.forms.get('FIO')
         
         if UserDB.check(his_username):
             return "User already exists"
         
-        UserDB.add(his_username, his_password, his_email, his_access_level)
+        UserDB.add(his_username, his_password, his_FIO, his_access_level, his_email)
 
         return ("created user: username="+his_username+", password="+his_password+", access_level="+his_access_level+", FIO="+his_email)
 

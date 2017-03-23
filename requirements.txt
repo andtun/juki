@@ -6,3 +6,5 @@ openpyxl
 pycrypto
 passlib
 datetime
+smtplib
+email

@@ -1,14 +1,23 @@
-# This Python file uses the following encoding: utf-8
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+ 
+def send_email(): 
+    fromaddr = "noreply.intschool@gmail.com"
+    toaddr = "andtun@yandex.ru"
+    msg = MIMEMultipart()
+    msg['From'] = "noreply@int-school.herokuapp.com"
+    msg['To'] = toaddr
+    msg['Subject'] = "SUBJECT OF THE ="
+     
+    body = "YOUR MESSAGE HERE"
+    msg.attach(MIMEText(body, 'plain'))
+     
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(fromaddr, "adminpsw")
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.quit()
 
-import requests
-
-def send_simple_message():
-    return requests.post(
-        "https://api.mailgun.net/v3/app00d6f5c2e4444a0da623dba4daad99a8.mailgun.org/messages",
-        auth=("api", "key-1c96ae1c8fe7767ef1191d0827f41f27"),
-        data={"from": "Восстановление пароля int-school <noreply@int-school.herokuapp.com>",
-              "to": ["andtun@yandex.ru"],
-              "subject": "Hello",
-              "text": "Testing some Mailgun awesomness!"})
-
-send_simple_message()
+send_email()
