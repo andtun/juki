@@ -141,7 +141,7 @@ def forgot():
     if not UserDB.check(username):
         return "User doesn't exist"
     new_password = randomword()
-    UserDB.set(username, 'password', new_password)
+    UserDB.set(username, 'pw', new_password)
     new_username = username + '-r'
     email = UserDB.get(username).email
     fio = UserDB.get(username).fio
