@@ -90,14 +90,14 @@ def randomword():
     return ''.join(random.choice(string.lowercase) for i in range(length))
 
 
-def send_message(adress, new_username, new_password):
-    return requests.post(
-        "https://api.mailgun.net/v3/app00d6f5c2e4444a0da623dba4daad99a8.mailgun.org/messages",
-        auth=("api", "key-1c96ae1c8fe7767ef1191d0827f41f27"),
-        data={"from": "int-school <noreply@int-school.herokuapp.com>",
-              "to": [adress],
-              "subject": "Восстановление пароля",
-              "text": """Вы (или кто-то другой, выдающий себя за Вас) хотели восстановить пароль для своей учётной записи в системе контроля посещаемости школы "Интеллектуал".
+def send_message(toaddr, new_username, new_password):
+    fromaddr = "noreply.intschool@gmail.com"
+    msg = MIMEMultipart()
+    msg['From'] = fromaddr
+    msg['To'] = toaddr
+    msg['Subject'] = "Восстановление пароля"
+     
+    body = """Вы (или кто-то другой, выдающий себя за Вас) хотели восстановить пароль для своей учётной записи в системе контроля посещаемости школы "Интеллектуал".
 Мы создали для Вас новый аккаунт:
 
 <b>Имя пользователя:</b> %s
@@ -105,9 +105,17 @@ def send_message(adress, new_username, new_password):
 
 --------
 
-Пожалуйста, не отвечайте на это письмо. У вас всё равно не получится;)""" %(str(new_username).encode('utf-8'), str(new_password).encode('utf-8'))})
+Team JUKI""" %(str(new_username).encode('utf-8'), str(new_password).encode('utf-8'))})
 
 
+    msg.attach(MIMEText(body, 'plain'))
+     
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(fromaddr, "adminpsw")
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.quit()
 
 
 
