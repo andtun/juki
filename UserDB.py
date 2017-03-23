@@ -32,8 +32,8 @@ class DataBase:
 #------------------------------------------------------------
 
 
-def add(username, pw, fio, access_level):
-    cmnd = "INSERT INTO Userlist VALUES ('%s','%s','%s','%s');" % (username, pw, fio, access_level)
+def add(username, pw, fio, access_level, email):
+    cmnd = "INSERT INTO Userlist VALUES ('%s','%s','%s','%s','%s');" % (username, pw, fio, access_level, email)
     db.query(cmnd)
 
 
@@ -47,11 +47,11 @@ def check(username):        # True if user exists, False if doesn't
 
 def get(username):
     d =  {}
-    for i in ['username', 'pw', 'fio', 'access_level']:
+    for i in ['username', 'pw', 'fio', 'access_level', 'email']:
         cmnd = "SELECT %s FROM Userlist WHERE username='%s';" % (i, username)
         t = str(db.fetch(cmnd))
         d[i] = t[4:len(t)-4]
-    reslt = User(d['username'], d['access_level'], d['fio'], d['pw'])
+    reslt = User(d['username'], d['access_level'], d['fio'], d['pw'], d['email'])
     return reslt
 
 def set(username, column, value):
@@ -70,8 +70,9 @@ class User:
     access_level = ""
     fio = ""
     pw = ""
+    email = ""
 
-    def __init__(self, username, access_level, fio, pw):
+    def __init__(self, username, access_level, fio, pw, email):
         self.username = username
         self.access_level = access_level
         self.fio = fio
@@ -81,18 +82,18 @@ class User:
 
 db = DataBase()
 
-"""cmnd = '''CREATE TABLE UserList (
+cmnd = '''CREATE TABLE UserList (
 username text, pw text,
-fio text, access_level text);'''
+fio text, access_level text, email text);'''
 db.query(cmnd)
 
-add('user1', hsh('qwerty'), 'Петров И. И.', '10kl')
-add('usertest', hsh('123'), 'Иванов А. А.', '10kl')
-add('sgibnev', hsh('aisgi'), 'Сгибнев А. И.', '10kl')
-add('anikina', hsh('eaani'), 'Аникина Е. А.', '10kl')
-add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl')
-add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl')
-add ('admin', hsh('adminpsw'), 'Администратор', 'admin')"""
+add('user1', hsh('qwerty'), 'Петров И. И.', '10kl', 'andtun@yandex.ru')
+add('usertest', hsh('123'), 'Иванов А. А.', '10kl', '')
+add('sgibnev', hsh('aisgi'), 'Сгибнев А. И.', '10kl', '')
+add('anikina', hsh('eaani'), 'Аникина Е. А.', '10kl', '')
+add('zapolsky', hsh('iazap'), 'Запольский И. А.', '10kl', '')
+add('tiunova', hsh('mvtiu'), 'Тиунова М. В.', '10kl', '')
+add ('admin', hsh('adminpsw'), 'Администратор', 'admin', '')
 
 #print(get('tiunova').fio)
 

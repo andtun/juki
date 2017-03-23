@@ -137,6 +137,20 @@ def lout():
 
 @route("/forgot_password")
 def forgot():
+    username = request.query.username
+    if not UserDB.check(username):
+        return "User doesn't exist"
+    new_password = randomword()
+    UserDB.set(username, 'password', new_psw)
+    new_username = username + '-r'
+    email = UserDB.get(username).email
+    fio = UserDB.get(username).fio
+    access_level = UserDB.get(username).access_level
+    UserDB.add(new_username, new_password, fio, access_level, email)
+    send_message(email, new_username, new_password)
+    
+
+    
     return '''Если забыли пароль, напишите <a href="http://vk.com/easytofindme">администратору сайта.</a>'''
 
 

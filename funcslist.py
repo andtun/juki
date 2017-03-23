@@ -83,6 +83,31 @@ def check_login(username, password):
 
 #request.session['logged_in'] = False
 
+import random, string
+
+def randomword():
+    length = 7
+    return ''.join(random.choice(string.lowercase) for i in range(length))
+
+
+def send_message(adress, new_username, new_password):
+    return requests.post(
+        "https://api.mailgun.net/v3/app00d6f5c2e4444a0da623dba4daad99a8.mailgun.org/messages",
+        auth=("api", "key-1c96ae1c8fe7767ef1191d0827f41f27"),
+        data={"from": "int-school <noreply@int-school.herokuapp.com>",
+              "to": [adress],
+              "subject": "Восстановление пароля",
+              "text": """Вы (или кто-то другой) хотели восстановить пароль для своей учётной записи в системе контроля посещаемости школы "Интеллектуал".
+Мы создали для Вас новый аккаунт:
+Имя пользователя: %s
+Пароль: %s
+
+--------
+
+Пожалуйста, не отвечайте на это письмо. У вас всё равно не получится;)""" %(new_username, new_password)})
+
+
+
 
 
 #===============DECORATORS&FUNCTIONS====================#
