@@ -82,7 +82,7 @@ class User:
 
 db = DataBase()
 
-cmnd = '''CREATE TABLE UserList (
+"""cmnd = '''CREATE TABLE UserList (
 username text, pw text,
 fio text, access_level text, email text);'''
 db.query(cmnd)
@@ -97,4 +97,4 @@ add ('admin', hsh('adminpsw'), 'Администратор', 'admin', '')
 
 #print(get('tiunova').fio)
 
-print(db.fetch('select * from Userlist'))
+print(db.fetch('select * from Userlist'))"""
