@@ -90,6 +90,10 @@ def randomword():
     return ''.join(random.choice(string.lowercase) for i in range(length))
 
 
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+
 def send_message(toaddr, new_username, new_password):
     fromaddr = "noreply.intschool@gmail.com"
     msg = MIMEMultipart()
