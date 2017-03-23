@@ -149,7 +149,7 @@ def forgot():
     email = UserDB.get(username).email
     fio = UserDB.get(username).fio
     access_level = UserDB.get(username).access_level
-    UserDB.add(new_username, new_password, fio, access_level, email)
+    UserDB.add(new_username, new_password, fio.decode('unicode_escape'), access_level, email)
     send_message(email, new_username, new_password)
     
 
