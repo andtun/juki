@@ -105,7 +105,7 @@ def send_message(toaddr, new_username, new_password):
 
 --------
 
-Team JUKI""" %(str(new_username).encode('utf-8'), str(new_password).encode('utf-8'))})
+Team JUKI""" %(str(new_username).encode('utf-8'), str(new_password).encode('utf-8'))
 
 
     msg.attach(MIMEText(body, 'plain'))
