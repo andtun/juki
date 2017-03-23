@@ -55,7 +55,7 @@ def get(username):
     return reslt
 
 def set(username, column, value):
-    cmnd = "UPDATE Userlist SET %s=%s WHERE username = '%s';" % (column, value, username)
+    cmnd = "UPDATE Userlist SET %s='%s' WHERE username = '%s';" % (column, value, username)
     db.query(cmnd)
 
 def delete(username):
