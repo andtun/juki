@@ -89,8 +89,10 @@ def chklgn():
 def menu():
     if access_is('10kl'):
         return stat_file("main.html")
-    
-    redirect('/main?adm')
+    if access_is('admin'):
+        redirect('/main?adm')
+
+    redirect('/logout')
 
 
 #!!!REQUEST.SESSION['USERNAME'] WILL RETURN THE USRNAME OF THE LOGGED IN USER!!!
@@ -157,9 +159,9 @@ def forgot():
     UserDB.add(new_username, new_hash, fio.decode('unicode_escape'), access_level, email)
     send_message(email, new_username, new_password)
     
-
+    redirect('/')
     
-    return 'Done it for ', new_username, email
+    #return 'Done it for ', new_username, email
 
 
 @get("/change_password")    # change password html
