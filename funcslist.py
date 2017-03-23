@@ -104,7 +104,7 @@ def send_message(adress, new_username, new_password):
 
 --------
 
-Пожалуйста, не отвечайте на это письмо. У вас всё равно не получится;)""" %(str(new_username).decode('unicode_escape'), str(new_password).decode('unicode_escape'))})
+Пожалуйста, не отвечайте на это письмо. У вас всё равно не получится;)""" %(str(new_username).encode('utf-8'), str(new_password).encode('utf-8'))})
 
 
 
