@@ -190,6 +190,8 @@ def restore_prcss():
             print('check_code=checked')
             if new_psw == new_psw_conf:
                 UserDB.set(username, 'pw', hsh(new_psw))
+                cmnd = "DELETE FROM RestoreList WHERE username='%s';" % username
+                UserDB.db.query(cmnd)
                 return "changed"
             else:
                 return "psw don't match"

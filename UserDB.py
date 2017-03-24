@@ -94,6 +94,8 @@ def check_expire(code):     # True if still active, False if expired
 
 def check_code(username, code):
     ans = code==get_restore_code(username)
+    print(code)
+    print(get_restore_code(username))
     print("check_code result = " + str(ans))
     return(ans)
 
