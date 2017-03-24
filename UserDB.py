@@ -75,6 +75,7 @@ def new_restore(username, code):
 def get_restore_code(username):
     cmnd = "SELECT code FROM RestoreList WHERE username='%s';" % username
     ans = db.fetch(cmnd)
+    ans = str(ans)[4:len(ans)-4]
     print("get_restore_code GOT THIS VALUE !!!!!!!!  = "+ str(ans))
     return ans
 
