@@ -164,6 +164,7 @@ def forgot():
 @get("/restore")
 def restore_psw():
     code = request.query.code
+    print("CODE IS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = "+code)
     response.set_cookie("restore", code)
     if UserDB.check_link(code):
         print('check_link')
@@ -176,6 +177,7 @@ def restore_psw():
 @post("/restore")
 def restore_prcss():
     code = request.get_cookie("restore")
+    print("CODE IS POST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = "+code)
     username = request.forms.get('username')
     new_psw = request.forms.get('new_password')
     new_psw_conf = request.forms.get('new_password_repeated')
