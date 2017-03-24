@@ -171,9 +171,6 @@ def restore_psw():
         return stat_file("restore_pswd.html")
     return "wrong link"
 
-    """request.get_cookie("failed_login"):
-        response.set_cookie("failed_login", 'undefined')"""
-
 @post("/restore")
 def restore_prcss():
     code = request.session['restore']
