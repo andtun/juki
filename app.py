@@ -176,14 +176,19 @@ def restore_prcss():
     username = request.forms.get('username')
     new_psw = request.forms.get('new_password')
     new_psw_conf = request.forms.get('new_password_repeated')
+
+    print(code, username, new_psw, new_psw_conf)
     
     if UserDB.check_link(code):
+        print('check_link')
         if UserDB.check_code(username, code):
+            print('check_code')
             if new_psw == new_psw_conf:
                 UserDB.set(username, 'pw', hsh(new_psw))
                 return "changed"
             else:
                 return "psw don't match"
+            
     return "wrong"
             
             
