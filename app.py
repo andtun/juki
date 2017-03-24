@@ -165,7 +165,10 @@ def forgot():
 def restore_psw():
     code = request.query.code
     response.set_cookie("restore", code)
-    return stat_file("restore_pswd.html")
+    if UserDB.check_link(code):
+        print('check_link')
+        return stat_file("restore_pswd.html")
+    return "wrong link"
 
     """request.get_cookie("failed_login"):
         response.set_cookie("failed_login", 'undefined')"""
