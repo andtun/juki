@@ -79,7 +79,9 @@ import time
 def check_expire(code):     # True if still active, False if expired
     curtime = int(time.time())
     cmnd = "SELECT expires FROM RestoreList WHERE code='%s';" % code
-    expire_time = int(db.fetch(cmnd))
+    expire_time = str(db.fetch(cmnd))
+    print("EXPIRE TIME IS!!!!")
+    print(expire_time)
     ans = expire_time > curtime
     print("IS COOKIE EXPIRED &&&&&&&&&&&&&&&&&&&&&&&&&&")
     print(ans)
