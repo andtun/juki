@@ -89,7 +89,7 @@ def check_code(username, code):
 
 def check_link(code):
     print(code)
-    print(db.fetch("SELECT * FROM RestoreList WHERE username='user1'"))
+    print(db.fetch("SELECT * FROM RestoreList"))
     cmnd = "SELECT * FROM RestoreList WHERE code='%s';" % code
     result = db.fetch(cmnd)
     print(result)
