@@ -84,7 +84,7 @@ def check_expire(code):     # True if still active, False if expired
     print("EXPIRE TIME IS!!!!")
     print(expire_time)
     ans = expire_time > curtime
-    print("IS COOKIE EXPIRED &&&&&&&&&&&&&&&&&&&&&&&&&&")
+    print("IS COOKIE ACTIVE &&&&&&&&&&&&&&&&&&&&&&&&&&")
     print(ans)
     return ans
 
