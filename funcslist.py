@@ -73,6 +73,11 @@ def hsh(password): #hashing pwd
 
 #--------------------------------------------------------------------------
 
+import random, string
+
+def randomword():
+   return ''.join(random.choice(string.lowercase) for i in range(128))
+
 
 #function returns True if login and pwd match
 def check_login(username, password):
