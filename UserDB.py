@@ -67,6 +67,7 @@ import time
 def new_restore(username, code):
     expires = int(time.time()) + 1800
     print("--------------------------------")
+    username = username[1:len(username)-1]
     print(username, expires)
     cmnd  ="INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
 
