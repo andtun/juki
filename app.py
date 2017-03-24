@@ -151,6 +151,8 @@ def forgot():
         return "User doesn't exist"
     
     code = randomword()
+    email = UserDB.get(username).email
+    print(email)
     send_message(email, code)
 
     UserDB.new_restore(username, code)
