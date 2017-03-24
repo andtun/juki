@@ -100,7 +100,7 @@ def send_message(toaddr, code):
 
 --------
 
-Team JUKI""" % code
+Team JUKI""" % (code)
 
 
     msg.attach(MIMEText(body, 'plain'))
