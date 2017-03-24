@@ -69,6 +69,7 @@ def new_restore(username, code):
     print("--------------------------------")
     print(username, expires)
     cmnd  ="INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
+    db.query(cmnd)
 
 def get_restore_code(username):
     cmnd = "SELECT code FROM RestoreList WHERE username='%s';" % username
@@ -77,7 +78,7 @@ def get_restore_code(username):
 import time
 def check_expire(code):     # True if still active, False if expired
     curtime = int(time.time())
-    cmnd = "SELECT expires FROM RestoreList WHERE code='%s';" % username
+    cmnd = "SELECT expires FROM RestoreList WHERE code='%s';" % code
     expire_time = int(db.fetch(cmnd))
     ans = expire_time > curtime
     print("IS COOKIE EXPIRED &&&&&&&&&&&&&&&&&&&&&&&&&&")
