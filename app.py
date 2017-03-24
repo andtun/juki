@@ -166,7 +166,7 @@ def restore_psw():
     code = request.query.code
     print("CODE IS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = "+code)
     response.set_cookie("restore", "-")
-    response.set_cookie("restore", str(code))
+    #response.set_cookie("restore", str(code))
     print("COOKIE RESTORED VALUE VALVALVAL:::")
     print(request.get_cookie("restore"))
     response.set_cookie("test", "cookietest")
