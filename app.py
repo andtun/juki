@@ -150,7 +150,7 @@ def forgot():
     if not UserDB.check(username):
         return "User doesn't exist"
     
-    code = uuid.uuid4()
+    code = str(uuid.uuid4())
     send_message(email, code)
 
     UserDB.new_restore(username, code)
