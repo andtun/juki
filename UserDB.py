@@ -62,6 +62,34 @@ def delete(username):
     cmnd = "DELETE FROM Userlist WHERE username = '%s';" % username
     db.query(cmnd)
 
+import time
+
+def new_restore(username, code):
+    expires = int(time.time()) + 1800
+    cmnd  ="INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
+
+def get_restore_code(username):
+    cmnd = "SELECT code FROM RestoreList WHERE username='%s';" % username
+    return db.fetch(cmnd)
+
+import time
+def check_expire(code):     # True if still active, False if expired
+    curtime = int(time.time())
+    cmnd = "SELECT expires FROM RestoreList WHERE code='%s';" % username
+    expire_time = int(db.fetch(cmnd))
+    ans = expire_time > curtime
+    return ans
+
+def check_code(username, code):
+    return code==get_restore_code(username)
+
+def check_link(code):
+    cmnd = "SELECT * FROM RestoreList WHERE code='%s';" % code
+    result = db.fetch(cmnd)
+    if result:
+        if check_expire(code):
+            return True
+    return False
 
 # =============================================================
 
@@ -83,7 +111,10 @@ class User:
 
 db = DataBase()
 
-print(get('user1').email)
+"""cmnd = '''CREATE TABLE RestoreList (
+username text, code text, expires text);'''
+db.query(cmnd)
+print(get('user1').email)"""
 
 """cmnd = '''CREATE TABLE UserList (
 username text, pw text,

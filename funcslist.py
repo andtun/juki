@@ -83,18 +83,12 @@ def check_login(username, password):
 
 #request.session['logged_in'] = False
 
-import random, string
-
-def randomword():
-    length = 7
-    return ''.join(random.choice(string.lowercase) for i in range(length))
-
 
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
-def send_message(toaddr, new_username, new_password):
+def send_message(toaddr, code):
     fromaddr = "noreply.intschool@gmail.com"
     msg = MIMEMultipart()
     msg['From'] = fromaddr
@@ -102,14 +96,11 @@ def send_message(toaddr, new_username, new_password):
     msg['Subject'] = "Восстановление пароля"
      
     body = """Вы (или кто-то другой, выдающий себя за Вас) хотели восстановить пароль для своей учётной записи в системе контроля посещаемости школы "Интеллектуал".
-Мы создали для Вас новый аккаунт:
-
-Имя пользователя: %s
-Пароль: %s
+Чтобы придумать новый пароль, перейдите по ссылке: https://int-school.herokuapp.com/restore?code=%s
 
 --------
 
-Team JUKI""" %(str(new_username).encode('utf-8'), str(new_password).encode('utf-8'))
+Team JUKI""" % code
 
 
     msg.attach(MIMEText(body, 'plain'))

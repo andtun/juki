@@ -10,6 +10,7 @@ import beaker.middleware
 import json
 import insertPoint
 import UserDB
+import uuid
 from bottle import *
 from funcslist import *
 from passlib.hash import pbkdf2_sha256
@@ -149,20 +150,42 @@ def forgot():
     if not UserDB.check(username):
         return "User doesn't exist"
     
-    new_password = randomword()
-    new_hash = hsh(new_password)
-    #UserDB.set(username, 'pw', new_hash)
-    new_username = username + '-r'
-    email = UserDB.get(username).email
-    fio = UserDB.get(username).fio
-    access_level = UserDB.get(username).access_level
-    UserDB.add(new_username, new_hash, fio.decode('unicode_escape'), access_level, email)
-    send_message(email, new_username, new_password)
+    code = uuid.uuid4()
+    send_message(email, code)
+
+    UserDB.new_restore(username, code)
     
-    redirect('/')
+    return "Проверьте свою почту"
     
     #return 'Done it for ', new_username, email
 
+@get("/restore")
+def restore_psw():
+    code = request.query.code
+    response.set_cookie("restore", code)
+    return stat_file("restore_pswd.html")
+
+    """request.get_cookie("failed_login"):
+        response.set_cookie("failed_login", 'undefined')"""
+
+@post("/restore")
+def restore_prcss():
+    code = request.get_cookie("restore")
+    username = request.forms.get('username')
+    new_psw = request.forms.get('new_password')
+    new_psw_conf = request.forms.get('new_password_repeated')
+    
+    if UserDB.check_link(code):
+        if UserDB.check_code(username, code):
+            if new_psw == new_psw_conf:
+                UserDB.set(username, 'pw', hsh(new_psw))
+                return "changed"
+            else:
+                return "psw don't match"
+    return "wrong"
+            
+            
+    
 
 @get("/change_password")    # change password html
 @need_auth
