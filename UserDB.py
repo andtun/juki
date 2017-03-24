@@ -68,13 +68,15 @@ def new_restore(username, code):
     expires = int(time.time()) + 1800
     print("--------------------------------")
     print(username, expires)
-    cmnd  ="INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
+    cmnd  = "INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
     db.query(cmnd)
     print("!!!!!!!!!!!!!!!!!!!!USER CODE IN DBDBDDB = "+code)
 
 def get_restore_code(username):
     cmnd = "SELECT code FROM RestoreList WHERE username='%s';" % username
-    return db.fetch(cmnd)
+    ans = db.fetch(cmnd)
+    print("get_restore_code GOT THIS VALUE !!!!!!!!  = "+ans)
+    return ans
 
 import time
 def check_expire(code):     # True if still active, False if expired
@@ -90,13 +92,15 @@ def check_expire(code):     # True if still active, False if expired
     return ans
 
 def check_code(username, code):
-    return code==get_restore_code(username)
+    ans = code==get_restore_code(username)
+    print("check_code result = " + ans)
+    return(ans)
 
 def check_link(code):
     print(code)
     print(db.fetch("SELECT * FROM RestoreList"))
     cmnd = "SELECT * FROM RestoreList WHERE code='%s';" % code
-    result = db.fetch(cmnd)
+    result = str(db.fetch(cmnd))
     print(result)
     if result:
         if check_expire(code):

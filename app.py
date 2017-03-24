@@ -157,7 +157,7 @@ def forgot():
 
     UserDB.new_restore(username, code)
     
-    return "Проверьте свою почту"
+    return "Проверьте свою почту; true code ="+code
     
     #return 'Done it for ', new_username, email
 
@@ -188,9 +188,9 @@ def restore_prcss():
     print(code, username, new_psw, new_psw_conf)
     
     if UserDB.check_link(code):
-        print('check_link')
+        print('check_link=checked')
         if UserDB.check_code(username, code):
-            print('check_code')
+            print('check_code=checked')
             if new_psw == new_psw_conf:
                 UserDB.set(username, 'pw', hsh(new_psw))
                 return "changed"
