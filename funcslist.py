@@ -96,11 +96,7 @@ def send_message(toaddr, code):
     msg['Subject'] = "Восстановление пароля"
      
     body = """Вы (или кто-то другой, выдающий себя за Вас) хотели восстановить пароль для своей учётной записи в системе контроля посещаемости школы "Интеллектуал".
-Чтобы придумать новый пароль, перейдите по ссылке: https://int-school.herokuapp.com/restore?code=%s
-
---------
-
-Team JUKI""" % (code)
+Чтобы придумать новый пароль, перейдите по ссылке: https://int-school.herokuapp.com/restore?code="""+code
 
 
     msg.attach(MIMEText(body, 'plain'))
