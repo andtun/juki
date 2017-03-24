@@ -80,6 +80,8 @@ def check_expire(code):     # True if still active, False if expired
     cmnd = "SELECT expires FROM RestoreList WHERE code='%s';" % username
     expire_time = int(db.fetch(cmnd))
     ans = expire_time > curtime
+    print("IS COOKIE EXPIRED &&&&&&&&&&&&&&&&&&&&&&&&&&")
+    print(ans)
     return ans
 
 def check_code(username, code):
