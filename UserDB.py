@@ -70,6 +70,7 @@ def new_restore(username, code):
     print(username, expires)
     cmnd  ="INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
     db.query(cmnd)
+    print("!!!!!!!!!!!!!!!!!!!!USER CODE IN DBDBDDB = "+code)
 
 def get_restore_code(username):
     cmnd = "SELECT code FROM RestoreList WHERE username='%s';" % username
