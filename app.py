@@ -157,17 +157,14 @@ def forgot():
 
     UserDB.new_restore(username, code)
     
-    return "Проверьте свою почту; true code ="+code
+    return "Проверьте свою почту"
     
     #return 'Done it for ', new_username, email
 
 @get("/restore")
 def restore_psw():
     code = request.query.code
-    print("CODE IS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = "+code)
     request.session['restore'] = code
-    print("COOKIE RESTORED VALUE VALVALVAL:::")
-    print(request.session['restore'])
     #response.set_cookie("test", "cookietest")
     if UserDB.check_link(code):
         print('check_link')
@@ -197,7 +194,7 @@ def restore_prcss():
             else:
                 return "psw don't match"
             
-    return "wrong"
+    return "something wrong"
             
             
     

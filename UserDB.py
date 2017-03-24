@@ -98,12 +98,9 @@ def check_code(username, code):
     return(ans)
 
 def check_link(code):
-    print(code)
-    print(db.fetch("SELECT * FROM RestoreList"))
     cmnd = "SELECT * FROM RestoreList WHERE code='%s';" % code
     result = str(db.fetch(cmnd))
-    print(result)
-    if result:
+    if result != "''":
         if check_expire(code):
             return True
     return False
