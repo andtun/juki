@@ -22,28 +22,35 @@ from datetime import datetime
 
 @route("/allDayNo")
 @need_auth
-def allDayNo():
-    d = str(datetime.now())
-    d = d[:d.find(" ")]
-    d = d.split("-")
-    month = convert(d[1])
-    date = int(d[2])
+def putAllNo():
 
-    workbook = xlrd.open_workbook('10kl.xlsx')
-    sheet = workbook.sheet_by_index(0)
+    def allDayNo(filename):
+        d = str(datetime.now())
+        d = d[:d.find(" ")]
+        d = d.split("-")
+        month = convert(d[1])
+        date = int(d[2])
 
-    for i in range(sheet.ncols):
-        data = sheet.cell_value(0, i)
-        if data == month.decode("utf-8"):
-            break
+        workbook = xlrd.open_workbook(filename)
+        sheet = workbook.sheet_by_index(0)
 
-    curcol = i + date
+        for i in range(sheet.ncols):
+            data = sheet.cell_value(0, i)
+            if data == month.decode("utf-8"):
+                break
 
-    for i in range(3, sheet.nrows + 1):
-        book = load_workbook('export.xlsx')
-        sheet = book.active
-        sheet.cell(row=i, column=curcol).value = "H"
-        book.save('export.xlsx')
+        curcol = i + date
+
+        for i in range(3, sheet.nrows + 1):
+            book = load_workbook(filename)
+            sheet = book.active
+            sheet.cell(row=i, column=curcol).value = "H"
+            book.save(filename)
+
+    fileList = ['8kl.xlsx', '9kl.xlsx', '10kl.xlsx', '11kl.xlsx']
+    for i in fileList:
+        allDayNo(i)
+
 
 @hook('before_request')
 def setup_request():
@@ -107,27 +114,24 @@ def logerror():
 @route("/main")   # main page
 @need_auth
 def main():
-    
-    if access_is('10kl'):   
-        return stat_file("path.html")
-
-    if access_is('admin'):
-        return stat_file("admin_page.html")
+    filename = request.session['access']
+    return main_page(filename)
 
 
 #--------------------working with calendar-----------------------
 
-@route("/submit", method="POST")
+@route("/submit/<form>", method="POST")
 @need_auth
-def do_form():
+def do_form(form):
     print(request.body.read())
     return do_calendar_form()
 #--------------------------------------------------------------------
 
-@route("/fileDownload")
+@route("/fileDownload/<form>")
 @need_auth
-def download():
-    return static_file("export.xlsx", root='.', download=True)
+def download(form):
+    filename = str(form) + ".xlsx"
+    return static_file(filename, root='.', download=True)
 
 
 @get("/logout")

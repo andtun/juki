@@ -39,6 +39,7 @@ HRN = 20000
 
 #static file root directory
 STAT_FILE_ROOT = 'static/static/alco/'
+MAIN_FILE_ROOT = 'static/static/classes/'
 
 
 
@@ -146,6 +147,11 @@ def stat_file(filename):   #an easier way to return static file
     return static_file(filename, root = STAT_FILE_ROOT)
 
 
+def main_page(filename):
+	filename = str(filename) + ".html"
+	return static_file(filename, root = MAIN_FILE_ROOT)
+
+
 def logout():
     request.session['username'] = ""
     response.set_cookie("failed_login", 'undefined')
@@ -155,10 +161,10 @@ def logout():
 #=======================FORM METHODS==========================#    
 
 
-def find_cell(fio, month, date):        #find a cell
+def find_cell(fio, month, date, filename):        #find a cell
     
                #setting up table    
-    workbook = xlrd.open_workbook('export.xlsx')
+    workbook = xlrd.open_workbook(filename)
     sheet = workbook.sheet_by_index(0)
     curcol = 1
     currow = 1
@@ -181,7 +187,7 @@ def find_cell(fio, month, date):        #find a cell
     curcol += int(date)
 
                 #ending work
-    book=load_workbook('export.xlsx')
+    book=load_workbook(filename)
     sheet = book.active
     currow += 1
 
@@ -190,7 +196,7 @@ def find_cell(fio, month, date):        #find a cell
 
 
 
-def do_calendar_form():     #filling the table using form (manual)
+def do_calendar_form(form):     #filling the table using form (manual)
 
     
     def cal(calendar_str):  #turns yyyy-mm-dd  into  'monthname' and date
@@ -206,7 +212,7 @@ def do_calendar_form():     #filling the table using form (manual)
         return day, month[monthnum]
 
 
-
+    filename = str(form) + ".xlsx"
            #getting info from the form
     data = request.body.read()
     cut = data.find("|")
@@ -221,7 +227,7 @@ def do_calendar_form():     #filling the table using form (manual)
     date, month = cal(cal_str)
 
             #finding the cell
-    currow, curcol, book, sheet = find_cell(fio, month, date)
+    currow, curcol, book, sheet = find_cell(fio, month, date, filename)
 
 
             #deciding what to insert into the cell
@@ -229,7 +235,7 @@ def do_calendar_form():     #filling the table using form (manual)
         sheet.cell(row=currow, column=curcol).value = ""
     else:
         sheet.cell(row=currow, column=curcol).value = "H"
-    book.save('export.xlsx')
+    book.save(filename)
 
             #returning success page
     return stat_file("back.html")
