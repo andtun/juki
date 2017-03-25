@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html class="pointerfocus">
+ <head>
+  <meta charset="utf-8">
+  <title>Admin</title>
+  <link rel="shortcut icon" href="test1.png" type="image/x-icon">
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="styleadm.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> </head>
+ 
+ <body>
+
+
+<div id='main-form'>
+<form id='sub-form' action='/logout'>
+<table style='width: 102%; border: none; padding: 0; margin-left: -4px;'>
+<tr style="padding: 0; margin: 0; border: none;">
+<td style="padding: 0; margin: 0; border: none;"><span id='uname'>Администратор</span></td>
+<td style="padding: 0; margin: 0; border: none;">
+
+    
+    <div style='text-align: right; margin-right: 5px; padding: 0px;'><input type="submit" value="Выйти" style='margin-left: 0px'> |
+    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a></div>
+
+</td>
+</tr>
+</table>
+</form>
+<div class='chert'></div>
+ <fieldset>
+ 
+<table style="border: none; border-collapse: collapse; width: 600px;">
+<tr>
+<td style="border-right: 5px solid #BCBCBC; border-bottom: 5px solid #BCBCBC; width: 200px">
+		<p class="zagol">Добавить пользователя</p>
+		<form method="POST" action="/add_user">
+    	<input type="text" style='width: 150px' name="FIO" value="FIO" onBlur="if(this.value == '') this.value = 'FIO'" onFocus="if(this.value == 'FIO') this.value = ''" required />
+      <input type="text" style='width: 50px' name="access_level" value="accs_lvl" onBlur="if(this.value == '') this.value = 'access_level'" onFocus="if(this.value == 'accs_lvl') this.value = ''" required />
+      <input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required />
+      <input type="text" name="password" value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required />
+      <input type="text" name="email" value="email" onBlur="if(this.value == '') this.value = 'email'" onFocus="if(this.value == 'email') this.value = ''" required />
+    	<input type="submit" value="Добавить" style="width: 100px; margin-top: 15px; vertical-align: bottom;">
+		</form>
+</td>
+<td style="border-left: 5px solid #BCBCBC; border-bottom: 5px solid #BCBCBC;">
+		<p class='zagol'>Удалить пользователя</p>
+		<form action="/delete_user" style="width: 50%; display: inline-block; margin-top: 25px; margin-bottom: 10px">
+   	 	<input type="text" name="username" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required/ style="vertical-align: middle;">
+    	<input type="submit" value="Удалить" style="width: 100px; background-color: #3299BB; margin-top: 42.5px; vertical-align: bottom;">
+		</form>
+</td>
+</tr>
+<tr">
+<td style="padding-top: 10px; border-right: 5px solid #BCBCBC; border-top: 5px solid #BCBCBC;">
+<form action="/showuserlist" style="width: 100%; margin-top: 10px; margin-right: 0px; display: inline-block; text-align: center;">
+<button type="submit" title="Посмотреть список пользователей">
+          <img src="list1.png" style="width: 90px; height: 90px; border-radius: 6px; border-radius: 6px">
+          <p class='butt' style="margin-left: -12px">Пользователи</p>
+          </button>
+</form>
+</td>
+<td style="padding-top: 10px; border-left: 5px solid #BCBCBC; border-top: 5px solid #BCBCBC;">
+<form action="/syncdics" method='GET' style="width: 100%; margin-top: 10px; margin-right: 0px; display: inline-block; text-align: center;">
+<button type="submit" title="Синхронизировать базу">
+          <img src="sync.png" style="width: 90px; height: 90px; border-radius: 6px; border-radius: 6px">
+          <p class='butt' style='width: 120px; margin-left: -22px;'>Синхронизировать</p>
+          </button>
+</form>
+</td>
+</tr>
+</table>
+		
+</fieldset>
+</div>
+<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; font-weight: normal; width: 100%; text-align: center; margin-left: -8px;'>ЖУКИ © 2017</p>
+</body>
+</html>
