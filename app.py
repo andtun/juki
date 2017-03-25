@@ -116,7 +116,7 @@ def logerror():
 @need_auth
 def main():
     filename = get_access() + ".html"
-    print("FILENAME IS = !!!!!!!!! = "filename)
+    print("FILENAME IS = !!!!!!!!! = " + filename)
     return main_page(filename)
 
 
