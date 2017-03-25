@@ -239,6 +239,8 @@ def do_calendar_form(form):     #filling the table using form (manual)
         sheet.cell(row=currow, column=curcol).value = "H"
     book.save(filename)
 
+    print("FORM FILLED SUCCESFULLY FOR^ ",filename,fio )
+
             #returning success page
     return stat_file("back.html")
 
