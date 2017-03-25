@@ -120,17 +120,17 @@ def main():
 
 #--------------------working with calendar-----------------------
 
-@route("/submit/<form>", method="POST")
+@route("/submit", method="POST")
 @need_auth
-def do_form(form):
+def do_form():
     print(request.body.read())
-    return do_calendar_form()
+    return do_calendar_form(get_access())
 #--------------------------------------------------------------------
 
-@route("/fileDownload/<form>")
+@route("/fileDownload")
 @need_auth
-def download(form):
-    filename = str(form) + ".xlsx"
+def download():
+    filename = get_access() + ".xlsx"
     return static_file(filename, root='.', download=True)
 
 
