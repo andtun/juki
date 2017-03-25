@@ -142,6 +142,8 @@ def access_is(access_level):   #used to check the access level
     ans = (access_level == UserDB.get(request.session['username']).access_level)
     return ans
 
+def get_access():
+	return str(UserDB.get(request.session['username']).access_level)
 
 def stat_file(filename):   #an easier way to return static file
     return static_file(filename, root = STAT_FILE_ROOT)

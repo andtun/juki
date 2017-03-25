@@ -95,10 +95,11 @@ def chklgn():
 @get("/menu")   # main page for the user
 @need_auth      # need_auth decorator: if not authorized, you'll get 401 Error
 def menu():
-    if access_is('10kl'):
-        return stat_file("main.html")
+
     if access_is('admin'):
         redirect('/main?adm')
+    else:
+        return stat_file('main.html')
 
     redirect('/logout')
 
@@ -114,7 +115,7 @@ def logerror():
 @route("/main")   # main page
 @need_auth
 def main():
-    filename = request.session['access']
+    filename = get_access() + ".html"
     return main_page(filename)
 
 
