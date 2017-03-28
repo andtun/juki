@@ -193,7 +193,8 @@ def restore_prcss():
                 UserDB.set(username, 'pw', hsh(new_psw))
                 cmnd = "DELETE FROM RestoreList WHERE username='%s';" % username
                 UserDB.db.query(cmnd)
-                redirect('/new_psw_login')
+                response.set_cookie("forgot", "from_restore")
+                redirect('/')
             else:
                 response.set_cookie("restore", "Пароли не свопадают") #psw dont match
             
