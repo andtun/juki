@@ -154,12 +154,12 @@ def forgot():
     #response.set_cookie("forgot", "not_yet")
     if UserDB.check(username):
         response.set_cookie("forgot", "OK")
-		code = randomword()
-	    email = UserDB.get(username).email
-	    print(email)
-	    send_message(email, code)
-		UserDB.new_restore(username, code)
-	    return "Проверьте свою почту"
+        code = randomword()
+        email = UserDB.get(username).email
+        print(email)
+        send_message(email, code)
+        UserDB.new_restore(username, code)
+        return "Проверьте свою почту"
     else:
     	response.set_cookie("forgot", "failed")
     
