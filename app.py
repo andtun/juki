@@ -78,12 +78,13 @@ def chklgn():
     postdata = request.body.read()
     print(postdata)
     cut = postdata.find("|")
-    request.session['username'] = postdata[:cut]    #getting usrname & pw
+    username = postdata[:cut]    #getting usrname & pw
     password = postdata[cut+1:]
 
-    if check_login(request.session['username'], password):    #if already in, you'll be redirected to the menu page
+    if check_login(username, password):    #if already in, you'll be redirected to the menu page
         #request.session['access'] = UserDB.get(request.session['username']).access_level     #setting atributes of the cookie
         response.set_cookie("failed_login", 'succeded')
+        request.session['username'] = username
         print("EVENT:    user " + request.session['username'] + " logged in successfuly")
         redirect("/menu")
 
@@ -149,21 +150,18 @@ def forgot():
 
 @post("/forgot_password")
 def forgot():
-    username = request.forms.get('username')
+    username = request.body.read()
     #response.set_cookie("forgot", "not_yet")
     if UserDB.check(username):
         response.set_cookie("forgot", "OK")
+		code = randomword()
+	    email = UserDB.get(username).email
+	    print(email)
+	    send_message(email, code)
+		UserDB.new_restore(username, code)
+	    return "Проверьте свою почту"
     else:
     	response.set_cookie("forgot", "failed")
-    
-    code = randomword()
-    email = UserDB.get(username).email
-    print(email)
-    send_message(email, code)
-
-    UserDB.new_restore(username, code)
-    
-    return "Проверьте свою почту"
     
     #return 'Done it for ', new_username, email
 
