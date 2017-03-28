@@ -10,7 +10,7 @@
 <script type="text/javascript">
   
 function changeContent(content) {
-document.getElementNyId("content").innerHTML = content
+document.getElementById("content").innerHTML = content
 }
 
 function get_cookie ( cookie_name )
@@ -23,9 +23,9 @@ function get_cookie ( cookie_name )
     return null;
 }
 
-function mainFunc{
+function mainFunc() {
   content = 'none'
-  while content=='none' {
+  while (content=='none') {
     content = get_cookie("restore")
   }
 

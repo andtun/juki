@@ -71,7 +71,7 @@ function submitForm() {
 
 function changeContent(success) {
 
-if success == True {
+if (success == "OK") {
   document.getElementById("content").innerHTML = "Проверьте свою почту"
 }
 else{
@@ -88,12 +88,11 @@ function forgot_psw() {
   http.send(username)
 
   var sent = "not_yet"
-  while sent == "not_yet" {
+  while (sent == "not_yet") {
     sent = get_cookie('forgot')
   }
-  
-  var success = (sent == "OK")
-  changeContent(success)
+
+  changeContent(sent)
 }
 
 
