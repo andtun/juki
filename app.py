@@ -63,6 +63,7 @@ def setup_request():
     
 @get("/")   #login html
 def login():
+	response.set_cookie("forgot", "not_yet")
     if not request.get_cookie("failed_login"):
         response.set_cookie("failed_login", 'undefined')
 
