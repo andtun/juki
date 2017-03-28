@@ -150,9 +150,11 @@ def forgot():
 @post("/forgot_password")
 def forgot():
     username = request.forms.get('username')
-    
-    if not UserDB.check(username):
-        return "User doesn't exist"
+    #response.set_cookie("forgot", "not_yet")
+    if UserDB.check(username):
+        response.set_cookie("forgot", "OK")
+    else:
+    	response.set_cookie("forgot", "failed")
     
     code = randomword()
     email = UserDB.get(username).email
@@ -193,14 +195,16 @@ def restore_prcss():
                 UserDB.set(username, 'pw', hsh(new_psw))
                 cmnd = "DELETE FROM RestoreList WHERE username='%s';" % username
                 UserDB.db.query(cmnd)
-                return "changed"
+                redirect('/new_psw_login')
             else:
-                return "psw don't match"
+                response.set_cookie("restore", "Пароли не свопадают") #psw dont match
             
-    return "something wrong"
+    response.set_cookie("restore", "Что-то не так :(") #something wrong
             
             
-    
+@get("/new_psw_login") 
+def itt(): 
+	return stat_file('new_psw_login.html')
 
 @get("/change_password")    # change password html
 @need_auth

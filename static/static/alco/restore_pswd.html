@@ -6,6 +6,37 @@
   <link rel="shortcut icon" href="test1.png" type="image/x-icon">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <title>Поменять пароль</title>
+
+<script type="text/javascript">
+  
+function changeContent(content) {
+document.getElementNyId("content").innerHTML = content
+}
+
+function get_cookie ( cookie_name )
+{
+  var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+ 
+  if ( results )
+    return ( unescape ( results[2] ) );
+  else
+    return null;
+}
+
+function mainFunc{
+  content = 'none'
+  while content=='none' {
+    content = get_cookie("restore")
+  }
+
+  changeContent(content)
+}
+
+mainFunc();
+</script>
+
+
+
  </head>
  
  <body>
@@ -32,6 +63,8 @@
 			Повторите новый пароль:
 			<input type="password" name="new_password_repeated" value="" onBlur="if(this.value == '') this.value = ''" onFocus="if(this.value == '') this.value = ''" required />
 			<input type="submit" value="Подвердить">
+
+      <div id="content"> </div>
 
 	<form action="/main">
 			<input type="submit" value="Отмена">

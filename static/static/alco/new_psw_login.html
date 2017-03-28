@@ -88,11 +88,13 @@ function forgot_psw() {
   http.send(username)
 
   var sent = "not_yet"
+
   while sent == "not_yet" {
     sent = get_cookie('forgot')
   }
   
   var success = (sent == "OK")
+  
   changeContent(success)
 }
 
@@ -125,6 +127,7 @@ alwaysHTTPS();
             </form>
             <div id="content">
 </div>
+<div> Ваш пароль изменён! </div>
 
           </fieldset>
 
