@@ -84,6 +84,10 @@ else if (success == "failed") {
 
 }
 
+function changeContent_brute(content) {
+  document.getElementById("content").innerHTML = content
+}
+
 function forgot_psw() {
 
   var username = document.getElementById("username").value
@@ -96,7 +100,7 @@ function forgot_psw() {
     sent = get_cookie('forgot')
   }
 
-  changeContent(sent)
+  changeContent_brute(sent)
 }
 
 

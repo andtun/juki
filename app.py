@@ -196,9 +196,11 @@ def restore_prcss():
                 UserDB.db.query(cmnd)
                 response.set_cookie("forgot", "from_restore")
                 redirect('/')
+                return "done"
             else:
                 response.set_cookie("restore", "Пароли не совпадают")
-                redirect('/restore') #psw dont match
+                redirect('/restore')
+                return ("err pw") #psw dont match
             
     response.set_cookie("restore", "Что-то не так :(")
     redirect('/restore') #something wrong
