@@ -66,6 +66,7 @@ function submitForm() {
     var tosend = username+space+password
     http.send(tosend);
     changeDivContent();
+    document.cookie = "restore="
     
 }
 
@@ -84,7 +85,8 @@ else if (success == "failed") {
 
 }
 
-function changeContent_brute(content) {
+function changeContent_brute() {
+  content = get_cookie("restore")
   document.getElementById("content").innerHTML = content
 }
 
@@ -100,11 +102,12 @@ function forgot_psw() {
     sent = get_cookie('forgot')
   }
 
-  changeContent_brute(sent)
+  changeContent(sent)
 }
 
 
 alwaysHTTPS();
+changeContent_brute()
 
 </script>
 
