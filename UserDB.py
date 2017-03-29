@@ -82,8 +82,10 @@ def get_restore_code(username):
 import time
 def check_expire(code):     # True if still active, False if expired
     curtime = int(time.time())
+    print("CODE IS!!! "+code)
     cmnd = "SELECT expires FROM RestoreList WHERE code='%s';" % code
     expire_time = str(db.fetch(cmnd))
+    print(expire_time)
     expire_time = int(expire_time[4:len(expire_time)-4])
     print("EXPIRE TIME IS!!!!")
     print(expire_time)
