@@ -68,6 +68,7 @@ def new_restore(username, code):
     expires = int(time.time()) + 1800
     print("--------------------------------")
     print(username, expires)
+    cmnd = "DELETE FROM RestoreList WHERE username='%s';" % username
     cmnd  = "INSERT INTO RestoreList VALUES ('%s', '%s', '%s');" % (username, code, expires)
     db.query(cmnd)
     print("!!!!!!!!!!!!!!!!!!!!USER CODE IN DBDBDDB = "+code)
