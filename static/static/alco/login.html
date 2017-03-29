@@ -107,7 +107,10 @@ function forgot_psw() {
 
 
 alwaysHTTPS();
-changeContent_brute()
+var sent = get_cookie("forgot")
+if (sent == "from_restore") {
+  changeContent(sent)
+}
 
 </script>
 
