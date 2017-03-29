@@ -210,6 +210,10 @@ def restore_prcss():
 def itt(): 
 	return stat_file('new_psw_login.html')
 
+@get('/check_code')
+def code():
+	return request.session['restore']
+
 @get("/change_password")    # change password html
 @need_auth
 def chngpsw_html():
