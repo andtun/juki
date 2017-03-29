@@ -71,6 +71,8 @@ function submitForm() {
 
 function changeContent(success) {
 
+alert("infunc par^ "+success)
+
 if (success == "OK") {
   document.getElementById("content").innerHTML = "Проверьте свою почту"
 }
@@ -95,6 +97,8 @@ function forgot_psw() {
   while (sent == "not_yet") {
     sent = get_cookie('forgot')
   }
+
+  alert(sent)
 
   changeContent(sent)
 }
