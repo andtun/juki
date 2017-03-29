@@ -197,9 +197,11 @@ def restore_prcss():
                 response.set_cookie("forgot", "from_restore")
                 redirect('/')
             else:
-                response.set_cookie("restore", "Пароли не свопадают") #psw dont match
+                response.set_cookie("restore", "Пароли не совпадают")
+                redirect('/restore') #psw dont match
             
-    response.set_cookie("restore", "Что-то не так :(") #something wrong
+    response.set_cookie("restore", "Что-то не так :(")
+    redirect('/restore') #something wrong
             
             
 @get("/new_psw_login") 
