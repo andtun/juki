@@ -155,7 +155,7 @@ def forgot():
     #response.set_cookie("forgot", "not_yet")
     if UserDB.check(username):
         response.set_cookie("forgot", "OK")
-        code = randomword()
+        code = str(uuid.uuid4())
         email = UserDB.get(username).email
         print(email)
         send_message(email, code)
