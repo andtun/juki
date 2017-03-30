@@ -35,6 +35,7 @@ function mainFunc() {
 function checkTwoPsw() {
   np = document.getElementById("np");
   npr = document.getElementById("npr");
+  alert(np); alert(npr);
   if (np == npr) {
     return true;
   } else {document.getElementById("content").innerHTML = "Пароли не совпадают";
