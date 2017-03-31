@@ -186,6 +186,21 @@ setCurDate();
 $('#calendar').datepicker({
    todayButton: new Date()
 })
+
+var disabledDays = [0, 6];
+
+$('#calendar').datepicker({
+   onRenderCell: function (date, cellType) {
+       if (cellType == 'day') {
+           var day = date.getDay(),
+               isDisabled = disabledDays.indexOf(day) != -1;
+
+           return {
+               disabled: isDisabled
+           }
+       }
+   }
+})
 </script>
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
