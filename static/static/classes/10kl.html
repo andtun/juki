@@ -13,7 +13,7 @@
 <body>
 
 <script>
-function setCurDate() {
+window.onload = function setCurDate() {
   var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -86,7 +86,6 @@ xmlhttp.send();
 }
 
 addtxt();
-setCurDate();
 
 </script>
 
