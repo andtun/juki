@@ -160,6 +160,11 @@ addtxt()
 </datalist>
 
 <p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calendar" class="datepicker-here" />
+<script type="text/javascript">
+$('.calendar').datepicker({
+   todayButton: new Date()
+})
+</script>
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
   <ul>
