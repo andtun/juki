@@ -28,13 +28,9 @@ if(mm<10) {
 } 
 
 today = dd+'.'+mm+'.'+yyyy;
-return today
+  document.getElementById("calendar").innerHTML = today
 }
 
-function setCurDate() {
-  date = curDate()
-  document.getElementById("calendar").innerHTML = date
-}
 
 function changeDivContent() {
 
@@ -201,6 +197,7 @@ $('#calendar').datepicker({
        }
    }
 })
+
 </script>
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
