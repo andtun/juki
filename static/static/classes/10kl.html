@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<script>
+<script>/*
 window.onload = function setCurDate() {
   var today = new Date();
 var dd = today.getDate();
@@ -28,10 +28,10 @@ if(mm<10) {
 } 
 
 today = dd+'.'+mm+'.'+yyyy;
-content = `<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calend" value="`+today+`" class="datepicker-here" /></p>`
+content = `<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calend" onfocus="this.value=`+today+`" class="datepicker-here" /></p>`
 document.getElementById("calendar").innerHTML = String(today)
 }
-
+*/
 
 function changeDivContent() {
 
