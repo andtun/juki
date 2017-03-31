@@ -28,7 +28,7 @@ if(mm<10) {
 } 
 
 today = dd+'.'+mm+'.'+yyyy;
-alert(today)
+content = `<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calend" value="`+today+`" class="datepicker-here" /></p>`
 document.getElementById("calendar").innerHTML = String(today)
 }
 
@@ -177,7 +177,9 @@ addtxt();
 </label>
 </datalist>
 
-<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calendar" class="datepicker-here" /></p>
+<div id="calendar")
+<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calend" class="datepicker-here" /></p>
+</div>
 <script type="text/javascript">
 $('#calendar').datepicker({
    todayButton: new Date()
