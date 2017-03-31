@@ -80,7 +80,7 @@ else if (success == "from_restore") {
   document.getElementById("content").innerHTML = "Ваш пароль изменён!"
 }
 else if (success == "failed") {
-  document.getElementById("content").innerHTML = "Вы точно ввели правильное имя пользователя? <style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"javascript:forgot_psw();\" >Восстановить пароль</a><div class='ch'></div>"
+  document.getElementById("content").innerHTML = "Вы точно ввели правильное имя пользователя? <style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"javascript:before_forgot();\" >Восстановить пароль</a><div class='ch'></div>"
 }
 
 }
@@ -88,6 +88,20 @@ else if (success == "failed") {
 function changeContent_brute() {
   content = get_cookie("restore")
   document.getElementById("content").innerHTML = content
+}
+
+function before_forgot() {
+  content = `<h1>Восстановить пароль</h1>
+          <div class="chert"></div>
+          <fieldset>
+
+            <form action="javascript:forgot_psw();">
+            <p class='nev'>Логин:</p>
+            <input id="username" name="username" type="text">
+              
+            <input type="submit" value="Войти">
+            </form>`
+  document.getElementById("restore").innerHTML = content
 }
 
 function forgot_psw() {
@@ -126,7 +140,7 @@ if (sent == "from_restore") {
      <div id='login-form'>
       <div>
 
-        
+      <div id="restore">
           <h1>Войти в систему</h1>
           <div class="chert"></div>
           <fieldset>
@@ -139,6 +153,7 @@ if (sent == "from_restore") {
               
             <input type="submit" value="Войти">
             </form>
+        </div>
             <div id="content">
 </div>
 
