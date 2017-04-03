@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<script>/*
-window.onload = function setCurDate() {
+<script>
+function curDate() {
   var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -28,10 +28,9 @@ if(mm<10) {
 } 
 
 today = dd+'.'+mm+'.'+yyyy;
-content = `<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calend" onfocus="this.value=`+today+`" class="datepicker-here" /></p>`
-document.getElementById("calendar").innerHTML = String(today)
+  document.getElementById("calendar").innerHTML = today
 }
-*/
+
 
 function changeDivContent() {
 
@@ -86,6 +85,7 @@ xmlhttp.send();
 }
 
 addtxt();
+setCurDate();
 
 </script>
 
@@ -177,9 +177,7 @@ addtxt();
 </label>
 </datalist>
 
-<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" class="datepicker-here" /></p>
-
-
+<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calendar" class="datepicker-here" /></p>
 <script type="text/javascript">
 $('#calendar').datepicker({
    todayButton: new Date()
