@@ -13,7 +13,18 @@
 <body>
 
 <script>
-
+function mobilecontent(){
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  document.getElementById('contentmobile').innerHTML = '<style>border:1px solid #292829;border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;padding:12px;font-family:"Open Sans",sans-serif;width:305px;margin-top: 10px;</style><input type="date">'
+  }
+}
+mobilecontent()
+function fieldsetmobile(){
+  if( /webOS|iPod|iPhone|iPad/i.test(navigator.userAgent)){
+    document.getElementById('fieldset').height = '400px'
+  }
+}
+fieldsetmobile()
 
 function changeDivContent() {
 
@@ -288,7 +299,7 @@ addtxt()
 </label>
 </datalist>
 
-<p style='margin-bottom: 20px'>Выберите дату: <br><input type='text' name="calendar" id="calendar" class="datepicker-here" />
+<p style='margin-bottom: 20px' id="contentmobile">Выберите дату: <br><input type='text' name="calendar" id="calendar" class="datepicker-here" />
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
   <ul>
