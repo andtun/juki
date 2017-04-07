@@ -34,4 +34,4 @@ fileList = ['8kl.xlsx', '9kl.xlsx', '10kl.xlsx', '11kl.xlsx']
 for i in fileList:
     print("table filling for %s") % i
     allDayNo(i)
-    print("!stage finished successfully!")
+    print("!stage finisheed successfully!")
