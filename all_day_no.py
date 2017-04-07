@@ -24,6 +24,7 @@ def allDayNo(filename):
         book = load_workbook(filename)
         sheet = book.active
         sheet.cell(row=i, column=curcol).value = "H"
+        print(i, curcol)
         book.save(filename)
 
 print("starting all day n0")
