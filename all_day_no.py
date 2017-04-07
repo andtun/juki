@@ -1,5 +1,6 @@
 from datetime import datetime
 import xlrd
+from funcslist import convert
 from openpyxl import load_workbook
 
 def allDayNo(filename):
