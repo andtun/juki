@@ -25,6 +25,11 @@ def allDayNo(filename):
         sheet.cell(row=i, column=curcol).value = "H"
         book.save(filename)
 
+print("starting all day n0")
+
 fileList = ['8kl.xlsx', '9kl.xlsx', '10kl.xlsx', '11kl.xlsx']
+
 for i in fileList:
+    print("table filling for %s") % filename
     allDayNo(i)
+    print("!stage finished successfully!")
