@@ -45,11 +45,14 @@ def putAllNo():
             book = load_workbook(filename)
             sheet = book.active
             sheet.cell(row=i, column=curcol).value = "H"
+            print(i, curcol)
             book.save(filename)
 
     fileList = ['8kl.xlsx', '9kl.xlsx', '10kl.xlsx', '11kl.xlsx']
     for i in fileList:
+    	print("table filling for %s") % i
         allDayNo(i)
+        print("!success!")
 
 
 @hook('before_request')
