@@ -4,6 +4,7 @@
 <link rel="shortcut icon" href="test1.png" type="image/x-icon">
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style4.css">
+<link rel="stylesheet" media="handheld, only screen and (orientation: portrait)" href="phonemain.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Меню</title>
 </head>
@@ -66,18 +67,18 @@ alwaysHTTPS();
 <div align="center">
 <table class='table'>
     <tr>
-      <td>
+      <td class="tdd">
       <form action="/main">
           <button type="submit" title='Редактировать таблицу' >
-          <img src="edit.png" style="width: 70px; height: 70px; border-radius: 6px; margin-left: 20px">
+          <img src="edit.png" id='imgg'>
           <p class='butt'>Редактировать</p>
           </button>
       </form>
     </td>
-    <td>
+    <td class="tdd">
       <form action='/fileDownload'>
           <button type="submit" title="Скачать таблицу">
-          <img src="downl.png" style="width: 50px; height: 70px; border-radius: 6px; border-radius: 6px">
+          <img src="downl.png" id= 'imgg2'>
           <p class='butt'>Скачать</p>
           </button>
       </form>
@@ -87,6 +88,6 @@ alwaysHTTPS();
 </fieldset>
 </div> 
 
-<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; margin-left: 645px; font-weight: normal;'>ЖУКИ © 2017</p>
+<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; width: 100%; margin-left: 0; font-weight: normal;'>ЖУКИ © 2017</p>
 </body>
 </html>

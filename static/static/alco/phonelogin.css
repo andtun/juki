@@ -9,9 +9,10 @@ body {
     font-family:'Open Sans',sans-serif;
     font-size:16px;
     color:#424242;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 5px;
+    margin-right: 5px;
     }
+
 #login-form {
     background-color:#F5F5F5;
     border-radius:5px;
@@ -19,7 +20,8 @@ body {
     -webkit-border-radius:5px;
     margin:120px auto;
     margin-bottom: 0;
-    width:316px;
+    width:100%;
+    height: 350px;
     font-family:'Open Sans',sans-serif;
     font-size:16px;
     -webkit-box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
@@ -55,7 +57,7 @@ body {
     }
 #login-form fieldset form {
     overflow:hidden;
-    width:270px;
+    width:100%;
     margin-bottom: 0px;
     margin-right: 0;
     }
@@ -104,6 +106,7 @@ body {
     font-size: 16;
     width: 100%;
     margin-bottom: 20px;
+    margin-top: 13px;
     }
 .nev{
     margin:0;

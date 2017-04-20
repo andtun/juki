@@ -4,6 +4,7 @@
 <link rel="shortcut icon" href="test1.png" type="image/x-icon">
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style3.css">
+<link rel="stylesheet" media="handheld, only screen and (orientation: portrait)" href="phonelogin.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Вход в систему</title>
 
@@ -42,7 +43,7 @@ login_status = get_cookie("failed_login");
 if (login_status == "failed") {
 
 
-  document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 53px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"javascript:before_forgot();\" >Восстановить пароль</a><div class='ch'></div>";
+  document.getElementById("content").innerHTML = "<style>.forgot{font-family:'Verdana, Arial, Helvetica,' sans-serif; font-size:12pt; color: #3299BB; margin-right: 0px; margin-top: 0; margin-left: 0px; text-decoration: none;}.ch{width:200px; height:3px; background-color:#3299BB; margin-bottom:0px; margin-top:2px; margin-left:37px;}</style><p class='nevv'>Неверный логин или пароль</p><a type='forgot' class=forgot href=\"javascript:before_forgot();\" >Восстановить пароль</a><div class='ch'></div>";
 
   document.cookie = "failed_login=undefined";
 
@@ -73,14 +74,14 @@ function submitForm() {
 function changeContent(success) {
 
 if (success == "OK") {
-  document.getElementById("content").innerHTML = "Проверьте свою почту"
+  document.getElementById("content").innerHTML = "<style>margin-bottom: 20px</style>Проверьте свою почту"
 }
 
 else if (success == "from_restore") {
-  document.getElementById("content").innerHTML = "Ваш пароль изменён!"
+  document.getElementById("content").innerHTML = "<style>margin-bottom: 20px</style>Ваш пароль изменён!"
 }
 else if (success == "failed") {
-  document.getElementById("content").innerHTML = "Вы точно ввели правильное имя пользователя?"
+  document.getElementById("content").innerHTML = "<style>margin-bottom: 20px</style>Неверное имя пользователя"
 }
 
 }
@@ -167,6 +168,6 @@ if (sent == "from_restore") {
    
     
  </div>
- <p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; margin-left: 645px'>ЖУКИ © 2017</p>
+ <p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; width: 100%; margin-left: 0'>ЖУКИ © 2017</p>
 </body>
 </html>

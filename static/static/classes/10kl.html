@@ -7,6 +7,7 @@
 <script src="dist/js/datepicker.min.js"></script>
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style2.css">
+<link rel="stylesheet" media="handheld, only screen and (orientation: portrait)" href="phonepath.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Изменить таблицу</title>
 </head>
@@ -213,15 +214,15 @@ $('#calendar').datepicker({
 </script>
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
-  <ul>
-  <li>
+  <ul id='ull'>
+  <li id='li1'>
     <input type="radio" id="f-option" name="YesNo" value='Yes' checked>
     <label for="f-option" class='label1'>Да</label>
     
     <div class="check"></div>
   </li>
   
-  <li>
+  <li id='li2'>
     <input type="radio" id="s-option" name="YesNo" value='No'>
     <label for="s-option" class='label2'>Нет</label>
     
@@ -237,7 +238,7 @@ $('#calendar').datepicker({
   
   </p>
   </form>
-  <form action="/menu">
+  <form id='forrm' action="/menu">
   <input type="submit" value="Вернуться в меню" style='margin-top: 20px; margin-left: -20px;'>
 
   </form>
@@ -254,6 +255,6 @@ $('#calendar').datepicker({
 
 
  </div>
- <p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; margin-left: 645px'>ЖУКИ © 2017</p>
+<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; font-weight: normal; width: 100%; text-align: center; margin-left: -8px;'>ЖУКИ © 2017</p>
 </body>
 </html>

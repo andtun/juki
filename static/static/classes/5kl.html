@@ -7,24 +7,13 @@
 <script src="dist/js/datepicker.min.js"></script>
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style2.css">
+<link rel="stylesheet" media="handheld, only screen and (orientation: portrait)" href="phonepath.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Изменить таблицу</title>
 </head>
 <body>
 
 <script>
-function mobilecontent(){
-  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-  document.getElementById('contentmobile').innerHTML = '<style>border:1px solid #292829;border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;padding:12px;font-family:"Open Sans",sans-serif;width:305px;margin-top: 10px;</style><input type="date">'
-  }
-}
-mobilecontent()
-function fieldsetmobile(){
-  if( /webOS|iPod|iPhone|iPad/i.test(navigator.userAgent)){
-    document.getElementById('fieldset').height = '400px'
-  }
-}
-fieldsetmobile()
 
 function changeDivContent() {
 
@@ -194,15 +183,15 @@ addtxt()
 <p style='margin-bottom: 20px' id="contentmobile">Выберите дату: <br><input type='text' name="calendar" id="calendar" class="datepicker-here" />
 <p style="padding-bottom: 0; padding-left: 0; margin-bottom: 0px">В школе:</p>
      <div class="container">
-  <ul>
-  <li>
+  <ul id='ull'>
+  <li id='li1'>
     <input type="radio" id="f-option" name="YesNo" value='Yes' checked>
     <label for="f-option" class='label1'>Да</label>
     
     <div class="check"></div>
   </li>
   
-  <li>
+  <li id='li2'>
     <input type="radio" id="s-option" name="YesNo" value='No'>
     <label for="s-option" class='label2'>Нет</label>
     
@@ -218,7 +207,7 @@ addtxt()
   
   </p>
   </form>
-  <form action="/menu">
+  <form id='forrm' action="/menu">
   <input type="submit" value="Вернуться в меню" style='margin-top: 20px; margin-left: -20px;'>
 
   </form>
@@ -235,6 +224,6 @@ addtxt()
 
 
  </div>
- <p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; margin-left: 645px'>ЖУКИ © 2017</p>
+<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; font-weight: normal; width: 100%; text-align: center; margin-left: -8px;'>ЖУКИ © 2017</p>
 </body>
 </html>
