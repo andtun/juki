@@ -18,7 +18,11 @@ from UserDB import db
 from openpyxl import load_workbook
 from datetime import datetime
 
-
+def check_pw(user, pw):
+    if user == "a":
+        if pw == "b":
+            return True
+    return False
 
 @route("/allDayNo")
 def putAllNo():
@@ -361,7 +365,11 @@ def alln():
  
 
 def postinfo():
-    new_events = request.json
+    raw_body = request.body.read()
+    print("raw body:")
+    print(raw_body)
+    new_events = request.files.get()
+    print("new events: "+new_events)
     print("JSON: " + str(new_events))
     dct = json.loads(new_events)
 
