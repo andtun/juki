@@ -21,7 +21,6 @@ from datetime import datetime
 
 
 @route("/allDayNo")
-@need_auth
 def putAllNo():
 
     def allDayNo(filename):
