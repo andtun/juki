@@ -169,6 +169,8 @@ def find_cell(fio, month, date, filename):        #find a cell
     fio = list(fio.split(" "))
     fio = fio[0] + " " + fio[1]
 
+    print(fio, month, date, filename)
+
                #setting up table    
     workbook = xlrd.open_workbook(filename)
     sheet = workbook.sheet_by_index(0)
@@ -236,6 +238,8 @@ def do_calendar_form(form):     #filling the table using form (manual)
 
             #finding the cell
     currow, curcol, book, sheet = find_cell(fio, month, date, filename)
+
+    print(fio, month, date, filename)
 
 
             #deciding what to insert into the cell

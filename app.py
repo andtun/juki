@@ -412,6 +412,9 @@ def putinfo():
 def fileReturn(filename):
 	return stat_file(filename)
 
+@get("/dist/js/<fname>")
+def dp(fname):
+	return static_file(fname, root="./static/static/alco")
 #======================================================================
 #                        ERRORS CATCHING
 
