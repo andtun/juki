@@ -165,7 +165,7 @@ def logout():
 
 def find_cell(fio, month, date, filename):        #find a cell
     
-    fio = fio.decode("utf-8")
+    fio = str(fio.encode("unicode_escape"))
     fio = list(fio.split(" "))
     fio = fio[0] + " " + fio[1]
 
