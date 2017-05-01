@@ -178,7 +178,7 @@ def find_cell(fio, month, date, filename):        #find a cell
     currow = 1
 
                #finding fio
-    for i in range(sheet.nrows):
+    for i in range(1, sheet.nrows):
         data = str(sheet.cell_value(i, 0).encode("unicode_escape"))
         print(data)
         data = list(data.split(" "))
