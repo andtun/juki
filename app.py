@@ -379,18 +379,19 @@ def postinfo():
         wrkdct = dct[event]
         print(wrkdct)
         name = wrkdct['personInfo']['last_name'].encode('utf-8') + ' ' + wrkdct['personInfo']['first_name'].encode('utf-8')
+        form = wrkdct['personInfo']['class']
         print(name)
-        try:
-            name = rdname(name)
-        except ValueError:
-            print("Value Error in app.py")
-            pass
+        #try:
+        #    name = rdname(name)
+        #except ValueError:
+        #    print("Value Error in app.py")
+        #    pass
         m = dct[event]['datetime']['date']
         month = m[m.find('.')+1:m.rfind('.')]
         day = m[:m.find('.')]
         # topr = name + " " + convert(month) + " " + str(day)
         # print(topr)
-        addPoint(name, convert(month), int(day))
+        addPoint(name, convert(month), int(day), form)
 
     print("-----  table filling finished successfully  -----")
 

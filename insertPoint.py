@@ -54,12 +54,13 @@ def rdname(name):
     return ans
 
 
-def addPoint(name, month, date):
-
-    currow, curcol, book, sheet = funcslist.find_cell(name, month, date)
+def addPoint(name, month, date, form):
+    form = list(form.split(" "))[0]
+    filename = form + "kl.xlsx"
+    currow, curcol, book, sheet = funcslist.find_cell(name, month, date, filename)
     print(currow, curcol)
     sheet.cell(row=currow, column=curcol).value = ""
-    book.save('export.xlsx')
+    book.save(filename)
 
 
 def convert(month_number):

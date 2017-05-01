@@ -165,6 +165,10 @@ def logout():
 
 def find_cell(fio, month, date, filename):        #find a cell
     
+    fio = fio.decode("utf-8")
+    fio = list(fio.split(" "))
+    fio = fio[0] + " " + fio[1]
+
                #setting up table    
     workbook = xlrd.open_workbook(filename)
     sheet = workbook.sheet_by_index(0)
@@ -174,7 +178,9 @@ def find_cell(fio, month, date, filename):        #find a cell
                #finding fio
     for i in range(sheet.nrows):
         data = sheet.cell_value(i, 0)
-        if data == fio.decode('utf-8'):
+        data = list(data.split(" "))
+        data = data[0] + " " + data[1]
+        if data == fio:
             currow = i
             break
 
