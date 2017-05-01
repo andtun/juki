@@ -176,12 +176,14 @@ def find_cell(fio, month, date, filename):        #find a cell
     sheet = workbook.sheet_by_index(0)
     curcol = 1
     currow = 1
+    print(fio)
 
                #finding fio
-    for i in range(1, sheet.nrows):
+    for i in range(sheet.nrows):
         data = str(sheet.cell_value(i, 0).encode("unicode_escape"))
         print(data)
         data = list(data.split(" "))
+        print(data)
         data = data[0] + " " + data[1]
         if data == fio:
             currow = i
