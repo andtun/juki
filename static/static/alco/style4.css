@@ -138,3 +138,23 @@ body {
     height: 70px;
     border-radius: 6px;
 }
+#lock{
+    height: 13px;
+    width: 13px;
+}
+#td2{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+#copyright{
+    color: #F5F5F5;
+    font-size: 7pt;
+    text-align: center;
+    margin-bottom: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-left: 0;
+    font-weight: normal;
+}

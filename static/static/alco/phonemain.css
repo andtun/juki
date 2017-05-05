@@ -10,18 +10,19 @@ body {
     font-weight:bold;
     color:#727272;
     margin-bottom: 5px;
-    margin-left: 5;
-    margin-right: 5;
+    margin-left: 35;
+    margin-right: 35;
     }
 #main-form {
     background-color:#F5F5F5;
     border-radius:5px;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
-    margin:180px auto;
+    margin:25% auto;
     width:100%;
+    height: 650px;
     font-family:'Open Sans',sans-serif;
-    font-size:16px;
+    font-size:30pt;
     -webkit-box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
     box-shadow:0px 10px 20px 0px rgba(0,0,0,.3);
     }
@@ -34,8 +35,8 @@ body {
     padding-top: 40px;
     height: 180px;
     padding-left: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 10;
+    margin-right: 10;
     }
 #main-form fieldset form{
     margin-left: 20px;
@@ -56,7 +57,7 @@ body {
     -webkit-appearance:none;
     width: 100%;
     height: 100px;
-    font-size: 17;
+    font-size: 35pt;
     }
 
 .acl{
@@ -85,6 +86,7 @@ body {
     margin-bottom: 0;
     padding-bottom: 15px; 
     padding-right: 20px;
+    font-size: 35pt;
 }
 #sub-form input[type="submit"] {
     background-color:white;
@@ -99,6 +101,7 @@ body {
     font-size: 16px;
     padding:0px;
     margin-left: 165px;
+    font-size: 35pt;
     }
 .chert{
 	width: 100%;
@@ -118,31 +121,59 @@ body {
 .butt{
     background-color:#3299BB;
     border:none;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
     color:white;
     cursor:pointer;
     float:none;
     font-weight:normal;
     padding:12px 12px;
     -webkit-appearance:none;
-    width: 100%;
-    font-size: 12px;
+    width: 95%;
+    font-size: 35pt;
     margin-bottom: 7px;
     margin-left: -10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .tdd{
     width: 50%;
 }
 #imgg{
-    width: 80px;
-    height: 80px;
+    width: 250px;
+    height: 230px;
     border-radius: 6px;
     margin-left: 20px;
+    margin-top: 60px;
+    margin-left: 80px;
 }
 #imgg2{
-    width: 57.14px;
-    height: 80px;
+    width: 180px;
+    height: 230px;
     border-radius: 6px;
+    margin-top: 60px;
+}
+#lock{
+    height: 30px;
+    width: 30px;
+}
+#td2{
+    padding-right: 20px;
+}
+#crcr{
+  font-size: 35pt;
+}
+#td3{
+    font-size: 35pt;
+}
+#copyright{
+    color: #F5F5F5;
+    font-size: 20pt;
+    text-align: center;
+    margin-bottom: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-left: -35px;
 }

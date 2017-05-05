@@ -441,7 +441,3 @@ def fff(error):
 
 bottle.run(app=app, host="0.0.0.0", port=os.environ.get('PORT', 5000), quiet=False)
 
-
-@get("/testjs")
-def test():
-	return stat_file("test.html")
