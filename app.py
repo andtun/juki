@@ -369,10 +369,15 @@ def postinfo():
     print("raw body:")
     print(raw_body)
     new_events = request.files.get('sentJson')
-    print("TYPE NEVEV"+str(type(new_events)))
     new_events = new_events.file.readlines()
     print("new events: "+str(new_events))
-    #print("JSON: " + str(new_events))
+
+    t = ""
+    for i in new_events:
+        t += i
+
+    new_events = t
+    print(new_events)
     dct = json.loads(new_events)
 
     print("-----  filling table from db started  -----")
