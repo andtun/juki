@@ -371,8 +371,8 @@ def postinfo():
     new_events = request.files.get('sentJson')
     print("TYPE NEVEV"+str(type(new_events)))
     new_events = new_events.file.readlines()
-    print("new events: "+new_events)
-    print("JSON: " + str(new_events))
+    print("new events: "+str(new_events))
+    #print("JSON: " + str(new_events))
     dct = json.loads(new_events)
 
     print("-----  filling table from db started  -----")
