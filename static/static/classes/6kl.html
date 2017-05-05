@@ -7,6 +7,7 @@
 <script src="dist/js/datepicker.min.js"></script>
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="style2.css">
+<link rel="stylesheet" media="handheld, only screen and (orientation: portrait)" href="phonepath.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <title>Изменить таблицу</title>
 </head>
@@ -77,11 +78,11 @@ addtxt()
 <table style='width: 102%; border: none; padding: 0; margin-left: -4px;'>
 <tr style="padding: 0; margin: 0; border: none;">
 <td style="padding: 0; margin: 0; border: none;"><span id='uname'></span></td>
-<td style="padding: 0; margin: 0; border: none;">
+<td id='td2'>
 
     
-    <div style='text-align: right; margin-right: 0px; padding: 0px;'><input type="submit" value="Выйти" style='margin-left: 0px'> |
-    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" style="height: 13px; width: 13px"></a></div>
+    <div id='crcr' style='text-align: right; margin-right: 0px; padding: 0px;'><input type="submit" value="Выйти" style='margin-left: 0px'> |
+    <a href="/change_password" title="Изменить пароль"><img src="lock1.png" id='lock'></a></div>
 
 </td>
 </tr>
@@ -274,6 +275,6 @@ addtxt()
 
 
  </div>
-<p style='color: #F5F5F5; font-size: 7pt; text-align: center; margin-bottom: 5px; position: fixed; bottom: 0; font-weight: normal; width: 100%; text-align: center; margin-left: -8px;'>ЖУКИ © 2017</p>
+<p id='copyright'>ЖУКИ © 2017</p>
 </body>
 </html>
