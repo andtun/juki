@@ -1,3 +1,5 @@
+# This Python file uses the following encoding: utf-8
+
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
