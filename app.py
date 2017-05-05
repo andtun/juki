@@ -11,6 +11,7 @@ import json
 import insertPoint
 import UserDB
 import uuid
+import sendEmail
 from bottle import *
 from funcslist import *
 from passlib.hash import pbkdf2_sha256
@@ -381,6 +382,8 @@ def postinfo():
     dct = json.loads(new_events)
 
     print("-----  filling table from db started  -----")
+
+    maildata = []
     
     for event in dct.keys():
         wrkdct = dct[event]
@@ -388,6 +391,12 @@ def postinfo():
         name = wrkdct['personInfo']['last_name'].encode('utf-8') + ' ' + wrkdct['personInfo']['first_name'].encode('utf-8')
         form = wrkdct['personInfo']['class']
         print(name)
+        a = {}
+        a['inOrOut'] = wrkdct['inOrOut']
+        a['name'] = name
+        a['class'] = form
+        maildata.append(a)
+        
         #try:
         #    name = rdname(name)
         #except ValueError:
@@ -401,6 +410,7 @@ def postinfo():
         addPoint(name, convert(month), int(day), form)
 
     print("-----  table filling finished successfully  -----")
+    sendEmail.send(maildata)
 
 
 @post("/post_info")

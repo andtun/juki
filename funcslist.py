@@ -172,43 +172,47 @@ def find_cell(fio, month, date, filename):        #find a cell
     print(fio, month, date, filename)
 
                #setting up table    
-    workbook = xlrd.open_workbook(filename)
-    sheet = workbook.sheet_by_index(0)
-    curcol = 1
-    currow = 1
-    #print(fio)
+    try:
+    	workbook = xlrd.open_workbook(filename)
+    except IOError:
+    	pass
+    else:
+	    sheet = workbook.sheet_by_index(0)
+	    curcol = 1
+	    currow = 1
+	    #print(fio)
 
-               #finding fio
-    for i in range(sheet.nrows):
-        data = str(sheet.cell_value(i, 0).encode("unicode_escape"))
-        #print(data)
-        data = list(data.split(" "))
-        #print(data)
-        try:
-            data = data[0] + " " + data[1]
-            if data == fio:
-                currow = i
-                break
-        except IndexError:
-            pass
+	               #finding fio
+	    for i in range(sheet.nrows):
+	        data = str(sheet.cell_value(i, 0).encode("unicode_escape"))
+	        #print(data)
+	        data = list(data.split(" "))
+	        #print(data)
+	        try:
+	            data = data[0] + " " + data[1]
+	            if data == fio:
+	                currow = i
+	                break
+	        except IndexError:
+	            pass
 
                 #finding month
-    for i in range(sheet.ncols):
-        data = sheet.cell_value(0, i)
-        if data == month.decode("utf-8"):
-            curcol = i
-            break
+	    for i in range(sheet.ncols):
+	        data = sheet.cell_value(0, i)
+	        if data == month.decode("utf-8"):
+	            curcol = i
+	            break
 
-                #finding date
-    curcol += int(date)
+	                #finding date
+	    curcol += int(date)
 
-                #ending work
-    book=load_workbook(filename)
-    sheet = book.active
-    currow += 1
+	                #ending work
+	    book=load_workbook(filename)
+	    sheet = book.active
+	    currow += 1
 
-    #return the cell we need and the table object, in which the cell is
-    return currow, curcol, book, sheet
+	    #return the cell we need and the table object, in which the cell is
+	    return currow, curcol, book, sheet
 
 
 
