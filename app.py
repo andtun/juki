@@ -369,7 +369,7 @@ def postinfo():
     print("raw body:")
     print(raw_body)
     new_events = request.files.get('sentJson')
-    print("TYPE NEVEV"+type(new_events))
+    print("TYPE NEVEV"+str(type(new_events)))
     print("new events: "+new_events)
     print("JSON: " + str(new_events))
     dct = json.loads(new_events)
