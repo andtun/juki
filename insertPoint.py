@@ -60,7 +60,7 @@ def addPoint(name, month, date, form):
     print("HERE COMES THE A:")
     print(type(name), type(month), type(date), type(filename))
     print(name, month, date, filename)
-    currow, curcol, book, sheet = funcslist.find_cell(name, month, date, filename)
+    currow, curcol, book, sheet = funcslist.find_cell(name, month, date, str(filename))
     print(currow, curcol)
     sheet.cell(row=currow, column=curcol).value = "T"
     book.save(filename)

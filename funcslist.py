@@ -204,7 +204,7 @@ def find_cell(fio, month, date, filename):        #find a cell
 	            break
 
 	                #finding date
-	    curcol += int(date)
+	    curcol += date
 
 	                #ending work
 	    book=load_workbook(filename)
