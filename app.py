@@ -371,7 +371,7 @@ def postinfo():
     print(raw_body)
     new_events = request.files.get('sentJson')
     new_events = new_events.file.readlines()
-    new_events = str(new_events)[2:-2]
+    new_events = str(new_events)[2:-3]
     print("new events: "+ new_events)
 
 
