@@ -374,7 +374,9 @@ def postinfo():
     print("new events: "+str(new_events))
 
 
-    dct = json.loads(new_events)[0]
+    dct = json.loads(new_events)
+    print("DCT TYPE:", type(dct))
+    dct = dct[0]
     print("DCT IS:", dct)
 
     print("-----  filling table from db started  -----")
