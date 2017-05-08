@@ -371,10 +371,11 @@ def postinfo():
     print(raw_body)
     new_events = request.files.get('sentJson')
     new_events = new_events.file.readlines()
-    print("new events: "+str(new_events))
+    new_events = str(new_events)[2:-2]
+    print("new events: "+ new_events)
 
 
-    dct = json.loads(str(new_events)[2:-2])
+    dct = json.loads(new_events)
 
     print("DCT IS:", dct)
 
