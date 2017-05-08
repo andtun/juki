@@ -373,13 +373,9 @@ def postinfo():
     new_events = new_events.file.readlines()
     print("new events: "+str(new_events))
 
-    t = ""
-    for i in new_events:
-        t += i
 
-    new_events = t
-    print(new_events)
-    dct = json.loads(new_events)
+    dct = json.loads(new_events)[0]
+    print("DCT IS:", dct)
 
     print("-----  filling table from db started  -----")
 
