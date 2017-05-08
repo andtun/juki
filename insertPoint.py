@@ -57,6 +57,9 @@ def rdname(name):
 def addPoint(name, month, date, form):
     form = list(form.split(" "))[0]
     filename = form + "kl.xlsx"
+    print("HERE COMES THE A:")
+    print(type(name), type(month), type(date), type(filename))
+    print(name, month, date, filename)
     currow, curcol, book, sheet = funcslist.find_cell(name, month, date, filename)
     print(currow, curcol)
     sheet.cell(row=currow, column=curcol).value = "T"
