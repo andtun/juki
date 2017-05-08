@@ -374,7 +374,7 @@ def postinfo():
     print("new events: "+str(new_events))
 
 
-    dct = json.loads(new_events)
+    dct = json.loads(str(new_events))
     print("DCT TYPE:", type(dct))
     dct = dct[0]
     print("DCT IS:", dct)
