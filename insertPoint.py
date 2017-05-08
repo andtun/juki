@@ -59,7 +59,7 @@ def addPoint(name, month, date, form):
     filename = form + "kl.xlsx"
     print("HERE COMES THE A:")
     print(type(name), type(month), type(date), type(filename))
-    print(name.encode("utf-8"), month.encode("utf-8"), date, filename.encode("utf-8"))
+    print(name.encode("utf-8").decode("utf-8"), month.encode("utf-8").decode("utf-8"), date, filename.encode("utf-8").decode("utf-8"))
     currow, curcol, book, sheet = funcslist.find_cell(name, month, date, filename.decode("unicode_escape"))
     print(currow, curcol)
     sheet.cell(row=currow, column=curcol).value = "T"
